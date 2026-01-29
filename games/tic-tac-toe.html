@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - eigur</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            font-family: 'Verdana', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        
+        .game-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+        
+        .status {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            margin: 20px auto;
+            max-width: 300px;
+            position: relative;
+        }
+        
+        .cell {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 10px;
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cell:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .winning-cell {
+            background: rgba(46, 204, 113, 0.5);
+            animation: pulse 0.6s ease-in-out;
+        }
+        
+        /* Winning line styles */
+        .win-line {
+            position: absolute;
+            background: #ffd700;
+            z-index: 1;
+            transform-origin: 0 0;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .reset-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .reset-btn:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .difficulty {
+            margin: 15px 0;
+        }
+        
+        select {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            margin-left: 10px;
+        }
+        
+        option {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🎮 Tic Tac eigur</h1>
+        <div class="status" id="status">Player X's turn</div>
+        
+        <div class="difficulty">
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="hard" selected>Hard</option>
+            </select>
+        </div>
+        
+        <div class="board" id="board">
+            <button class="cell" data-index="0"></button>
+            <button class="cell" data-index="1"></button>
+            <button class="cell" data-index="2"></button>
+            <button class="cell" data-index="3"></button>
+            <button class="cell" data-index="4"></button>
+            <button class="cell" data-index="5"></button>
+            <button class="cell" data-index="6"></button>
+            <button class="cell" data-index="7"></button>
+            <button class="cell" data-index="8"></button>
+        </div>
+        
+        <button class="reset-btn" id="reset">Reset Game</button>
+    </div>
+
+    <script>
+        class TicTacToe {
+            constructor() {
+                this.board = Array(9).fill(null);
+                this.currentPlayer = 'X';
+                this.gameActive = true;
+                this.difficulty = 'hard';
+                
+                this.cells = document.querySelectorAll('.cell');
+                this.statusDisplay = document.getElementById('status');
+                this.resetButton = document.getElementById('reset');
+                this.difficultySelect = document.getElementById('difficulty');
+                this.boardElement = document.getElementById('board');
+                
+                this.winLine = null;
+                
+                this.init();
+            }
+            
+            init() {
+                this.cells.forEach(cell => cell.addEventListener('click', (e) => this.handleCellClick(e)));
+                this.resetButton.addEventListener('click', () => this.resetGame());
+                this.difficultySelect.addEventListener('change', (e) => this.setDifficulty(e));
+                
+                this.updateStatus();
+            }
+            
+            handleCellClick(e) {
+                const cell = e.target;
+                const index = parseInt(cell.getAttribute('data-index'));
+                
+                if (this.board[index] !== null || !this.gameActive) return;
+                
+                this.makeMove(index, this.currentPlayer);
+                
+                if (this.checkWinner()) {
+                    this.endGame(false);
+                } else if (this.board.every(cell => cell !== null)) {
+                    this.endGame(true);
+                } else {
+                    this.switchPlayer();
+                    if (this.currentPlayer === 'O') {
+                        setTimeout(() => this.aiMove(), 500);
+                    }
+                }
+            }
+            
+            makeMove(index, player) {
+                this.board[index] = player;
+                this.cells[index].textContent = player;
+            }
+            
+            switchPlayer() {
+                this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
+                this.updateStatus();
+            }
+            
+            updateStatus() {
+                if (this.gameActive) {
+                    this.statusDisplay.textContent = `Player ${this.currentPlayer}'s turn`;
+                }
+            }
+            
+            checkWinner() {
+                const winPatterns = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                    [0, 4, 8], [2, 4, 6]             // diagonals
+                ];
+                
+                for (const pattern of winPatterns) {
+                    const [a, b, c] = pattern;
+                    if (this.board[a] && this.board[a] === this.board[b] && this.board[a] === this.board[c]) {
+                        // Remove any existing win line
+                        this.removeWinLine();
+                        
+                        // Highlight winning cells
+                        this.highlightWinningCells(pattern);
+                        
+                        // Draw the winning line
+                        this.drawWinLine(pattern);
+                        
+                        return pattern;
+                    }
+                }
+                return null;
+            }
+            
+            highlightWinningCells(pattern) {
+                pattern.forEach(index => {
+                    this.cells[index].classList.add('winning-cell');
+                });
+            }
+            
+            drawWinLine(pattern) {
+                // Remove any existing win line
+                this.removeWinLine();
+                
+                const boardRect = this.boardElement.getBoundingClientRect();
+                const cellSize = this.cells[0].offsetWidth;
+                const cellSpacing = 10; // From CSS grid-gap
+                
+                // Calculate positions based on winning pattern
+                let startX, startY, endX, endY;
+                
+                switch(pattern.toString()) {
+                    case [0,1,2].toString(): // Top row
+                        startX = this.cells[0].offsetLeft + cellSize/2;
+                        startY = this.cells[0].offsetTop + cellSize/2;
+                        endX = this.cells[2].offsetLeft + cellSize/2;
+                        endY = this.cells[2].offsetTop + cellSize/2;
+                        break;
+                    case [3,4,5].toString(): // Middle row
+                        startX = this.cells[3].offsetLeft + cellSize/2;
+                        startY = this.cells[3].offsetTop + cellSize/2;
+                        endX = this.cells[5].offsetLeft + cellSize/2;
+                        endY = this.cells[5].offsetTop + cellSize/2;
+                        break;
+                    case [6,7,8].toString(): // Bottom row
+                        startX = this.cells[6].offsetLeft + cellSize/2;
+                        startY = this.cells[6].offsetTop + cellSize/2;
+                        endX = this.cells[8].offsetLeft + cellSize/2;
+                        endY = this.cells[8].offsetTop + cellSize/2;
+                        break;
+                    case [0,3,6].toString(): // Left column
+                        startX = this.cells[0].offsetLeft + cellSize/2;
+                        startY = this.cells[0].offsetTop + cellSize/2;
+                        endX = this.cells[6].offsetLeft + cellSize/2;
+                        endY = this.cells[6].offsetTop + cellSize/2;
+                        break;
+                    case [1,4,7].toString(): // Middle column
+                        startX = this.cells[1].offsetLeft + cellSize/2;
+                        startY = this.cells[1].offsetTop + cellSize/2;
+                        endX = this.cells[7].offsetLeft + cellSize/2;
+                        endY = this.cells[7].offsetTop + cellSize/2;
+                        break;
+                    case [2,5,8].toString(): // Right column
+                        startX = this.cells[2].offsetLeft + cellSize/2;
+                        startY = this.cells[2].offsetTop + cellSize/2;
+                        endX = this.cells[8].offsetLeft + cellSize/2;
+                        endY = this.cells[8].offsetTop + cellSize/2;
+                        break;
+                    case [0,4,8].toString(): // Diagonal top-left to bottom-right
+                        startX = this.cells[0].offsetLeft + cellSize/2;
+                        startY = this.cells[0].offsetTop + cellSize/2;
+                        endX = this.cells[8].offsetLeft + cellSize/2;
+                        endY = this.cells[8].offsetTop + cellSize/2;
+                        break;
+                    case [2,4,6].toString(): // Diagonal top-right to bottom-left
+                        startX = this.cells[2].offsetLeft + cellSize/2;
+                        startY = this.cells[2].offsetTop + cellSize/2;
+                        endX = this.cells[6].offsetLeft + cellSize/2;
+                        endY = this.cells[6].offsetTop + cellSize/2;
+                        break;
+                }
+                
+                // Create the win line element
+                this.winLine = document.createElement('div');
+                this.winLine.className = 'win-line';
+                
+                // Calculate the length and angle of the line
+                const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+                const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+                
+                // Position and style the line
+                this.winLine.style.width = length + 'px';
+                this.winLine.style.height = '4px';
+                this.winLine.style.left = startX + 'px';
+                this.winLine.style.top = startY + 'px';
+                this.winLine.style.transform = `rotate(${angle}deg)`;
+                this.winLine.style.borderRadius = '2px';
+                
+                // Add the line to the board
+                this.boardElement.appendChild(this.winLine);
+            }
+            
+            removeWinLine() {
+                if (this.winLine) {
+                    this.winLine.remove();
+                    this.winLine = null;
+                }
+            }
+            
+            endGame(isDraw) {
+                this.gameActive = false;
+                if (isDraw) {
+                    this.statusDisplay.textContent = "Game ended in a draw!";
+                } else {
+                    this.statusDisplay.textContent = `Player ${this.currentPlayer} wins!`;
+                }
+            }
+            
+            resetGame() {
+                this.board = Array(9).fill(null);
+                this.currentPlayer = 'X';
+                this.gameActive = true;
+                
+                this.cells.forEach(cell => {
+                    cell.textContent = '';
+                    cell.classList.remove('winning-cell');
+                });
+                
+                this.removeWinLine();
+                
+                this.updateStatus();
+            }
+            
+            setDifficulty(e) {
+                this.difficulty = e.target.value;
+            }
+            
+            aiMove() {
+                if (!this.gameActive || this.currentPlayer !== 'O') return;
+                
+                let move;
+                if (this.difficulty === 'easy') {
+                    move = this.getRandomMove();
+                } else {
+                    move = this.getBestMove();
+                }
+                
+                this.makeMove(move, 'O');
+                
+                if (this.checkWinner()) {
+                    this.endGame(false);
+                } else if (this.board.every(cell => cell !== null)) {
+                    this.endGame(true);
+                } else {
+                    this.switchPlayer();
+                }
+            }
+            
+            getRandomMove() {
+                const availableMoves = this.board.map((cell, index) => cell === null ? index : null).filter(val => val !== null);
+                return availableMoves[Math.floor(Math.random() * availableMoves.length)];
+            }
+            
+            getBestMove() {
+                // Minimax algorithm implementation
+                let bestScore = -Infinity;
+                let bestMove;
+                
+                for (let i = 0; i < 9; i++) {
+                    if (this.board[i] === null) {
+                        this.board[i] = 'O';
+                        let score = this.minimax(this.board, 0, false);
+                        this.board[i] = null;
+                        
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestMove = i;
+                        }
+                    }
+                }
+                
+                return bestMove;
+            }
+            
+            minimax(board, depth, isMaximizing) {
+                const winner = this.evaluate();
+                
+                if (winner === 'O') return 10 - depth;
+                if (winner === 'X') return depth - 10;
+                if (this.isBoardFull()) return 0;
+                
+                if (isMaximizing) {
+                    let bestScore = -Infinity;
+                    for (let i = 0; i < 9; i++) {
+                        if (board[i] === null) {
+                            board[i] = 'O';
+                            let score = this.minimax(board, depth + 1, false);
+                            board[i] = null;
+                            bestScore = Math.max(score, bestScore);
+                        }
+                    }
+                    return bestScore;
+                } else {
+                    let bestScore = Infinity;
+                    for (let i = 0; i < 9; i++) {
+                        if (board[i] === null) {
+                            board[i] = 'X';
+                            let score = this.minimax(board, depth + 1, true);
+                            board[i] = null;
+                            bestScore = Math.min(score, bestScore);
+                        }
+                    }
+                    return bestScore;
+                }
+            }
+            
+            evaluate() {
+                const winPatterns = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                    [0, 4, 8], [2, 4, 6]
+                ];
+                
+                for (const [a, b, c] of winPatterns) {
+                    if (this.board[a] && this.board[a] === this.board[b] && this.board[a] === this.board[c]) {
+                        return this.board[a];
+                    }
+                }
+                return null;
+            }
+            
+            isBoardFull() {
+                return this.board.every(cell => cell !== null);
+            }
+        }
+        
+        // Initialize the game when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new TicTacToe();
+        });
+    </script>
+</body>
+</html>
