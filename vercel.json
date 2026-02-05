@@ -2,6 +2,17 @@
   "github": {
     "silent": true
   },
-  "framework": "nextjs",
-  "rootDirectory": "eigur-website"
+  "version": 2,
+  "builds": [
+    {
+      "src": "eigur-website/**/*",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/eigur-website/$1"
+    }
+  ]
 }
