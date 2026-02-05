@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Zap, Globe, Award, Users, Sparkles, ChevronRight, Cpu, BarChart3 } from 'lucide-react';
+import { ArrowRight, Zap, Globe, Award, Users, Sparkles, ChevronRight, Cpu, BarChart3, Shield } from 'lucide-react';
 
 const HomePage = () => {
   const services = [
