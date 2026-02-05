@@ -337,6 +337,153 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Unique AI Features & Capabilities */}
+      <section className="py-20 bg-gradient-to-br from-indigo-50 to-purple-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Advanced AI Capabilities
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+              Cutting-edge technologies that set us apart from the competition
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                  <Sparkles className="h-6 w-6" />
+                </div>
+                <h3 className="ml-4 text-lg font-medium text-gray-900">AI-Powered Predictive Intelligence</h3>
+              </div>
+              <p className="text-gray-600">
+                Advanced algorithms that predict market trends, customer behavior, and business opportunities before they happen.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                  <Shield className="h-6 w-6" />
+                </div>
+                <h3 className="ml-4 text-lg font-medium text-gray-900">Ethical AI Framework</h3>
+              </div>
+              <p className="text-gray-600">
+                Our proprietary framework ensures responsible AI deployment with bias mitigation and transparent decision-making.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                  <Zap className="h-6 w-6" />
+                </div>
+                <h3 className="ml-4 text-lg font-medium text-gray-900">Real-Time Decision Engine</h3>
+              </div>
+              <p className="text-gray-600">
+                Instantaneous processing of data streams to enable split-second business decisions with maximum accuracy.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                  <Globe className="h-6 w-6" />
+                </div>
+                <h3 className="ml-4 text-lg font-medium text-gray-900">Multilingual AI Models</h3>
+              </div>
+              <p className="text-gray-600">
+                Custom AI models trained specifically for Indian languages and cultural contexts, ensuring optimal performance.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                  <BarChart3 className="h-6 w-6" />
+                </div>
+                <h3 className="ml-4 text-lg font-medium text-gray-900">Autonomous Business Optimization</h3>
+              </div>
+              <p className="text-gray-600">
+                Self-learning systems that continuously optimize business processes without human intervention.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                  <Cpu className="h-6 w-6" />
+                </div>
+                <h3 className="ml-4 text-lg font-medium text-gray-900">Edge AI Deployment</h3>
+              </div>
+              <p className="text-gray-600">
+                Bringing AI capabilities directly to your devices and systems for faster processing and reduced latency.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Innovation Lab */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+                AI Innovation Lab
+              </h2>
+              <p className="mt-4 text-lg text-gray-600">
+                Our dedicated research facility where we develop breakthrough AI solutions tailored specifically for the Indian market. Our lab houses cutting-edge hardware and our top researchers working on next-generation AI applications.
+              </p>
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                    <ChevronRight className="h-4 w-4" />
+                  </div>
+                  <span className="ml-2 text-gray-700">Custom AI Model Development</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                    <ChevronRight className="h-4 w-4" />
+                  </div>
+                  <span className="ml-2 text-gray-700">Proprietary Algorithms</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                    <ChevronRight className="h-4 w-4" />
+                  </div>
+                  <span className="ml-2 text-gray-700">Ethical AI Research</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
+                    <ChevronRight className="h-4 w-4" />
+                  </div>
+                  <span className="ml-2 text-gray-700">Industry-Specific Solutions</span>
+                </div>
+              </div>
+            </div>
+            <div className="bg-gradient-to-r from-primary-500 to-indigo-600 rounded-xl p-8 text-white">
+              <h3 className="text-2xl font-bold mb-4">Our AI Research Achievements</h3>
+              <div className="space-y-4">
+                <div>
+                  <p className="text-4xl font-bold">50+</p>
+                  <p>Papers Published in Top AI Conferences</p>
+                </div>
+                <div>
+                  <p className="text-4xl font-bold">12</p>
+                  <p>Patents Filed for AI Innovations</p>
+                </div>
+                <div>
+                  <p className="text-4xl font-bold">99.2%</p>
+                  <p>Avg. Accuracy in Custom AI Models</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -382,6 +529,38 @@ const HomePage = () => {
                 <div>
                   <p className="font-medium text-gray-900">{testimonial.author}</p>
                   <p className="text-sm text-gray-500">{testimonial.position}, {testimonial.company}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications & Accreditations */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Recognized by Industry Leaders
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+              Our credentials and partnerships that demonstrate our expertise
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+            {[
+              { name: 'Microsoft AI Partner', level: 'Gold Certified' },
+              { name: 'Google Cloud AI', level: 'Specialist Partner' },
+              { name: 'AWS Machine Learning', level: 'Competency Holder' },
+              { name: 'NASSCOM Member', level: 'Premium Tier' },
+              { name: 'ISO 27001', level: 'Certified' },
+              { name: 'Startup India', level: 'Recognized' }
+            ].map((cert, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-white p-6 rounded-lg shadow text-center h-full">
+                  <div className="text-lg font-semibold text-gray-800">{cert.name}</div>
+                  <div className="text-sm text-primary-600 mt-2">{cert.level}</div>
                 </div>
               </div>
             ))}

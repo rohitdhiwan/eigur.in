@@ -110,11 +110,11 @@ const AboutPage = () => {
             
             {/* New Leadership Members */}
             <div className="text-center">
-              <div className="mx-auto bg-gray-200 rounded-xl w-32 h-32 overflow-hidden flex items-center justify-center">
+              <div className="mx-auto bg-gray-200 rounded-full w-32 h-32 overflow-hidden flex items-center justify-center border-4 border-white shadow-lg">
                 <img 
                   src="/media/file_1---012cc25f-4340-4588-98ff-8825f4277ca4.jpg" 
                   alt="Riya Verma - Chief Technology Officer" 
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <h3 className="mt-4 text-lg font-medium text-gray-900">Riya Verma</h3>
@@ -125,11 +125,11 @@ const AboutPage = () => {
             </div>
             
             <div className="text-center">
-              <div className="mx-auto bg-gray-200 rounded-xl w-32 h-32 overflow-hidden flex items-center justify-center">
+              <div className="mx-auto bg-gray-200 rounded-full w-32 h-32 overflow-hidden flex items-center justify-center border-4 border-white shadow-lg">
                 <img 
                   src="/media/file_2---977356aa-1dec-4b2e-9f3b-b57d50df84c1.jpg" 
                   alt="Karan Joshi - Chief Product Officer" 
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <h3 className="mt-4 text-lg font-medium text-gray-900">Karan Joshi</h3>
