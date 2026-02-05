@@ -118,6 +118,48 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Daily AI Insights Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:text-center">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Daily AI Insights
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600 lg:mx-0">
+              Stay updated with the latest developments in AI and their impact on Indian businesses
+            </p>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((item) => (
+              <div key={item} className="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-300">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 bg-primary-100 rounded-md p-3">
+                    <Sparkles className="h-6 w-6 text-primary-600" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-medium text-gray-900">Latest AI Trends</h3>
+                    <p className="mt-1 text-sm text-gray-600">Daily updates on AI developments in India</p>
+                  </div>
+                </div>
+                <p className="mt-4 text-base text-gray-600">
+                  Our AI research team curates the most important developments in artificial intelligence every day, focusing on applications relevant to Indian businesses.
+                </p>
+                <div className="mt-6">
+                  <Link 
+                    href="/blog" 
+                    className="inline-flex items-center text-primary-600 hover:text-primary-800 font-medium"
+                  >
+                    Read today's insights
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary-600 to-indigo-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

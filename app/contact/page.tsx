@@ -28,7 +28,7 @@ const ContactPage = () => {
                   <h3 className="text-lg font-medium text-gray-900">Our Location</h3>
                   <p className="mt-1 text-gray-600">
                     123 Innovation Hub, Outer Ring Road<br />
-                    Bangalore, Karnataka 560048<br />
+                    New Delhi 110001<br />
                     India
                   </p>
                 </div>
@@ -54,7 +54,6 @@ const ContactPage = () => {
                 <div className="ml-4">
                   <h3 className="text-lg font-medium text-gray-900">Email Address</h3>
                   <p className="mt-1 text-gray-600">
-                    hello@eigur.in<br />
                     support@eigur.in
                   </p>
                 </div>

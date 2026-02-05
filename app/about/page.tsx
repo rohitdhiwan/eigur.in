@@ -92,13 +92,26 @@ const AboutPage = () => {
         <div className="py-16 bg-white rounded-xl shadow-md p-8">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Meet Our Leadership</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {[1, 2, 3].map((item) => (
+            {/* Founder Profile */}
+            <div className="text-center">
+              <div className="mx-auto bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32 flex items-center justify-center">
+                <span className="text-gray-500 text-sm">Male Avatar<br />Age 30</span>
+              </div>
+              <h3 className="mt-4 text-lg font-medium text-gray-900">Rohit Dhiwan</h3>
+              <p className="text-gray-600">Founder and CEO</p>
+              <p className="mt-2 text-sm text-gray-500">
+                Visionary leader with expertise in AI and business transformation. Dedicated to bringing innovative AI solutions to Indian businesses.
+              </p>
+            </div>
+            
+            {/* Other leadership members */}
+            {[1, 2].map((item) => (
               <div key={item} className="text-center">
-                <div className="mx-auto bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" />
+                <div className="mx-auto bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32" />
                 <h3 className="mt-4 text-lg font-medium text-gray-900">Leadership Team Member</h3>
                 <p className="text-gray-600">Position Title</p>
                 <p className="mt-2 text-sm text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum.
+                  Experienced professional with expertise in AI and business transformation.
                 </p>
               </div>
             ))}

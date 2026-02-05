@@ -1,77 +1,86 @@
 import { Calendar, User, Tag, ArrowRight, Search, Filter, Bookmark } from 'lucide-react';
 
-const BlogPage = () => {
-  const blogPosts = [
-    {
-      id: 1,
-      title: 'The Future of AI in Indian Agriculture',
-      excerpt: 'Exploring how artificial intelligence is revolutionizing farming practices across rural India, increasing yields and reducing waste.',
-      author: 'Dr. Priya Sharma',
-      date: 'January 15, 2026',
-      readTime: '6 min read',
-      category: 'Agriculture',
-      image: 'https://images.unsplash.com/photo-1464226183484-2ad46a67bbd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-      tags: ['AI', 'Agriculture', 'India', 'Innovation']
-    },
-    {
-      id: 2,
-      title: 'Transforming Indian Banking with Machine Learning',
-      excerpt: 'How ML algorithms are helping Indian banks detect fraud, assess credit risk, and personalize customer experiences.',
-      author: 'Rajesh Kumar',
-      date: 'January 10, 2026',
-      readTime: '8 min read',
-      category: 'Finance',
-      image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-      tags: ['ML', 'Banking', 'Finance', 'Security']
-    },
-    {
-      id: 3,
-      title: 'Retail Revolution: AI-Powered Customer Experiences',
-      excerpt: 'Examining how AI is reshaping retail experiences in India, from personalized recommendations to inventory management.',
-      author: 'Anita Desai',
-      date: 'January 5, 2026',
-      readTime: '5 min read',
-      category: 'Retail',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-      tags: ['AI', 'Retail', 'Customer Experience', 'E-commerce']
-    },
-    {
-      id: 4,
-      title: 'The Rise of Intelligent Automation in Indian IT',
-      excerpt: 'Understanding how RPA and AI are transforming IT operations and business processes across Indian enterprises.',
-      author: 'Vikram Patel',
-      date: 'December 28, 2025',
-      readTime: '7 min read',
-      category: 'Technology',
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-      tags: ['Automation', 'IT', 'RPA', 'Business']
-    },
-    {
-      id: 5,
-      title: 'AI Ethics and Governance in Indian Context',
-      excerpt: 'Exploring the ethical considerations and governance frameworks for implementing AI in India\'s diverse business landscape.',
-      author: 'Dr. Suresh Nair',
-      date: 'December 20, 2025',
-      readTime: '10 min read',
-      category: 'Ethics',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-      tags: ['Ethics', 'Governance', 'AI Policy', 'Regulation']
-    },
-    {
-      id: 6,
-      title: 'Manufacturing Excellence Through Predictive Analytics',
-      excerpt: 'How predictive analytics is enabling Indian manufacturers to optimize production and reduce downtime.',
-      author: 'Meera Iyer',
-      date: 'December 15, 2025',
-      readTime: '6 min read',
-      category: 'Manufacturing',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-      tags: ['Analytics', 'Manufacturing', 'Predictive', 'Optimization']
-    }
+// Mock data for daily AI news and insights
+const generateDailyAIBlogs = () => {
+  const topics = [
+    "Generative AI in Business",
+    "Machine Learning Trends",
+    "AI Ethics and Governance",
+    "Natural Language Processing",
+    "Computer Vision Applications",
+    "AI in Healthcare",
+    "AI in Finance",
+    "AI in Agriculture",
+    "AI in Retail",
+    "AI in Manufacturing",
+    "AI Startups in India",
+    "AI Regulation Updates",
+    "AI and Climate Change",
+    "AI for Social Good",
+    "Quantum Computing and AI"
   ];
 
+  const sources = [
+    "TechCrunch",
+    "MIT Technology Review", 
+    "AI Research Journal",
+    "India AI News",
+    "VentureBeat AI",
+    "The Hindu Business Line",
+    "Economic Times AI",
+    "Times of India Tech",
+    "YourStory AI",
+    "Inc42 AI"
+  ];
+
+  const blogs = [];
+  const today = new Date();
+  
+  for (let i = 0; i < 12; i++) {
+    const blogDate = new Date(today);
+    blogDate.setDate(today.getDate() - i);
+    
+    const topic = topics[Math.floor(Math.random() * topics.length)];
+    const source = sources[Math.floor(Math.random() * sources.length)];
+    
+    blogs.push({
+      id: i + 1,
+      title: `${topic}: Latest Developments and Market Impact`,
+      excerpt: `Recent advancements in ${topic.toLowerCase()} are reshaping industries across India and globally. Experts predict significant market growth in the coming years.`,
+      author: `AI News Network via ${source}`,
+      date: blogDate.toISOString().split('T')[0],
+      readTime: `${Math.floor(Math.random() * 8) + 3} min read`,
+      category: topic.split(' ')[0], // Extract main category
+      image: `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80`,
+      tags: [topic, 'AI', 'Technology', 'Innovation'],
+      content: `Artificial Intelligence continues to evolve at a rapid pace, with new developments emerging daily. In this article, we explore the latest trends in ${topic.toLowerCase()} and their implications for businesses and society.
+
+The Indian AI market is experiencing unprecedented growth, with investments reaching record highs. Government initiatives and private sector innovations are driving adoption across sectors including healthcare, finance, agriculture, and retail.
+
+${topic.toLowerCase()} technologies are proving particularly valuable for Indian businesses looking to optimize operations, reduce costs, and improve customer experiences. From chatbots to predictive analytics, AI solutions are transforming traditional business models.
+
+Experts suggest that ${topic.toLowerCase()} will play a crucial role in India's digital transformation journey. The convergence of AI with other technologies like IoT, blockchain, and 5G is creating new opportunities for innovation.
+
+However, challenges remain, including data privacy concerns, ethical considerations, and the need for skilled professionals. Organizations are increasingly focusing on responsible AI development and deployment practices.
+
+Looking ahead, the ${topic.toLowerCase()} landscape in India appears promising, with continued investment in research and development. The government's focus on digital infrastructure and AI policy frameworks is expected to accelerate adoption further.
+
+Indian startups and established companies alike are leveraging ${topic.toLowerCase()} to solve local challenges and compete globally. The ecosystem is maturing rapidly, with increased collaboration between academia, industry, and government agencies.
+
+As we move forward, staying informed about ${topic.toLowerCase()} developments will be crucial for businesses seeking competitive advantages. The pace of change requires continuous learning and adaptation strategies.
+
+This article is part of our daily coverage of AI developments in India and globally. Stay tuned for more insights and analysis on emerging trends and their business implications.`
+    });
+  }
+  
+  return blogs;
+};
+
+const BlogPage = () => {
+  const blogPosts = generateDailyAIBlogs();
+  
   const categories = [
-    'All', 'Technology', 'Finance', 'Agriculture', 'Retail', 'Manufacturing', 'Ethics', 'Case Studies'
+    'All', 'Technology', 'Business', 'AI Ethics', 'Startups', 'Government', 'Research', 'Industry'
   ];
 
   return (
@@ -80,10 +89,10 @@ const BlogPage = () => {
         {/* Hero Section */}
         <div className="text-center py-16">
           <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
-            AI Insights & Perspectives
+            Daily AI Insights & News
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
-            Expert analysis, trends, and case studies on AI transformation in Indian businesses
+            Fresh perspectives, industry updates, and expert analysis on AI transformation in Indian businesses
           </p>
         </div>
 
@@ -202,9 +211,9 @@ const BlogPage = () => {
         {/* Newsletter Signup */}
         <div className="bg-gradient-to-r from-primary-600 to-indigo-700 rounded-xl p-8 text-white mb-16">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-bold mb-4">Subscribe to Our AI Insights</h2>
+            <h2 className="text-2xl font-bold mb-4">Subscribe to Daily AI Insights</h2>
             <p className="mb-6 text-primary-100">
-              Get the latest articles, case studies, and industry insights delivered to your inbox weekly.
+              Get the latest articles, industry updates, and expert analysis delivered to your inbox daily.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
@@ -223,7 +232,7 @@ const BlogPage = () => {
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Popular Topics</h2>
           <div className="flex flex-wrap gap-2">
-            {['AI in India', 'Machine Learning', 'Business Automation', 'Retail AI', 'FinTech', 'Agriculture Tech', 'Predictive Analytics', 'RPA', 'Digital Transformation', 'AI Ethics'].map((tag, index) => (
+            {['AI in India', 'Machine Learning', 'Business Automation', 'Retail AI', 'FinTech', 'Agriculture Tech', 'Predictive Analytics', 'RPA', 'Digital Transformation', 'AI Ethics', 'NLP', 'Computer Vision', 'AI Startups', 'AI Policy'].map((tag, index) => (
               <button
                 key={index}
                 className="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-50 border border-gray-200"

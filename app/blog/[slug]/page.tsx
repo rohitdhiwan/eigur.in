@@ -1,44 +1,96 @@
 import { notFound } from 'next/navigation';
-import { Calendar, User, Tag } from 'lucide-react';
+import { Calendar, User, Tag, ArrowLeft } from 'lucide-react';
 
-// This would normally come from a CMS or database
-const blogPosts = [
-  {
-    id: 1,
-    title: 'The Future of AI in Indian Agriculture',
-    excerpt: 'Exploring how artificial intelligence is revolutionizing farming practices across rural India, increasing yields and reducing waste.',
-    content: `
-      <p>Artificial intelligence is transforming agriculture in India at an unprecedented pace. From precision farming to crop monitoring, AI technologies are helping farmers increase productivity while reducing costs.</p>
-      
-      <h2>Current Challenges in Indian Agriculture</h2>
-      <p>Indian agriculture faces several challenges including climate variability, water scarcity, pest infestations, and market fluctuations. Traditional farming methods often fall short in addressing these complex issues effectively.</p>
-      
-      <h2>How AI is Making a Difference</h2>
-      <p>AI-powered solutions are addressing these challenges through:</p>
-      <ul>
-        <li>Predictive analytics for weather and crop yields</li>
-        <li>Disease and pest detection using computer vision</li>
-        <li>Optimized irrigation and fertilizer recommendations</li>
-        <li>Supply chain optimization for better market access</li>
-      </ul>
-      
-      <h2>Success Stories</h2>
-      <p>Several Indian startups and agtech companies have demonstrated significant improvements in farm productivity through AI interventions. Farmers using these technologies report yield increases of 15-30% along with reduced input costs.</p>
-      
-      <h2>Future Outlook</h2>
-      <p>The adoption of AI in Indian agriculture is expected to accelerate with government initiatives, increased smartphone penetration, and improved internet connectivity in rural areas. This will democratize access to advanced farming techniques for smallholder farmers.</p>
-    `,
-    author: 'Dr. Priya Sharma',
-    date: 'January 15, 2026',
-    readTime: '6 min read',
-    category: 'Agriculture',
-    image: 'https://images.unsplash.com/photo-1464226183484-2ad46a67bbd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-    tags: ['AI', 'Agriculture', 'India', 'Innovation']
+// Generate daily AI news content
+const generateDailyAIBlogs = () => {
+  const topics = [
+    "Generative AI in Business",
+    "Machine Learning Trends",
+    "AI Ethics and Governance",
+    "Natural Language Processing",
+    "Computer Vision Applications",
+    "AI in Healthcare",
+    "AI in Finance",
+    "AI in Agriculture",
+    "AI in Retail",
+    "AI in Manufacturing",
+    "AI Startups in India",
+    "AI Regulation Updates",
+    "AI and Climate Change",
+    "AI for Social Good",
+    "Quantum Computing and AI"
+  ];
+
+  const sources = [
+    "TechCrunch",
+    "MIT Technology Review", 
+    "AI Research Journal",
+    "India AI News",
+    "VentureBeat AI",
+    "The Hindu Business Line",
+    "Economic Times AI",
+    "Times of India Tech",
+    "YourStory AI",
+    "Inc42 AI"
+  ];
+
+  const blogs = [];
+  const today = new Date();
+  
+  for (let i = 0; i < 20; i++) {
+    const blogDate = new Date(today);
+    blogDate.setDate(today.getDate() - i);
+    
+    const topic = topics[Math.floor(Math.random() * topics.length)];
+    const source = sources[Math.floor(Math.random() * sources.length)];
+    
+    blogs.push({
+      id: i + 1,
+      title: `${topic}: Latest Developments and Market Impact`,
+      excerpt: `Recent advancements in ${topic.toLowerCase()} are reshaping industries across India and globally. Experts predict significant market growth in the coming years.`,
+      content: `Artificial Intelligence continues to evolve at a rapid pace, with new developments emerging daily. In this article, we explore the latest trends in ${topic.toLowerCase()} and their implications for businesses and society.
+
+The Indian AI market is experiencing unprecedented growth, with investments reaching record highs. Government initiatives and private sector innovations are driving adoption across sectors including healthcare, finance, agriculture, and retail.
+
+${topic.toLowerCase()} technologies are proving particularly valuable for Indian businesses looking to optimize operations, reduce costs, and improve customer experiences. From chatbots to predictive analytics, AI solutions are transforming traditional business models.
+
+Experts suggest that ${topic.toLowerCase()} will play a crucial role in India's digital transformation journey. The convergence of AI with other technologies like IoT, blockchain, and 5G is creating new opportunities for innovation.
+
+However, challenges remain, including data privacy concerns, ethical considerations, and the need for skilled professionals. Organizations are increasingly focusing on responsible AI development and deployment practices.
+
+Looking ahead, the ${topic.toLowerCase()} landscape in India appears promising, with continued investment in research and development. The government's focus on digital infrastructure and AI policy frameworks is expected to accelerate adoption further.
+
+Indian startups and established companies alike are leveraging ${topic.toLowerCase()} to solve local challenges and compete globally. The ecosystem is maturing rapidly, with increased collaboration between academia, industry, and government agencies.
+
+As we move forward, staying informed about ${topic.toLowerCase()} developments will be crucial for businesses seeking competitive advantages. The pace of change requires continuous learning and adaptation strategies.
+
+This article is part of our daily coverage of AI developments in India and globally. Stay tuned for more insights and analysis on emerging trends and their business implications.
+
+Additional considerations for organizations looking to adopt ${topic.toLowerCase()} include talent acquisition, infrastructure requirements, and change management. Companies that invest early in these areas are likely to gain significant competitive advantages.
+
+The regulatory landscape for AI is also evolving, with new guidelines and frameworks being introduced regularly. Staying compliant while maintaining innovation momentum requires careful planning and expert guidance.
+
+International collaborations and partnerships are playing an increasingly important role in advancing ${topic.toLowerCase()} research and applications. Indian organizations are well-positioned to benefit from these global connections.
+
+Market projections indicate continued strong growth in the ${topic.toLowerCase()} sector, with particular strength in enterprise applications. The return on investment for well-implemented solutions often exceeds expectations, justifying the initial investment in technology and talent.
+
+In conclusion, ${topic.toLowerCase()} represents both an opportunity and a challenge for Indian businesses. Those that approach it strategically and systematically are most likely to achieve sustainable success.`,
+      author: `AI News Network via ${source}`,
+      date: blogDate.toISOString().split('T')[0],
+      readTime: `${Math.floor(Math.random() * 8) + 3} min read`,
+      category: topic.split(' ')[0], // Extract main category
+      image: `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80`,
+      tags: [topic, 'AI', 'Technology', 'Innovation'],
+      slug: topic.toLowerCase().replace(/\s+/g, '-')
+    });
   }
-];
+  
+  return blogs;
+};
 
 export default function BlogPost({ params }: { params: { slug: string } }) {
-  const post = blogPosts.find(p => p.id.toString() === params.slug) || blogPosts[0];
+  const blogPosts = generateDailyAIBlogs();
+  const post = blogPosts.find(p => p.slug === params.slug) || blogPosts[0];
   
   if (!post) {
     notFound();
@@ -47,6 +99,13 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-6">
+          <a href="/blog" className="inline-flex items-center text-primary-600 hover:text-primary-800">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Blog
+          </a>
+        </div>
+        
         <article className="bg-white rounded-xl shadow-md overflow-hidden">
           <div className="relative h-64 md:h-96">
             <img 
@@ -76,7 +135,9 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             <p className="text-xl text-gray-600 mb-6">{post.excerpt}</p>
             
             <div className="prose prose-lg max-w-none mb-8">
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              <div className="text-gray-700 whitespace-pre-line">
+                {post.content}
+              </div>
             </div>
             
             <div className="mt-8 pt-6 border-t border-gray-200">
@@ -94,8 +155,8 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         <div className="mt-12 bg-white rounded-xl shadow-md p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {blogPosts.filter(p => p.id !== post.id).map((relatedPost) => (
-              <div key={relatedPost.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            {generateDailyAIBlogs().filter(p => p.id !== post.id).slice(0, 2).map((relatedPost) => (
+              <a key={relatedPost.id} href={`/blog/${relatedPost.slug}`} className="block border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
                 <h3 className="font-bold text-gray-900 mb-2">{relatedPost.title}</h3>
                 <p className="text-gray-600 text-sm mb-3">{relatedPost.excerpt}</p>
                 <div className="flex items-center text-xs text-gray-500">
@@ -103,7 +164,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                   <span className="mx-2">•</span>
                   <span>{relatedPost.readTime}</span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

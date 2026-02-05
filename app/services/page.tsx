@@ -4,45 +4,51 @@ const ServicesPage = () => {
   const services = [
     {
       title: 'IT Process Automation',
-      description: 'Automate repetitive IT tasks and processes to reduce costs and improve efficiency.',
+      description: 'Automate repetitive IT tasks and processes to reduce costs and improve efficiency. Starting from ₹1,20,000.',
       icon: <Wrench className="h-10 w-10 text-primary-500" />,
       industries: ['Tech', 'Finance', 'Healthcare'],
       features: ['Robotic Process Automation', 'Intelligent Document Processing', 'Automated Testing'],
+      price: 'From ₹1,20,000'
     },
     {
       title: 'Financial AI Solutions',
-      description: 'Transform financial processes with AI-driven insights, fraud detection, and automation.',
+      description: 'Transform financial processes with AI-driven insights, fraud detection, and automation. Starting from ₹2,50,000.',
       icon: <CreditCard className="h-10 w-10 text-primary-500" />,
       industries: ['Banking', 'Insurance', 'Fintech'],
       features: ['Fraud Detection', 'Risk Assessment', 'Portfolio Management'],
+      price: 'From ₹2,50,000'
     },
     {
       title: 'Agriculture Intelligence',
-      description: 'Optimize farming operations with AI-powered crop monitoring and livestock management.',
+      description: 'Optimize farming operations with AI-powered crop monitoring and livestock management. Starting from ₹80,000.',
       icon: <Leaf className="h-10 w-10 text-primary-500" />,
       industries: ['Agriculture', 'Food Processing', 'Agri-Fintech'],
       features: ['Crop Health Monitoring', 'Yield Prediction', 'Supply Chain Optimization'],
+      price: 'From ₹80,000'
     },
     {
       title: 'Retail Intelligence',
-      description: 'Drive sales and customer satisfaction with AI-powered retail solutions.',
+      description: 'Drive sales and customer satisfaction with AI-powered retail solutions. Starting from ₹1,80,000.',
       icon: <ShoppingBag className="h-10 w-10 text-primary-500" />,
       industries: ['E-commerce', 'FMCG', 'Fashion'],
       features: ['Demand Forecasting', 'Personalized Recommendations', 'Inventory Management'],
+      price: 'From ₹1,80,000'
     },
     {
       title: 'Business Automation',
-      description: 'Streamline operations across departments with AI-powered automation tools.',
+      description: 'Streamline operations across departments with AI-powered automation tools. Starting from ₹2,00,000.',
       icon: <Factory className="h-10 w-10 text-primary-500" />,
       industries: ['Manufacturing', 'Logistics', 'Energy'],
       features: ['Workflow Automation', 'Predictive Maintenance', 'Resource Optimization'],
+      price: 'From ₹2,00,000'
     },
     {
       title: 'Customer Experience AI',
-      description: 'Enhance customer interactions with intelligent chatbots and sentiment analysis.',
+      description: 'Enhance customer interactions with intelligent chatbots and sentiment analysis. Starting from ₹1,50,000.',
       icon: <Users className="h-10 w-10 text-primary-500" />,
       industries: ['Hospitality', 'Telecom', 'Education'],
       features: ['Intelligent Chatbots', 'Sentiment Analysis', 'Personalization Engine'],
+      price: 'From ₹1,50,000'
     },
   ];
 
@@ -72,6 +78,11 @@ const ServicesPage = () => {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
                 <p className="text-gray-600 mb-4">{service.description}</p>
+                
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-gray-900 mb-2">Price:</h4>
+                  <div className="text-lg font-bold text-primary-600 mb-2">{service.price}</div>
+                </div>
                 
                 <div className="mt-4">
                   <h4 className="text-sm font-medium text-gray-900 mb-2">Industries:</h4>
