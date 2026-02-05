@@ -108,12 +108,16 @@ const AboutPage = () => {
               </p>
             </div>
             
-            {/* Additional Leadership Members */}
+            {/* New Leadership Members */}
             <div className="text-center">
-              <div className="mx-auto bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32 flex items-center justify-center">
-                <span className="text-gray-500 text-sm text-center">Amit Sharma<br />CTO</span>
+              <div className="mx-auto bg-gray-200 rounded-xl w-32 h-32 overflow-hidden flex items-center justify-center">
+                <img 
+                  src="/media/file_1---012cc25f-4340-4588-98ff-8825f4277ca4.jpg" 
+                  alt="Riya Sharma - Chief Technology Officer" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">Amit Sharma</h3>
+              <h3 className="mt-4 text-lg font-medium text-gray-900">Riya Sharma</h3>
               <p className="text-gray-600">Chief Technology Officer</p>
               <p className="mt-2 text-sm text-gray-500">
                 Technology visionary with deep expertise in AI architectures and scalable systems for enterprise solutions.
@@ -121,10 +125,14 @@ const AboutPage = () => {
             </div>
             
             <div className="text-center">
-              <div className="mx-auto bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32 flex items-center justify-center">
-                <span className="text-gray-500 text-sm text-center">Priya Nair<br />CPO</span>
+              <div className="mx-auto bg-gray-200 rounded-xl w-32 h-32 overflow-hidden flex items-center justify-center">
+                <img 
+                  src="/media/file_2---977356aa-1dec-4b2e-9f3b-b57d50df84c1.jpg" 
+                  alt="Arjun Mehta - Chief Product Officer" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">Priya Nair</h3>
+              <h3 className="mt-4 text-lg font-medium text-gray-900">Arjun Mehta</h3>
               <p className="text-gray-600">Chief Product Officer</p>
               <p className="mt-2 text-sm text-gray-500">
                 Product strategist focused on creating AI solutions that deliver real business value for Indian enterprises.
