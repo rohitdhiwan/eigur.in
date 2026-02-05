@@ -1,98 +1,48 @@
-import { Calendar, User, Tag, ArrowRight, Search, Filter, Bookmark } from 'lucide-react';
+import { Calendar, User, Tag, ArrowRight, Search, Bookmark } from 'lucide-react';
+import Link from 'next/link';
 
-// Mock data for daily AI news and insights
-const generateDailyAIBlogs = () => {
-  const topics = [
-    "Generative AI in Business",
-    "Machine Learning Trends",
-    "AI Ethics and Governance",
-    "Natural Language Processing",
-    "Computer Vision Applications",
-    "AI in Healthcare",
-    "AI in Finance",
-    "AI in Agriculture",
-    "AI in Retail",
-    "AI in Manufacturing",
-    "AI Startups in India",
-    "AI Regulation Updates",
-    "AI and Climate Change",
-    "AI for Social Good",
-    "Quantum Computing and AI"
-  ];
-
-  const sources = [
-    "TechCrunch",
-    "MIT Technology Review", 
-    "AI Research Journal",
-    "India AI News",
-    "VentureBeat AI",
-    "The Hindu Business Line",
-    "Economic Times AI",
-    "Times of India Tech",
-    "YourStory AI",
-    "Inc42 AI"
-  ];
-
-  const blogs = [];
-  const today = new Date();
-  
-  for (let i = 0; i < 12; i++) {
-    const blogDate = new Date(today);
-    blogDate.setDate(today.getDate() - i);
-    
-    const topic = topics[Math.floor(Math.random() * topics.length)];
-    const source = sources[Math.floor(Math.random() * sources.length)];
-    
-    blogs.push({
-      id: i + 1,
-      title: `${topic}: Latest Developments and Market Impact`,
-      excerpt: `Recent advancements in ${topic.toLowerCase()} are reshaping industries across India and globally. Experts predict significant market growth in the coming years.`,
-      author: `AI News Network via ${source}`,
-      date: blogDate.toISOString().split('T')[0],
-      readTime: `${Math.floor(Math.random() * 8) + 3} min read`,
-      category: topic.split(' ')[0], // Extract main category
-      image: `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80`,
-      tags: [topic, 'AI', 'Technology', 'Innovation'],
-      content: `Artificial Intelligence continues to evolve at a rapid pace, with new developments emerging daily. In this article, we explore the latest trends in ${topic.toLowerCase()} and their implications for businesses and society.
-
-The Indian AI market is experiencing unprecedented growth, with investments reaching record highs. Government initiatives and private sector innovations are driving adoption across sectors including healthcare, finance, agriculture, and retail.
-
-${topic.toLowerCase()} technologies are proving particularly valuable for Indian businesses looking to optimize operations, reduce costs, and improve customer experiences. From chatbots to predictive analytics, AI solutions are transforming traditional business models.
-
-Experts suggest that ${topic.toLowerCase()} will play a crucial role in India's digital transformation journey. The convergence of AI with other technologies like IoT, blockchain, and 5G is creating new opportunities for innovation.
-
-However, challenges remain, including data privacy concerns, ethical considerations, and the need for skilled professionals. Organizations are increasingly focusing on responsible AI development and deployment practices.
-
-Looking ahead, the ${topic.toLowerCase()} landscape in India appears promising, with continued investment in research and development. The government's focus on digital infrastructure and AI policy frameworks is expected to accelerate adoption further.
-
-Indian startups and established companies alike are leveraging ${topic.toLowerCase()} to solve local challenges and compete globally. The ecosystem is maturing rapidly, with increased collaboration between academia, industry, and government agencies.
-
-As we move forward, staying informed about ${topic.toLowerCase()} developments will be crucial for businesses seeking competitive advantages. The pace of change requires continuous learning and adaptation strategies.
-
-This article is part of our daily coverage of AI developments in India and globally. Stay tuned for more insights and analysis on emerging trends and their business implications.
-
-Additional considerations for organizations looking to adopt ${topic.toLowerCase()} include talent acquisition, infrastructure requirements, and change management. Companies that invest early in these areas are likely to gain significant competitive advantages.
-
-The regulatory landscape for AI is also evolving, with new guidelines and frameworks being introduced regularly. Staying compliant while maintaining innovation momentum requires careful planning and expert guidance.
-
-International collaborations and partnerships are playing an increasingly important role in advancing ${topic.toLowerCase()} research and applications. Indian organizations are well-positioned to benefit from these global connections.
-
-Market projections indicate continued strong growth in the ${topic.toLowerCase()} sector, with particular strength in enterprise applications. The return on investment for well-implemented solutions often exceeds expectations, justifying the initial investment in technology and talent.
-
-In conclusion, ${topic.toLowerCase()} represents both an opportunity and a challenge for Indian businesses. Those that approach it strategically and systematically are most likely to achieve sustainable success.`
-    });
+// Simplified mock data for daily AI news and insights
+const blogPosts = [
+  {
+    id: 1,
+    title: 'Generative AI in Business: Latest Developments and Market Impact',
+    excerpt: 'Recent advancements in generative AI are reshaping industries across India and globally. Experts predict significant market growth in the coming years.',
+    author: 'AI News Network via TechCrunch',
+    date: '2026-02-05',
+    readTime: '5 min read',
+    category: 'Generative',
+    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    tags: ['Generative AI', 'AI', 'Technology', 'Innovation'],
+  },
+  {
+    id: 2,
+    title: 'Machine Learning Trends: Latest Developments and Market Impact',
+    excerpt: 'Recent advancements in machine learning are reshaping industries across India and globally. Experts predict significant market growth in the coming years.',
+    author: 'AI News Network via MIT Technology Review',
+    date: '2026-02-04',
+    readTime: '7 min read',
+    category: 'Machine',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    tags: ['Machine Learning', 'AI', 'Technology', 'Innovation'],
+  },
+  {
+    id: 3,
+    title: 'AI Ethics and Governance: Latest Developments and Market Impact',
+    excerpt: 'Recent advancements in AI ethics and governance are reshaping industries across India and globally. Experts predict significant market growth in the coming years.',
+    author: 'AI News Network via India AI News',
+    date: '2026-02-03',
+    readTime: '6 min read',
+    category: 'AI',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    tags: ['AI Ethics', 'AI', 'Technology', 'Innovation'],
   }
-  
-  return blogs;
-};
+];
+
+const categories = [
+  'All', 'Technology', 'Business', 'AI Ethics', 'Startups', 'Government', 'Research', 'Industry'
+];
 
 const BlogPage = () => {
-  const blogPosts = generateDailyAIBlogs();
-  
-  const categories = [
-    'All', 'Technology', 'Business', 'AI Ethics', 'Startups', 'Government', 'Research', 'Industry'
-  ];
-
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,7 +76,7 @@ const BlogPage = () => {
                 className={`px-3 py-1 text-sm rounded-full ${
                   index === 0
                     ? 'bg-primary-600 text-white'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
                 }`}
               >
                 {category}
