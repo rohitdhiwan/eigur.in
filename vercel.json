@@ -2,12 +2,6 @@
   "github": {
     "silent": true
   },
-  "builds": [
-    {
-      "src": "index.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  "framework": "nextjs",
+  "rootDirectory": "eigur-website"
 }
