@@ -94,11 +94,12 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {/* Founder Profile */}
             <div className="text-center">
-              <div className="mx-auto bg-gray-200 rounded-xl w-32 h-32 overflow-hidden flex items-center justify-center">
+              <div className="mx-auto bg-gray-200 rounded-xl w-32 h-32 overflow-hidden">
                 <img 
-                  src="https://profile-images.xing.com/images/7c72fc81f49f06a3e9b2d4de0adbacc6-2/rohit-dhiwan.1024x1024.jpg" 
+                  src="/media/file_3---c3e205f3-a507-4f44-842b-8a87daa3cd5d.jpg" 
                   alt="Rohit Dhiwan - Founder and CEO" 
                   className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center top' }}
                 />
               </div>
               <h3 className="mt-4 text-lg font-medium text-gray-900">Rohit Dhiwan</h3>
