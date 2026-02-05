@@ -2,26 +2,12 @@
   "github": {
     "silent": true
   },
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "headers": [
+  "builds": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
+      "src": "index.html",
+      "use": "@vercel/static"
     }
   ],
-  "outputDirectory": "."
+  "cleanUrls": true,
+  "trailingSlash": false
 }
