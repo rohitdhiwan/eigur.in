@@ -81,7 +81,7 @@ In conclusion, ${topic.toLowerCase()} represents both an opportunity and a chall
       category: topic.split(' ')[0], // Extract main category
       image: `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80`,
       tags: [topic, 'AI', 'Technology', 'Innovation'],
-      slug: topic.toLowerCase().replace(/\s+/g, '-')
+      slug: `${topic.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '')}-${i+1}`
     });
   }
   

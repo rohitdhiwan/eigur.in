@@ -53,6 +53,7 @@ const generateDailyAIBlogs = () => {
       category: topic.split(' ')[0], // Extract main category
       image: `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80`,
       tags: [topic, 'AI', 'Technology', 'Innovation'],
+      slug: `${topic.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '')}-${i+1}`,
       content: `Artificial Intelligence continues to evolve at a rapid pace, with new developments emerging daily. In this article, we explore the latest trends in ${topic.toLowerCase()} and their implications for businesses and society.
 
 The Indian AI market is experiencing unprecedented growth, with investments reaching record highs. Government initiatives and private sector innovations are driving adoption across sectors including healthcare, finance, agriculture, and retail.

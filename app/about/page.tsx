@@ -94,8 +94,12 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {/* Founder Profile */}
             <div className="text-center">
-              <div className="mx-auto bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32 flex items-center justify-center">
-                <span className="text-gray-500 text-sm">Male Avatar<br />Age 30</span>
+              <div className="mx-auto bg-gray-200 rounded-xl w-32 h-32 overflow-hidden flex items-center justify-center">
+                <img 
+                  src="https://profile-images.xing.com/images/7c72fc81f49f06a3e9b2d4de0adbacc6-2/rohit-dhiwan.1024x1024.jpg" 
+                  alt="Rohit Dhiwan - Founder and CEO" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <h3 className="mt-4 text-lg font-medium text-gray-900">Rohit Dhiwan</h3>
               <p className="text-gray-600">Founder and CEO</p>
@@ -104,17 +108,28 @@ const AboutPage = () => {
               </p>
             </div>
             
-            {/* Other leadership members */}
-            {[1, 2].map((item) => (
-              <div key={item} className="text-center">
-                <div className="mx-auto bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32" />
-                <h3 className="mt-4 text-lg font-medium text-gray-900">Leadership Team Member</h3>
-                <p className="text-gray-600">Position Title</p>
-                <p className="mt-2 text-sm text-gray-500">
-                  Experienced professional with expertise in AI and business transformation.
-                </p>
+            {/* Additional Leadership Members */}
+            <div className="text-center">
+              <div className="mx-auto bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32 flex items-center justify-center">
+                <span className="text-gray-500 text-sm text-center">Amit Sharma<br />CTO</span>
               </div>
-            ))}
+              <h3 className="mt-4 text-lg font-medium text-gray-900">Amit Sharma</h3>
+              <p className="text-gray-600">Chief Technology Officer</p>
+              <p className="mt-2 text-sm text-gray-500">
+                Technology visionary with deep expertise in AI architectures and scalable systems for enterprise solutions.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="mx-auto bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32 flex items-center justify-center">
+                <span className="text-gray-500 text-sm text-center">Priya Nair<br />CPO</span>
+              </div>
+              <h3 className="mt-4 text-lg font-medium text-gray-900">Priya Nair</h3>
+              <p className="text-gray-600">Chief Product Officer</p>
+              <p className="mt-2 text-sm text-gray-500">
+                Product strategist focused on creating AI solutions that deliver real business value for Indian enterprises.
+              </p>
+            </div>
           </div>
         </div>
 
