@@ -1,0 +1,209 @@
+version: '3.8'
+
+services:
+  research-team:
+    image: python:3.11-slim
+    container_name: research-team
+    resources:
+      limits:
+        memory: 4G
+        cpus: '2'
+    volumes:
+      - ./teams/research:/workspace
+      - ./shared/data:/data
+    environment:
+      - NODE_ENV=production
+      - TEAM_NAME=Research
+      - PYTHONPATH=/workspace
+    ports:
+      - "8081:8080"
+    networks:
+      - agent-network
+
+  technical-team:
+    image: node:18-alpine
+    container_name: technical-team
+    resources:
+      limits:
+        memory: 6G
+        cpus: '3'
+    volumes:
+      - ./teams/technical:/workspace
+      - ./shared/code:/code
+    environment:
+      - NODE_ENV=production
+      - TEAM_NAME=Technical
+      - QWEN_API_KEY=${QWEN_API_KEY}
+      - NPM_TOKEN=${NPM_TOKEN}
+    ports:
+      - "8082:8080"
+    networks:
+      - agent-network
+
+  creative-team:
+    image: node:18-alpine
+    container_name: creative-team
+    resources:
+      limits:
+        memory: 4G
+        cpus: '2'
+    volumes:
+      - ./teams/creative:/workspace
+      - ./shared/assets:/assets
+    environment:
+      - NODE_ENV=production
+      - TEAM_NAME=Creative
+      - DESIGN_TOOLS_ENABLED=true
+    ports:
+      - "8083:8080"
+    networks:
+      - agent-network
+
+  integration-team:
+    image: node:18-alpine
+    container_name: integration-team
+    resources:
+      limits:
+        memory: 4G
+        cpus: '2'
+    volumes:
+      - ./teams/integration:/workspace
+      - ./shared/integrations:/integrations
+    environment:
+      - NODE_ENV=production
+      - TEAM_NAME=Integration
+      - INTEGRATION_TOOLS_ENABLED=true
+    ports:
+      - "8084:8080"
+    networks:
+      - agent-network
+
+  analysis-team:
+    image: python:3.11-slim
+    container_name: analysis-team
+    resources:
+      limits:
+        memory: 6G
+        cpus: '2'
+    volumes:
+      - ./teams/analysis:/workspace
+      - ./shared/data:/data
+    environment:
+      - PYTHONPATH=/workspace
+      - TEAM_NAME=Analysis
+      - QWEN_API_KEY=${QWEN_API_KEY}
+      - ANALYTICS_TOOLS_ENABLED=true
+    ports:
+      - "8085:8080"
+    networks:
+      - agent-network
+
+  operations-team:
+    image: node:18-alpine
+    container_name: operations-team
+    resources:
+      limits:
+        memory: 2G
+        cpus: '1'
+    volumes:
+      - ./teams/operations:/workspace
+      - ./shared/projects:/projects
+    environment:
+      - NODE_ENV=production
+      - TEAM_NAME=Operations
+      - OPERATIONS_TOOLS_ENABLED=true
+    ports:
+      - "8086:8080"
+    networks:
+      - agent-network
+
+  devops-team:
+    image: docker:dind
+    container_name: devops-team
+    privileged: true
+    resources:
+      limits:
+        memory: 4G
+        cpus: '2'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./teams/devops:/workspace
+      - ./shared/configs:/configs
+    environment:
+      - TEAM_NAME=DevOps
+      - DEVOPS_TOOLS_ENABLED=true
+      - DOCKER_HOST=tcp://localhost:2375
+    ports:
+      - "8087:8080"
+    networks:
+      - agent-network
+
+  qa-team:
+    image: node:18-alpine
+    container_name: qa-team
+    resources:
+      limits:
+        memory: 4G
+        cpus: '2'
+    volumes:
+      - ./teams/qa:/workspace
+      - ./shared/tests:/tests
+    environment:
+      - NODE_ENV=production
+      - TEAM_NAME=QA
+      - QA_TOOLS_ENABLED=true
+    ports:
+      - "8088:8080"
+    networks:
+      - agent-network
+
+  security-team:
+    image: node:18-alpine
+    container_name: security-team
+    resources:
+      limits:
+        memory: 4G
+        cpus: '2'
+    volumes:
+      - ./teams/security:/workspace
+      - ./shared/security:/security
+    environment:
+      - NODE_ENV=production
+      - TEAM_NAME=Security
+      - SECURITY_TOOLS_ENABLED=true
+    ports:
+      - "8089:8080"
+    networks:
+      - agent-network
+
+  # Central orchestrator service
+  orchestrator:
+    image: node:18-alpine
+    container_name: orchestrator
+    resources:
+      limits:
+        memory: 2G
+        cpus: '1'
+    volumes:
+      - ./orchestrator:/app
+    environment:
+      - NODE_ENV=production
+      - TEAM_NAMES=research,technical,creative,integration,analysis,operations,devops,qa,security
+    ports:
+      - "8090:8080"
+    networks:
+      - agent-network
+    depends_on:
+      - research-team
+      - technical-team
+      - creative-team
+      - integration-team
+      - analysis-team
+      - operations-team
+      - devops-team
+      - qa-team
+      - security-team
+
+networks:
+  agent-network:
+    driver: bridge
