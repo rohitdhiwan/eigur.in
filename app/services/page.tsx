@@ -156,6 +156,47 @@ const ServicesPage = () => {
           </div>
         </div>
 
+        {/* AI Implementation Process */}
+        <div className="py-16">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Our AI Implementation Process</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              { step: '1', title: 'Discovery', desc: 'Analyze your business challenges and opportunities' },
+              { step: '2', title: 'Strategy', desc: 'Design a custom AI solution for your specific needs' },
+              { step: '3', title: 'Development', desc: 'Build and train the AI model with your data' },
+              { step: '4', title: 'Deployment', desc: 'Launch and monitor for optimal performance' },
+            ].map((item, index) => (
+              <div key={index} className="text-center">
+                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 text-lg font-bold mx-auto">
+                  {item.step}
+                </div>
+                <h3 className="mt-4 text-lg font-medium text-gray-900">{item.title}</h3>
+                <p className="mt-2 text-gray-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Technology Stack */}
+        <div className="py-16 bg-gray-50 rounded-xl p-8">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Our AI Technology Stack</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {[
+              { name: 'TensorFlow', desc: 'ML Framework' },
+              { name: 'PyTorch', desc: 'Deep Learning' },
+              { name: 'OpenAI GPT', desc: 'Language Models' },
+              { name: 'Azure AI', desc: 'Cloud Services' },
+              { name: 'AWS SageMaker', desc: 'ML Platform' },
+              { name: 'Google AI', desc: 'Vision/NLP' },
+            ].map((tech, index) => (
+              <div key={index} className="text-center p-4 bg-white rounded-lg shadow">
+                <div className="text-lg font-semibold text-gray-900">{tech.name}</div>
+                <div className="text-sm text-gray-600">{tech.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* CTA Section */}
         <div className="py-16 bg-gradient-to-r from-primary-600 to-indigo-700 rounded-xl">
           <div className="max-w-3xl mx-auto text-center">

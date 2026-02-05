@@ -118,6 +118,49 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Trust Indicators Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Trusted by Industry Leaders
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+              Recognized for excellence in AI innovation and business transformation
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+            {[
+              { value: '100+', label: 'Projects Delivered' },
+              { value: '50+', label: 'Expert Team' },
+              { value: '25+', label: 'Cities Served' },
+              { value: '98%', label: 'Client Satisfaction' },
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <p className="text-4xl font-extrabold text-primary-600">{stat.value}</p>
+                <p className="mt-2 text-lg text-gray-600">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 grayscale hover:grayscale-0 transition-all">
+            {[
+              'Fortune 500',
+              'NASSCOM',
+              'Startup India',
+              'Microsoft AI'
+            ].map((partner, index) => (
+              <div key={index} className="flex items-center justify-center">
+                <div className="bg-white p-4 rounded-lg shadow text-center w-full">
+                  <div className="text-lg font-semibold text-gray-800">{partner}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Daily AI Insights Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -153,6 +196,117 @@ const HomePage = () => {
                     Read today's insights
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Advanced AI Technologies Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Cutting-Edge AI Technologies
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+              Leveraging the latest in artificial intelligence to solve complex business challenges
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Generative AI',
+                description: 'Create content, designs, and solutions with advanced generative models',
+                icon: <Sparkles className="h-8 w-8 text-primary-500" />
+              },
+              {
+                title: 'Machine Learning',
+                description: 'Predictive models that learn and improve from your business data',
+                icon: <Zap className="h-8 w-8 text-primary-500" />
+              },
+              {
+                title: 'Natural Language Processing',
+                description: 'Understand and process human language for enhanced customer experiences',
+                icon: <Globe className="h-8 w-8 text-primary-500" />
+              },
+              {
+                title: 'Computer Vision',
+                description: 'Visual recognition systems that interpret and analyze visual data',
+                icon: <Award className="h-8 w-8 text-primary-500" />
+              },
+              {
+                title: 'Predictive Analytics',
+                description: 'Forecast trends and behaviors to make informed business decisions',
+                icon: <Users className="h-8 w-8 text-primary-500" />
+              },
+              {
+                title: 'Robotic Process Automation',
+                description: 'Automate repetitive tasks with intelligent software robots',
+                icon: <Zap className="h-8 w-8 text-primary-500" />
+              }
+            ].map((tech, index) => (
+              <div key={index} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    {tech.icon}
+                  </div>
+                  <h3 className="ml-4 text-lg font-medium text-gray-900">{tech.title}</h3>
+                </div>
+                <p className="mt-4 text-gray-600">{tech.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              What Our Clients Say
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+              Hear from businesses that have transformed with our AI solutions
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                quote: "Eigur's AI solution helped us reduce operational costs by 35% while improving customer satisfaction scores. Their team's expertise and commitment to our success is unmatched.",
+                author: "Rajesh Gupta",
+                position: "CTO, TechMahindra Solutions",
+                company: "TechMahindra Solutions"
+              },
+              {
+                quote: "Implementing Eigur's retail intelligence platform led to a 42% increase in sales conversion rates. The ROI was evident within the first quarter of deployment.",
+                author: "Priya Sharma",
+                position: "Head of Digital Strategy",
+                company: "Reliance Retail"
+              },
+              {
+                quote: "As a startup, we needed an AI partner who understood our constraints. Eigur delivered a scalable solution that grew with our business, resulting in 3x revenue growth.",
+                author: "Amit Patel",
+                position: "CEO",
+                company: "AgriTech Innovations"
+              }
+            ].map((testimonial, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-md">
+                <div className="flex items-center mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-gray-600 italic mb-4">"{testimonial.quote}"</p>
+                <div>
+                  <p className="font-medium text-gray-900">{testimonial.author}</p>
+                  <p className="text-sm text-gray-500">{testimonial.position}, {testimonial.company}</p>
                 </div>
               </div>
             ))}
