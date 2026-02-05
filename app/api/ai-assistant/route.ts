@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 
 // Mock AI response function
 const getAIResponse = async (message: string) => {
@@ -24,31 +24,33 @@ const getAIResponse = async (message: string) => {
   }
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
-
+export async function POST(request: NextRequest) {
   try {
-    const { message } = req.body;
+    const { message } = await request.json();
 
     if (!message) {
-      return res.status(400).json({ message: 'Message is required' });
+      return NextResponse.json(
+        { message: 'Message is required' }, 
+        { status: 400 }
+      );
     }
 
     // Get AI response
     const aiResponse = await getAIResponse(message);
 
-    res.status(200).json({
+    return NextResponse.json({
       success: true,
       response: aiResponse,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Error processing AI request:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error processing your request',
-    });
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Error processing your request',
+      },
+      { status: 500 }
+    );
   }
 }

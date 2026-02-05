@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 
 // Mock blog posts data
 const blogPosts = [
@@ -40,70 +40,75 @@ const blogPosts = [
   }
 ];
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'GET') {
-    const { category, limit, featured } = req.query;
-    
-    let filteredPosts = [...blogPosts];
-    
-    if (category) {
-      filteredPosts = filteredPosts.filter(post => 
-        post.category.toLowerCase().includes(category.toString().toLowerCase())
-      );
-    }
-    
-    if (featured === 'true') {
-      filteredPosts = filteredPosts.filter(post => post.featured);
-    }
-    
-    if (limit) {
-      const limitNum = parseInt(limit as string);
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const category = searchParams.get('category');
+  const limit = searchParams.get('limit');
+  const featured = searchParams.get('featured');
+  
+  let filteredPosts = [...blogPosts];
+  
+  if (category) {
+    filteredPosts = filteredPosts.filter(post => 
+      post.category.toLowerCase().includes(category.toLowerCase())
+    );
+  }
+  
+  if (featured === 'true') {
+    filteredPosts = filteredPosts.filter(post => post.featured);
+  }
+  
+  if (limit) {
+    const limitNum = parseInt(limit || '');
+    if (!isNaN(limitNum)) {
       filteredPosts = filteredPosts.slice(0, limitNum);
     }
-    
-    res.status(200).json({
-      success: true,
-      posts: filteredPosts,
-      total: filteredPosts.length
-    });
-  } else if (req.method === 'POST') {
-    // In a real implementation, this would create a new blog post
-    const { title, content, excerpt, author, category, tags } = req.body;
-    
-    if (!title || !content) {
-      return res.status(400).json({
+  }
+  
+  return NextResponse.json({
+    success: true,
+    posts: filteredPosts,
+    total: filteredPosts.length
+  });
+}
+
+export async function POST(request: NextRequest) {
+  // In a real implementation, this would create a new blog post
+  const { title, content, excerpt, author, category, tags } = await request.json();
+  
+  if (!title || !content) {
+    return NextResponse.json(
+      {
         success: false,
         message: 'Title and content are required'
-      });
-    }
-    
-    // Create new post (in a real app, this would save to a database)
-    const newPost = {
-      id: blogPosts.length + 1,
-      title,
-      content,
-      excerpt,
-      author,
-      date: new Date().toISOString().split('T')[0],
-      readTime: '5 min read', // This would be calculated in a real app
-      category,
-      tags: tags || [],
-      slug: title.toLowerCase().replace(/\s+/g, '-'),
-      featured: false
-    };
-    
-    // Add to mock data
-    blogPosts.push(newPost);
-    
-    res.status(201).json({
+      },
+      { status: 400 }
+    );
+  }
+  
+  // Create new post (in a real app, this would save to a database)
+  const newPost = {
+    id: blogPosts.length + 1,
+    title,
+    content,
+    excerpt,
+    author,
+    date: new Date().toISOString().split('T')[0],
+    readTime: '5 min read', // This would be calculated in a real app
+    category,
+    tags: tags || [],
+    slug: title.toLowerCase().replace(/\s+/g, '-'),
+    featured: false
+  };
+  
+  // Add to mock data
+  blogPosts.push(newPost);
+  
+  return NextResponse.json(
+    {
       success: true,
       post: newPost
-    });
-  } else {
-    res.setHeader('Allow', ['GET', 'POST']);
-    res.status(405).json({
-      success: false,
-      message: `Method ${req.method} not allowed`
-    });
-  }
+    },
+    { status: 201 }
+  );
 }

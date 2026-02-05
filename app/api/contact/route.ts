@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 
 // Mock function to save contact form data
 const saveContactForm = async (formData: any) => {
@@ -13,11 +13,7 @@ const saveContactForm = async (formData: any) => {
   };
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
-
+export async function POST(request: NextRequest) {
   try {
     const {
       firstName,
@@ -27,23 +23,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       phone,
       service,
       message
-    } = req.body;
+    } = await request.json();
 
     // Validate required fields
     if (!firstName || !email || !message) {
-      return res.status(400).json({
-        success: false,
-        message: 'First name, email, and message are required',
-      });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'First name, email, and message are required',
+        },
+        { status: 400 }
+      );
     }
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({
-        success: false,
-        message: 'Please provide a valid email address',
-      });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Please provide a valid email address',
+        },
+        { status: 400 }
+      );
     }
 
     // Save form data
@@ -61,16 +63,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // In a real implementation, you might also send an email notification here
     console.log(`New contact form submission from ${email}`);
 
-    res.status(200).json({
+    return NextResponse.json({
       success: true,
       message: 'Thank you for your message. We will get back to you soon!',
       submissionId: result.id,
     });
   } catch (error) {
     console.error('Error processing contact form:', error);
-    res.status(500).json({
-      success: false,
-      message: 'There was an error submitting your form. Please try again.',
-    });
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'There was an error submitting your form. Please try again.',
+      },
+      { status: 500 }
+    );
   }
 }
