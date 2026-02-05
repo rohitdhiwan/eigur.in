@@ -99,7 +99,7 @@ const AboutPage = () => {
                   src="/media/file_3---c3e205f3-a507-4f44-842b-8a87daa3cd5d.jpg" 
                   alt="Rohit Dhiwan - Founder and CEO" 
                   className="w-full h-full object-cover"
-                  style={{ objectPosition: 'center top' }}
+                  style={{ objectPosition: 'center top', transform: 'scale(1.1)' }}
                 />
               </div>
               <h3 className="mt-4 text-lg font-medium text-gray-900">Rohit Dhiwan</h3>

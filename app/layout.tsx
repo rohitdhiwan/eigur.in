@@ -37,14 +37,15 @@ export default function RootLayout({
       const randomIndex = Math.floor(Math.random() * backgroundColors.length);
       const randomColor = backgroundColors[randomIndex];
       
-      // Apply the background color to the div
-      setBgClass(randomColor);
+      // Apply the background color to the body element directly
+      document.body.classList.remove(...backgroundColors);
+      document.body.classList.add(randomColor);
     }
   }, []); // Empty dependency array means this runs once after component mounts
 
   return (
     <html lang="en">
-      <body className={`${inter.className} ${bgClass}`}>
+      <body className={inter.className}>
         <div className="flex flex-col min-h-screen" id="dynamic-bg">
           <Navbar />
           <main className="flex-grow">{children}</main>
