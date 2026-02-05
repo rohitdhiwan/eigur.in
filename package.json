@@ -1,0 +1,23 @@
+{
+  "name": "eigur.in",
+  "version": "1.0.0",
+  "description": "Next-Generation AI Solutions for Modern Businesses",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'Build process'",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "ai",
+    "machine-learning",
+    "automation",
+    "business-intelligence",
+    "data-analytics"
+  ],
+  "author": "Eigur.in Team",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
