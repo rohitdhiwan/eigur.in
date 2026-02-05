@@ -1,23 +1,14 @@
 {
-  "name": "eigur.in",
+  "name": "eigur.in-static",
   "version": "1.0.0",
   "description": "Next-Generation AI Solutions for Modern Businesses",
-  "main": "index.html",
-  "scripts": {
-    "start": "serve .",
-    "build": "echo 'Build process'",
-    "test": "echo 'No tests yet'"
-  },
+  "scripts": {},
   "keywords": [
     "ai",
-    "machine-learning",
-    "automation",
+    "static-site",
     "business-intelligence",
     "data-analytics"
   ],
   "author": "Eigur.in Team",
-  "license": "MIT",
-  "devDependencies": {
-    "serve": "^14.2.0"
-  }
+  "license": "MIT"
 }
