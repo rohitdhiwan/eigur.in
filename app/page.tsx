@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Zap, Globe, Award, Users, Sparkles, ChevronRight } from 'lucide-react';
+import { ArrowRight, Zap, Globe, Award, Users, Sparkles, ChevronRight, Cpu, BarChart3 } from 'lucide-react';
 
 const HomePage = () => {
   const services = [
@@ -258,6 +258,81 @@ const HomePage = () => {
                 <p className="mt-4 text-gray-600">{tech.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Excellence Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Why Choose Our AI Solutions?
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+              Proven expertise in delivering transformative AI solutions for Indian businesses
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                title: 'Proven Track Record',
+                description: '100+ successful AI implementations across diverse Indian industries',
+                icon: <Award className="h-8 w-8 text-primary-500" />
+              },
+              {
+                title: 'Local Expertise',
+                description: 'Deep understanding of Indian market dynamics and business challenges',
+                icon: <Globe className="h-8 w-8 text-primary-500" />
+              },
+              {
+                title: 'Cutting-Edge Tech',
+                description: 'Access to the latest AI technologies and methodologies',
+                icon: <Cpu className="h-8 w-8 text-primary-500" />
+              },
+              {
+                title: 'Measurable ROI',
+                description: 'Focus on delivering quantifiable business value and ROI',
+                icon: <BarChart3 className="h-8 w-8 text-primary-500" />
+              }
+            ].map((feature, index) => (
+              <div key={index} className="text-center">
+                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mx-auto">
+                  {feature.icon}
+                </div>
+                <h3 className="mt-4 text-lg font-medium text-gray-900">{feature.title}</h3>
+                <p className="mt-2 text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 bg-gradient-to-r from-primary-50 to-indigo-50 rounded-xl p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900">Our AI Implementation Approach</h3>
+                <p className="mt-4 text-gray-600">
+                  We follow a systematic approach to ensure successful AI implementation that delivers real business value.
+                </p>
+              </div>
+              <div className="space-y-4">
+                {[
+                  'Discovery & Requirements Analysis',
+                  'AI Solution Design & Architecture',
+                  'Development & Training',
+                  'Testing & Validation',
+                  'Deployment & Monitoring',
+                  'Continuous Optimization'
+                ].map((step, index) => (
+                  <div key={index} className="flex items-start">
+                    <div className="flex-shrink-0 h-6 w-6 rounded-full bg-primary-600 text-white flex items-center justify-center text-xs font-bold mt-0.5">
+                      {index + 1}
+                    </div>
+                    <p className="ml-3 text-gray-700">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { Shield, Wrench, BarChart3, Building, Leaf, ShoppingBag, CreditCard, Users, Smartphone, Factory } from 'lucide-react';
+import { Shield, Wrench, BarChart3, Building, Leaf, ShoppingBag, CreditCard, Users, Smartphone, Factory, Mail, Palette, Brain, Globe, Database } from 'lucide-react';
 
 const ServicesPage = () => {
   const services = [
@@ -9,6 +9,14 @@ const ServicesPage = () => {
       industries: ['Tech', 'Finance', 'Healthcare'],
       features: ['Robotic Process Automation', 'Intelligent Document Processing', 'Automated Testing'],
       price: 'From ₹1,20,000'
+    },
+    {
+      title: 'Digital AI Marketing',
+      description: 'Revolutionize your marketing with AI-driven campaigns, personalization, and analytics. Starting from ₹1,50,000.',
+      icon: <Mail className="h-10 w-10 text-primary-500" />,
+      industries: ['E-commerce', 'Retail', 'Media'],
+      features: ['Personalized Campaigns', 'Predictive Analytics', 'Customer Segmentation'],
+      price: 'From ₹1,50,000'
     },
     {
       title: 'Financial AI Solutions',
@@ -49,6 +57,46 @@ const ServicesPage = () => {
       industries: ['Hospitality', 'Telecom', 'Education'],
       features: ['Intelligent Chatbots', 'Sentiment Analysis', 'Personalization Engine'],
       price: 'From ₹1,50,000'
+    },
+    {
+      title: 'Generative AI Solutions',
+      description: 'Create content, designs, and solutions with cutting-edge generative AI models. Starting from ₹2,00,000.',
+      icon: <Palette className="h-10 w-10 text-primary-500" />,
+      industries: ['Media', 'Entertainment', 'Marketing'],
+      features: ['Content Generation', 'Image Synthesis', 'Creative Automation'],
+      price: 'From ₹2,00,000'
+    },
+    {
+      title: 'Predictive Analytics',
+      description: 'Forecast trends and behaviors to make informed business decisions. Starting from ₹1,75,000.',
+      icon: <BarChart3 className="h-10 w-10 text-primary-500" />,
+      industries: ['Retail', 'Finance', 'Healthcare'],
+      features: ['Trend Forecasting', 'Churn Prediction', 'Revenue Modeling'],
+      price: 'From ₹1,75,000'
+    },
+    {
+      title: 'AI Consulting & Strategy',
+      description: 'Strategic guidance for implementing AI solutions in your business. Starting from ₹3,00,000.',
+      icon: <Brain className="h-10 w-10 text-primary-500" />,
+      industries: ['All Industries'],
+      features: ['AI Roadmap', 'Implementation Strategy', 'ROI Analysis'],
+      price: 'From ₹3,00,000'
+    },
+    {
+      title: 'Computer Vision Solutions',
+      description: 'Visual recognition systems for inspection, identification, and analysis. Starting from ₹2,25,000.',
+      icon: <Globe className="h-10 w-10 text-primary-500" />,
+      industries: ['Manufacturing', 'Security', 'Healthcare'],
+      features: ['Object Recognition', 'Quality Inspection', 'Facial Recognition'],
+      price: 'From ₹2,25,000'
+    },
+    {
+      title: 'Data Engineering & AI',
+      description: 'Build robust data pipelines and infrastructure for AI applications. Starting from ₹2,75,000.',
+      icon: <Database className="h-10 w-10 text-primary-500" />,
+      industries: ['Technology', 'Finance', 'Healthcare'],
+      features: ['Data Pipelines', 'ETL Processes', 'ML Infrastructure'],
+      price: 'From ₹2,75,000'
     },
   ];
 

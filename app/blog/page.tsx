@@ -1,45 +1,90 @@
-import { Calendar, User, Tag, ArrowRight, Search, Bookmark } from 'lucide-react';
+import { Calendar, User, Tag, ArrowRight, Search, Bookmark, Eye, ThumbsUp, Share2 } from 'lucide-react';
 import Link from 'next/link';
 
-// Simplified mock data for daily AI news and insights
+// Static blog data
 const blogPosts = [
   {
     id: 1,
-    title: 'Generative AI in Business: Latest Developments and Market Impact',
-    excerpt: 'Recent advancements in generative AI are reshaping industries across India and globally. Experts predict significant market growth in the coming years.',
-    author: 'AI News Network via TechCrunch',
+    title: 'How Digital AI Marketing is Transforming Indian E-commerce',
+    excerpt: 'Discover how AI-powered marketing strategies are revolutionizing the e-commerce landscape in India, driving unprecedented growth and customer engagement.',
+    author: 'Riya Verma',
     date: '2026-02-05',
-    readTime: '5 min read',
-    category: 'Generative',
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-    tags: ['Generative AI', 'AI', 'Technology', 'Innovation'],
+    readTime: '6 min read',
+    category: 'Marketing',
+    image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    tags: ['AI Marketing', 'E-commerce', 'Digital Transformation', 'India'],
+    views: 1242,
+    likes: 89
   },
   {
     id: 2,
-    title: 'Machine Learning Trends: Latest Developments and Market Impact',
-    excerpt: 'Recent advancements in machine learning are reshaping industries across India and globally. Experts predict significant market growth in the coming years.',
-    author: 'AI News Network via MIT Technology Review',
+    title: 'Machine Learning Trends Shaping 2026: An Indian Perspective',
+    excerpt: 'Explore the latest ML trends impacting Indian businesses and how companies are leveraging these innovations for competitive advantage.',
+    author: 'Karan Joshi',
     date: '2026-02-04',
-    readTime: '7 min read',
-    category: 'Machine',
+    readTime: '8 min read',
+    category: 'Technology',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-    tags: ['Machine Learning', 'AI', 'Technology', 'Innovation'],
+    tags: ['Machine Learning', 'AI Trends', 'Business Innovation', 'India'],
+    views: 2105,
+    likes: 156
   },
   {
     id: 3,
-    title: 'AI Ethics and Governance: Latest Developments and Market Impact',
-    excerpt: 'Recent advancements in AI ethics and governance are reshaping industries across India and globally. Experts predict significant market growth in the coming years.',
-    author: 'AI News Network via India AI News',
+    title: 'AI Ethics: Building Responsible AI Systems for Indian Markets',
+    excerpt: 'Understanding the importance of ethical AI development and how Indian companies are leading the charge in responsible AI implementation.',
+    author: 'Rohit Dhiwan',
     date: '2026-02-03',
-    readTime: '6 min read',
-    category: 'AI',
+    readTime: '7 min read',
+    category: 'Ethics',
     image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-    tags: ['AI Ethics', 'AI', 'Technology', 'Innovation'],
+    tags: ['AI Ethics', 'Responsible AI', 'Governance', 'India'],
+    views: 1876,
+    likes: 134
+  },
+  {
+    id: 4,
+    title: 'Generative AI in Business: Real Use Cases from Indian Enterprises',
+    excerpt: 'Real-world examples of how Indian companies are using generative AI to improve efficiency, creativity, and customer experience.',
+    author: 'Riya Verma',
+    date: '2026-02-02',
+    readTime: '9 min read',
+    category: 'Generative AI',
+    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    tags: ['Generative AI', 'Case Study', 'Enterprise', 'Innovation'],
+    views: 3210,
+    likes: 245
+  },
+  {
+    id: 5,
+    title: 'The Future of AI-Powered Customer Experience in India',
+    excerpt: 'How AI is transforming customer interactions and creating personalized experiences that drive loyalty and sales.',
+    author: 'Karan Joshi',
+    date: '2026-02-01',
+    readTime: '5 min read',
+    category: 'Customer Experience',
+    image: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    tags: ['Customer Experience', 'AI Chatbots', 'Personalization', 'Service'],
+    views: 1567,
+    likes: 98
+  },
+  {
+    id: 6,
+    title: 'AI in Agriculture: Revolutionizing Indian Farming Practices',
+    excerpt: 'Exploring how AI technologies are helping Indian farmers increase yield, reduce costs, and make data-driven decisions.',
+    author: 'Rohit Dhiwan',
+    date: '2026-01-31',
+    readTime: '10 min read',
+    category: 'Agriculture',
+    image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    tags: ['AI in Agriculture', 'Farming', 'IoT', 'Precision Agriculture'],
+    views: 2890,
+    likes: 187
   }
 ];
 
 const categories = [
-  'All', 'Technology', 'Business', 'AI Ethics', 'Startups', 'Government', 'Research', 'Industry'
+  'All', 'Technology', 'Business', 'AI Ethics', 'Startups', 'Government', 'Research', 'Industry', 'Marketing'
 ];
 
 const BlogPage = () => {
@@ -49,10 +94,10 @@ const BlogPage = () => {
         {/* Hero Section */}
         <div className="text-center py-16">
           <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
-            Daily AI Insights & News
+            AI Insights & News Hub
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
-            Fresh perspectives, industry updates, and expert analysis on AI transformation in Indian businesses
+            Expert analysis, industry trends, and actionable insights on AI transformation in Indian businesses
           </p>
         </div>
 
@@ -106,10 +151,15 @@ const BlogPage = () => {
               <p className="text-gray-600 mb-4">{blogPosts[0].excerpt}</p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <User className="h-4 w-4 text-gray-500 mr-2" />
-                  <span className="text-sm text-gray-600">{blogPosts[0].author}</span>
-                  <span className="mx-2 text-gray-300">•</span>
-                  <span className="text-sm text-gray-600">{blogPosts[0].readTime}</span>
+                  <div className="flex items-center">
+                    <User className="h-4 w-4 text-gray-500 mr-2" />
+                    <span className="text-sm text-gray-600">{blogPosts[0].author}</span>
+                    <span className="mx-2 text-gray-300">•</span>
+                    <span className="text-sm text-gray-600">{blogPosts[0].readTime}</span>
+                    <span className="mx-2 text-gray-300">•</span>
+                    <Eye className="h-4 w-4 text-gray-500 mr-1" />
+                    <span className="text-sm text-gray-600">{blogPosts[0].views.toLocaleString()}</span>
+                  </div>
                 </div>
                 <button className="inline-flex items-center text-primary-600 hover:text-primary-800">
                   Read more
@@ -138,7 +188,7 @@ const BlogPage = () => {
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{post.title}</h3>
                 <p className="text-gray-600 text-sm mb-4">{post.excerpt}</p>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center">
                     <User className="h-4 w-4 text-gray-500 mr-1" />
                     <span className="text-xs text-gray-600">{post.author}</span>
@@ -146,8 +196,15 @@ const BlogPage = () => {
                   <span className="text-xs text-gray-500">{post.readTime}</span>
                 </div>
                 
-                <div className="mt-4 flex flex-wrap gap-1">
-                  {post.tags.map((tag, index) => (
+                <div className="flex items-center text-xs text-gray-500 mb-4">
+                  <Eye className="h-4 w-4 mr-1" />
+                  <span className="mr-3">{post.views.toLocaleString()}</span>
+                  <ThumbsUp className="h-4 w-4 mr-1" />
+                  <span>{post.likes}</span>
+                </div>
+                
+                <div className="mt-4 flex flex-wrap gap-1 mb-4">
+                  {post.tags.slice(0, 2).map((tag, index) => (
                     <span key={index} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
                       {tag}
                     </span>
@@ -160,7 +217,7 @@ const BlogPage = () => {
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </button>
                   <button className="text-gray-400 hover:text-gray-500">
-                    <Bookmark className="h-5 w-5" />
+                    <Share2 className="h-5 w-5" />
                   </button>
                 </div>
               </div>
@@ -171,9 +228,9 @@ const BlogPage = () => {
         {/* Newsletter Signup */}
         <div className="bg-gradient-to-r from-primary-600 to-indigo-700 rounded-xl p-8 text-white mb-16">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-bold mb-4">Subscribe to Daily AI Insights</h2>
+            <h2 className="text-2xl font-bold mb-4">Subscribe to AI Insights</h2>
             <p className="mb-6 text-primary-100">
-              Get the latest articles, industry updates, and expert analysis delivered to your inbox daily.
+              Get the latest articles, industry updates, and expert analysis delivered to your inbox weekly.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
@@ -192,7 +249,7 @@ const BlogPage = () => {
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Popular Topics</h2>
           <div className="flex flex-wrap gap-2">
-            {['AI in India', 'Machine Learning', 'Business Automation', 'Retail AI', 'FinTech', 'Agriculture Tech', 'Predictive Analytics', 'RPA', 'Digital Transformation', 'AI Ethics', 'NLP', 'Computer Vision', 'AI Startups', 'AI Policy'].map((tag, index) => (
+            {['AI Marketing', 'Machine Learning', 'Business Automation', 'Retail AI', 'FinTech', 'Agriculture Tech', 'Predictive Analytics', 'RPA', 'Digital Transformation', 'AI Ethics', 'NLP', 'Computer Vision', 'AI Startups', 'AI Policy', 'Generative AI', 'Ethical AI'].map((tag, index) => (
               <button
                 key={index}
                 className="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-50 border border-gray-200"

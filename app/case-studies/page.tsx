@@ -1,70 +1,109 @@
-import { ArrowUpRight, Building2, DollarSign, TrendingUp, Users, Clock, CheckCircle } from 'lucide-react';
+import { ArrowRight, BarChart3, TrendingUp, Target, Award, Users, DollarSign } from 'lucide-react';
+import Link from 'next/link';
 
 const CaseStudiesPage = () => {
   const caseStudies = [
     {
       id: 1,
-      title: 'Retail Chain Transforms Inventory Management',
-      company: 'Shoppers Stop Ltd.',
+      title: 'AI-Powered E-commerce Transformation',
+      company: 'ShoppersStop Ltd.',
       industry: 'Retail',
-      challenge: 'High inventory costs and frequent stockouts',
-      solution: 'AI-powered demand forecasting and inventory optimization system',
+      location: 'Mumbai, India',
+      challenge: 'High cart abandonment rate and poor personalization',
+      solution: 'Implemented AI recommendation engine and dynamic pricing model',
       results: [
-        'Reduced inventory costs by 28%',
-        'Decreased stockouts by 45%',
-        'Improved cash flow by 32%'
+        '45% increase in conversion rate',
+        '32% reduction in cart abandonment',
+        '60% improvement in average order value'
       ],
-      timeline: '4 months',
-      investment: '$75,000',
-      roi: '340%'
+      impact: '₹2.5 Cr additional annual revenue',
+      timeline: '6 months',
+      technologies: ['Recommendation AI', 'Predictive Analytics', 'NLP']
     },
     {
       id: 2,
-      title: 'Banking Sector Fraud Detection Enhancement',
-      company: 'SecureBank India',
-      industry: 'Finance',
-      challenge: 'Rising fraudulent transactions',
-      solution: 'Machine learning-based fraud detection system',
+      title: 'Automated Financial Compliance',
+      company: 'SecureBank Pvt. Ltd.',
+      industry: 'Banking',
+      location: 'Bangalore, India',
+      challenge: 'Manual compliance checking consuming 400+ hours/month',
+      solution: 'Deployed AI document processing and anomaly detection system',
       results: [
-        'Detected 98% of fraudulent transactions',
-        'Reduced false positives by 60%',
-        'Saved ₹15 crores annually'
+        '95% reduction in manual processing time',
+        '99.2% accuracy in compliance detection',
+        'Zero compliance violations in 12 months'
       ],
-      timeline: '6 months',
-      investment: '$120,000',
-      roi: '520%'
+      impact: '₹1.8 Cr annual cost savings',
+      timeline: '8 months',
+      technologies: ['Document AI', 'Anomaly Detection', 'NLP']
     },
     {
       id: 3,
-      title: 'Agriculture Supply Chain Optimization',
-      company: 'FarmFresh Agro',
+      title: 'AI-Driven Supply Chain Optimization',
+      company: 'AgriFresh Exports',
       industry: 'Agriculture',
-      challenge: 'Post-harvest losses and inefficient logistics',
-      solution: 'AI-driven supply chain and logistics optimization',
+      location: 'Pune, India',
+      challenge: 'Post-harvest losses of 25-30% due to inefficient logistics',
+      solution: 'Built predictive analytics for demand forecasting and route optimization',
       results: [
-        'Reduced post-harvest losses by 35%',
-        'Optimized delivery routes saving 22% fuel costs',
-        'Increased farmer income by 18%'
+        '40% reduction in post-harvest losses',
+        '28% improvement in delivery efficiency',
+        '15% increase in export volumes'
       ],
-      timeline: '5 months',
-      investment: '$50,000',
-      roi: '280%'
+      impact: '₹3.2 Cr additional annual revenue',
+      timeline: '10 months',
+      technologies: ['Predictive Analytics', 'IoT Integration', 'Computer Vision']
     },
     {
       id: 4,
-      title: 'Manufacturing Predictive Maintenance',
-      company: 'Precision Engineering Ltd.',
-      industry: 'Manufacturing',
-      challenge: 'Unexpected equipment failures and downtime',
-      solution: 'IoT sensors with AI-powered predictive maintenance',
+      title: 'Intelligent Customer Support System',
+      company: 'Connect Telecom',
+      industry: 'Telecommunications',
+      location: 'Delhi, India',
+      challenge: 'High call volume overwhelming customer service team',
+      solution: 'Deployed multilingual AI chatbot and sentiment analysis',
       results: [
-        'Reduced unplanned downtime by 42%',
-        'Decreased maintenance costs by 25%',
-        'Extended equipment lifespan by 15%'
+        '65% of queries handled automatically',
+        '40% reduction in average resolution time',
+        '85% customer satisfaction rate'
       ],
+      impact: '₹1.2 Cr annual cost savings',
+      timeline: '4 months',
+      technologies: ['NLP', 'Sentiment Analysis', 'Speech Recognition']
+    },
+    {
+      id: 5,
+      title: 'AI-Powered Fraud Detection',
+      company: 'QuickPay Fintech',
+      industry: 'Fintech',
+      location: 'Hyderabad, India',
+      challenge: 'Rising transaction fraud costing ₹50L+ annually',
+      solution: 'Implemented real-time ML-based fraud detection system',
+      results: [
+        '85% reduction in fraudulent transactions',
+        '99.5% accuracy in fraud detection',
+        '25% reduction in false positives'
+      ],
+      impact: '₹4.2 Cr fraud prevention annually',
+      timeline: '5 months',
+      technologies: ['Machine Learning', 'Real-time Analytics', 'Pattern Recognition']
+    },
+    {
+      id: 6,
+      title: 'Predictive Maintenance for Manufacturing',
+      company: 'SteelTech Industries',
+      industry: 'Manufacturing',
+      location: 'Jamshedpur, India',
+      challenge: 'Unplanned downtime costing ₹80L+ monthly',
+      solution: 'Deployed IoT sensors with ML-based predictive maintenance',
+      results: [
+        '60% reduction in unplanned downtime',
+        '35% decrease in maintenance costs',
+        '25% increase in equipment lifespan'
+      ],
+      impact: '₹2.1 Cr annual savings',
       timeline: '7 months',
-      investment: '$95,000',
-      roi: '380%'
+      technologies: ['IoT Sensors', 'Machine Learning', 'Predictive Analytics']
     }
   ];
 
@@ -74,126 +113,131 @@ const CaseStudiesPage = () => {
         {/* Hero Section */}
         <div className="text-center py-16">
           <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
-            Success Stories
+            AI Success Stories
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
-            Real results from Indian businesses that transformed with our AI solutions
+            Real results from real businesses leveraging our AI solutions
           </p>
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary-600">50+</div>
-            <div className="text-gray-600">Companies Transformed</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+          <div className="bg-white p-6 rounded-xl shadow-md text-center">
+            <div className="flex items-center justify-center">
+              <Target className="h-8 w-8 text-primary-500" />
+            </div>
+            <p className="text-3xl font-bold text-gray-900 mt-2">100+</p>
+            <p className="text-gray-600">Projects Delivered</p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary-600">₹250 Cr+</div>
-            <div className="text-gray-600">Value Generated</div>
+          <div className="bg-white p-6 rounded-xl shadow-md text-center">
+            <div className="flex items-center justify-center">
+              <Users className="h-8 w-8 text-primary-500" />
+            </div>
+            <p className="text-3xl font-bold text-gray-900 mt-2">50+</p>
+            <p className="text-gray-600">Happy Clients</p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary-600">4.8/5</div>
-            <div className="text-gray-600">Client Rating</div>
+          <div className="bg-white p-6 rounded-xl shadow-md text-center">
+            <div className="flex items-center justify-center">
+              <Award className="h-8 w-8 text-primary-500" />
+            </div>
+            <p className="text-3xl font-bold text-gray-900 mt-2">25+</p>
+            <p className="text-gray-600">Indian Cities</p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary-600">24</div>
-            <div className="text-gray-600">Indian Cities</div>
+          <div className="bg-white p-6 rounded-xl shadow-md text-center">
+            <div className="flex items-center justify-center">
+              <DollarSign className="h-8 w-8 text-primary-500" />
+            </div>
+            <p className="text-3xl font-bold text-gray-900 mt-2">₹150 Cr+</p>
+            <p className="text-gray-600">Value Generated</p>
           </div>
         </div>
 
         {/* Case Studies Grid */}
-        <div className="space-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {caseStudies.map((study) => (
-            <div key={study.id} className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="md:flex">
-                <div className="md:flex-shrink-0 md:w-1/3 bg-gray-100 flex items-center justify-center p-8">
-                  <div className="text-center">
-                    <Building2 className="h-16 w-16 text-primary-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-gray-900">{study.company}</h3>
-                    <p className="text-gray-600">{study.industry}</p>
+            <div key={study.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                    {study.industry}
+                  </span>
+                  <span className="text-xs text-gray-500">{study.location}</span>
+                </div>
+                
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{study.title}</h3>
+                <p className="text-gray-600 mb-2 font-medium">{study.company}</p>
+                
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-gray-900 mb-1">Challenge:</h4>
+                  <p className="text-sm text-gray-600">{study.challenge}</p>
+                </div>
+                
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-gray-900 mb-1">Solution:</h4>
+                  <p className="text-sm text-gray-600">{study.solution}</p>
+                </div>
+                
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-gray-900 mb-2">Key Results:</h4>
+                  <ul className="list-disc pl-5 space-y-1 text-sm text-gray-600">
+                    {study.results.map((result, idx) => (
+                      <li key={idx}>{result}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Impact:</span>
+                    <span className="font-medium text-primary-600">{study.impact}</span>
+                  </div>
+                  <div className="flex justify-between text-sm mt-1">
+                    <span className="text-gray-600">Timeline:</span>
+                    <span className="text-gray-600">{study.timeline}</span>
                   </div>
                 </div>
-                <div className="p-8 md:w-2/3">
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-2xl font-bold text-gray-900">{study.title}</h2>
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
-                      {study.industry}
-                    </span>
+                
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-gray-900 mb-2">Technologies Used:</h4>
+                  <div className="flex flex-wrap gap-1">
+                    {study.technologies.map((tech, idx) => (
+                      <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
-                  
-                  <div className="mb-6">
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">Challenge</h3>
-                    <p className="text-gray-700">{study.challenge}</p>
-                  </div>
-                  
-                  <div className="mb-6">
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">Solution</h3>
-                    <p className="text-gray-700">{study.solution}</p>
-                  </div>
-                  
-                  <div className="mb-6">
-                    <h3 className="text-lg font-medium text-gray-900 mb-3">Results</h3>
-                    <ul className="space-y-2">
-                      {study.results.map((result, index) => (
-                        <li key={index} className="flex items-start">
-                          <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{result}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-200">
-                    <div className="flex items-center">
-                      <Clock className="h-5 w-5 text-gray-500 mr-2" />
-                      <span className="text-sm text-gray-600">Timeline: {study.timeline}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <DollarSign className="h-5 w-5 text-gray-500 mr-2" />
-                      <span className="text-sm text-gray-600">Investment: {study.investment}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <TrendingUp className="h-5 w-5 text-green-500 mr-2" />
-                      <span className="text-sm font-medium text-green-600">ROI: {study.roi}</span>
-                    </div>
-                  </div>
+                </div>
+                
+                <div className="mt-6">
+                  <button className="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700">
+                    View Full Case Study
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Process Section */}
-        <div className="mt-24 bg-gradient-to-r from-primary-600 to-indigo-700 rounded-xl p-8 text-white">
-          <h2 className="text-2xl font-bold text-center mb-8">Our Case Study Process</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: 'Discovery', desc: 'Identify key business challenges and opportunities' },
-              { step: 'Analysis', desc: 'Analyze data and determine AI solution fit' },
-              { step: 'Implementation', desc: 'Deploy and customize AI solution' },
-              { step: 'Results', desc: 'Measure and report ROI and benefits' },
-            ].map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-full bg-white text-primary-600 text-lg font-bold mx-auto">
-                  {index + 1}
-                </div>
-                <h3 className="mt-4 text-lg font-medium">{item.step}</h3>
-                <p className="mt-2 text-primary-100">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready for Your Success Story?</h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Join hundreds of Indian businesses that have transformed with our AI solutions
-          </p>
-          <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700">
-            Schedule a Consultation
-            <ArrowUpRight className="ml-2 h-5 w-5" />
-          </button>
+        <div className="py-16 bg-gradient-to-r from-primary-600 to-indigo-700 rounded-xl">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-white">
+              Ready to Transform Your Business?
+            </h2>
+            <p className="mt-4 text-lg text-primary-100">
+              Join hundreds of Indian businesses that have achieved remarkable results with our AI solutions.
+            </p>
+            <div className="mt-8">
+              <Link
+                href="/contact"
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-primary-600 bg-white hover:bg-gray-50"
+              >
+                Schedule a Consultation
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
