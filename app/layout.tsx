@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Inter } from 'next/font-google';
+import { Inter } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FloatingAIAssistant from '@/components/FloatingAIAssistant';
