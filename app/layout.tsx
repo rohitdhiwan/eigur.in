@@ -33,15 +33,19 @@ export default function RootLayout({
   useEffect(() => {
     // Only run on the client side
     if (typeof window !== 'undefined') {
+      // Get a random background color on each page load
       const randomIndex = Math.floor(Math.random() * backgroundColors.length);
-      setBgClass(backgroundColors[randomIndex]);
+      const randomColor = backgroundColors[randomIndex];
+      
+      // Apply the background color to the div
+      setBgClass(randomColor);
     }
   }, []); // Empty dependency array means this runs once after component mounts
 
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className={`flex flex-col min-h-screen ${bgClass}`} id="dynamic-bg">
+      <body className={`${inter.className} ${bgClass}`}>
+        <div className="flex flex-col min-h-screen" id="dynamic-bg">
           <Navbar />
           <main className="flex-grow">{children}</main>
           <Footer />

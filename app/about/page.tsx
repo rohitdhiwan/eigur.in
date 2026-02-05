@@ -113,12 +113,12 @@ const AboutPage = () => {
               <div className="mx-auto bg-gray-200 rounded-xl w-32 h-32 overflow-hidden">
                 <img 
                   src="/media/file_1---012cc25f-4340-4588-98ff-8825f4277ca4.jpg" 
-                  alt="Riya Verma - Chief Technology Officer" 
+                  alt="Riya Oberoi - Chief Technology Officer" 
                   className="w-full h-full object-cover"
                   style={{ objectPosition: 'center top' }}
                 />
               </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">Riya Verma</h3>
+              <h3 className="mt-4 text-lg font-medium text-gray-900">Riya Oberoi</h3>
               <p className="text-gray-600">Chief Technology Officer</p>
               <p className="mt-2 text-sm text-gray-500">
                 Technology visionary with deep expertise in AI architectures and scalable systems for enterprise solutions.
