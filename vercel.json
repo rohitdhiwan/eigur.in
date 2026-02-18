@@ -2,5 +2,6 @@
   "github": {
     "silent": true
   },
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "_comment": "Force redeploy - reverted to pre-Valentine version"
 }
