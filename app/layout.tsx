@@ -1,3 +1,4 @@
+// Deploy: Reverted to pre-Valentine version - 2026-02-18
 'use client';
 
 import { useEffect } from 'react';
