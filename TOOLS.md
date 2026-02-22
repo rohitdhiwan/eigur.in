@@ -37,4 +37,33 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+## AI Model Strategy (User Preference)
+
+- **Simple tasks** → Use local models (fast, no rate limits)
+- **Complex tasks** → Use qwen (qwen-portal/coder-model)
+- **Decision** → I decide strategically based on task complexity
+
+### What counts as "simple":
+- Basic Q&A, file reads, quick lookups
+- Simple edits, formatting, organization
+- Status checks, heartbeats
+
+### What counts as "complex":
+- Code generation/debugging
+- Multi-step reasoning
+- Creative work, analysis, synthesis
+- Anything requiring deep understanding
+
+---
+
+## Local AI Setup
+
+### Ollama
+- **Status:** Running (background service)
+- **Models available:**
+  - `mistral:7b-instruct` (4.4 GB) - General purpose, good for most tasks
+- **Usage:** Default for simple tasks
+
+---
+
 Add whatever helps you do your job. This is your cheat sheet.
