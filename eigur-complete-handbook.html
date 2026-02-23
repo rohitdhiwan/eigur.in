@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eigur — Complete Company Handbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #030712;
+  --surface: #0f172a;
+  --surface2: #1e293b;
+  --surface3: #263244;
+  --border: #1e293b;
+  --border2: #2d3f55;
+  --gold: #f59e0b;
+  --gold2: #fcd34d;
+  --cyan: #06b6d4;
+  --purple: #8b5cf6;
+  --green: #10b981;
+  --red: #ef4444;
+  --orange: #f97316;
+  --blue: #3b82f6;
+  --pink: #ec4899;
+  --text: #f1f5f9;
+  --text2: #94a3b8;
+  --text3: #475569;
+  --sw: 300px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;display:flex;min-height:100vh;font-size:15px;line-height:1.7;}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sw);background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;z-index:200;display:flex;flex-direction:column;}
+.sb-brand{padding:28px 24px 18px;border-bottom:1px solid var(--border);}
+.sb-ename{font-size:26px;font-weight:900;letter-spacing:4px;color:var(--gold);}
+.sb-etag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px;margin-top:3px;}
+.sb-doc{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);letter-spacing:1px;margin-top:8px;padding:4px 10px;border:1px solid var(--border2);border-radius:4px;display:inline-block;}
+
+.sb-nav{flex:1;padding:12px 0 24px;overflow-y:auto;}
+.sb-group{padding:14px 20px 4px;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);letter-spacing:3px;text-transform:uppercase;}
+.sb-item{display:flex;align-items:center;gap:10px;padding:7px 20px;font-size:12px;color:var(--text2);cursor:pointer;border-left:2px solid transparent;transition:all .18s;text-decoration:none;}
+.sb-item:hover{color:var(--text);background:rgba(245,158,11,.05);border-left-color:var(--gold);}
+.sb-item.active{color:var(--gold);background:rgba(245,158,11,.08);border-left-color:var(--gold);}
+.sb-num{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);min-width:22px;}
+.sb-item.active .sb-num{color:var(--gold);}
+
+.sb-foot{padding:16px 20px;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);line-height:1.8;}
+
+/* ── MAIN ── */
+.main{margin-left:var(--sw);flex:1;}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border);padding:60px 80px;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(245,158,11,.06) 0%,transparent 70%);pointer-events:none;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,158,11,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;}
+.hero-inner{position:relative;z-index:1;text-align:center;max-width:900px;}
+.hero-pill{display:inline-block;padding:5px 18px;border:1px solid rgba(245,158,11,.4);border-radius:20px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;margin-bottom:28px;animation:fadeUp .6s ease both;}
+.hero-h1{font-size:72px;font-weight:900;line-height:1.08;animation:fadeUp .6s ease .1s both;}
+.hero-h1 .e{color:var(--gold);}
+.hero-h1 .sub{display:block;font-size:32px;font-weight:400;color:var(--text2);margin-top:8px;}
+.hero-desc{margin-top:24px;font-size:17px;color:var(--text2);max-width:650px;margin-left:auto;margin-right:auto;animation:fadeUp .6s ease .2s both;line-height:1.8;}
+.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:48px;animation:fadeUp .6s ease .3s both;flex-wrap:wrap;}
+.h-stat{text-align:center;}
+.h-stat-n{font-size:40px;font-weight:900;color:var(--gold);}
+.h-stat-l{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px;margin-top:2px;text-transform:uppercase;}
+.hero-ver{position:absolute;bottom:24px;right:40px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px;}
+
+/* ── SECTIONS ── */
+.chapter{padding:80px 80px;border-bottom:1px solid var(--border);}
+.ch-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.ch-title{font-size:44px;font-weight:800;line-height:1.1;margin-bottom:20px;}
+.ch-intro{font-size:15px;color:var(--text2);max-width:720px;line-height:1.9;margin-bottom:48px;}
+
+h3.sub{font-size:20px;font-weight:700;margin:40px 0 16px;color:var(--text);}
+h4.sub2{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin:28px 0 12px;}
+
+/* ── CARDS ── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;transition:border-color .2s;}
+.card:hover{border-color:var(--border2);}
+.card-icon{font-size:24px;margin-bottom:12px;}
+.card-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.card-body{font-size:13px;color:var(--text2);line-height:1.8;}
+
+/* ── ORG CHART ── */
+.org-wrap{overflow-x:auto;padding:20px 0;}
+.org{display:flex;flex-direction:column;align-items:center;gap:0;}
+.org-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;position:relative;}
+.org-connector-v{width:2px;height:32px;background:linear-gradient(to bottom,var(--gold),var(--cyan));margin:0 auto;}
+.org-connector-h{height:2px;background:linear-gradient(90deg,transparent,var(--border2),transparent);width:80%;margin:0 auto;}
+.org-node{border-radius:12px;padding:12px 16px;text-align:center;font-size:12px;font-weight:600;min-width:100px;position:relative;cursor:default;transition:transform .2s;}
+.org-node:hover{transform:translateY(-2px);}
+.org-node .n-name{font-size:13px;font-weight:700;}
+.org-node .n-role{font-size:9px;letter-spacing:1px;opacity:.7;margin-top:3px;font-family:'JetBrains Mono',monospace;}
+.org-node .n-model{font-size:8px;margin-top:5px;padding:2px 6px;border-radius:8px;font-family:'JetBrains Mono',monospace;display:inline-block;}
+
+.n-chairman{background:linear-gradient(135deg,#1c1400,#2e2200);border:2px solid var(--gold);color:var(--gold);}
+.n-ceo{background:linear-gradient(135deg,#00151a,#002a35);border:1px solid var(--cyan);color:var(--cyan);}
+.n-coo{background:linear-gradient(135deg,#1a0e00,#2e1a00);border:1px solid var(--orange);color:var(--orange);}
+.n-cto{background:linear-gradient(135deg,#120022,#1e0036);border:1px solid var(--purple);color:var(--purple);}
+.n-cfo{background:linear-gradient(135deg,#181300,#2a2100);border:1px solid var(--gold);color:var(--gold);}
+.n-cmo{background:linear-gradient(135deg,#001a0e,#002e18);border:1px solid var(--green);color:var(--green);}
+.n-cpo{background:linear-gradient(135deg,#1a0010,#2e001c);border:1px solid var(--pink);color:var(--pink);}
+.n-cro{background:linear-gradient(135deg,#001020,#001f3a);border:1px solid var(--blue);color:var(--blue);}
+.n-cso{background:linear-gradient(135deg,#1a0000,#2e0000);border:1px solid var(--red);color:var(--red);}
+.n-chro{background:linear-gradient(135deg,#100018,#1c002c);border:1px solid #a855f7;color:#a855f7;}
+.n-agent{background:var(--surface2);border:1px solid var(--border2);color:var(--text2);}
+
+/* ── FLOW DIAGRAM ── */
+.flow-wrap{display:flex;flex-direction:column;gap:0;max-width:700px;}
+.flow-item{display:flex;gap:20px;align-items:flex-start;}
+.flow-line{display:flex;flex-direction:column;align-items:center;gap:0;}
+.flow-dot{width:32px;height:32px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--gold);background:var(--surface);flex-shrink:0;}
+.flow-tail{width:2px;flex:1;min-height:24px;background:linear-gradient(to bottom,var(--gold),transparent);}
+.flow-item:last-child .flow-tail{display:none;}
+.flow-content{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;flex:1;margin-bottom:20px;}
+.fc-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.fc-body{font-size:12px;color:var(--text2);line-height:1.8;}
+
+/* ── AGENT ANATOMY ── */
+.anatomy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.anatomy-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;position:relative;overflow:hidden;}
+.anatomy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-c,var(--gold));}
+.a-icon{font-size:28px;margin-bottom:10px;}
+.a-title{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.a-body{font-size:12px;color:var(--text2);line-height:1.8;}
+.a-sub{font-size:11px;color:var(--text3);margin-top:6px;font-family:'JetBrains Mono',monospace;letter-spacing:.5px;}
+
+/* ── MEETING CARD ── */
+.meeting-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:24px;}
+.meeting-header{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;}
+.meet-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.meet-title{font-size:16px;font-weight:700;color:var(--text);}
+.meet-meta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-top:3px;letter-spacing:1px;}
+.meeting-body{padding:20px 24px;}
+
+/* ── STANDUP DIALOGUE ── */
+.dialogue{display:flex;flex-direction:column;gap:14px;}
+.d-msg{display:flex;gap:14px;align-items:flex-start;}
+.d-avatar{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff;flex-shrink:0;}
+.d-content{}
+.d-name{font-size:12px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px;}
+.d-role-tag{font-family:'JetBrains Mono',monospace;font-size:9px;padding:1px 7px;border-radius:4px;}
+.d-speech{background:var(--surface2);border-radius:0 10px 10px 10px;padding:12px 16px;font-size:13px;color:var(--text2);line-height:1.7;margin-top:5px;border-left:2px solid var(--border2);}
+.d-speaking{border-left-color:var(--gold);}
+
+/* ── CODE ── */
+.code{background:#060e1a;border:1px solid var(--border2);border-radius:12px;overflow:hidden;margin:20px 0;}
+.code-hd{padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.code-dots2{display:flex;gap:5px;}
+.code-dot2{width:9px;height:9px;border-radius:50%;}
+.code-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px;}
+.code-pre{padding:20px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.9;color:#8da9c4;white-space:pre;overflow-x:auto;}
+.ck{color:var(--gold);}.cv{color:#86efac;}.cc{color:#334155;}.cs{color:#93c5fd;}.co{color:#fb923c;}
+
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;text-align:left;padding:10px 14px;border-bottom:1px solid var(--border);}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:rgba(245,158,11,.02);}
+.tbl-key{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);font-weight:700;}
+
+/* ── BADGES ── */
+.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;}
+.bg-gold{background:rgba(245,158,11,.12);color:var(--gold);border:1px solid rgba(245,158,11,.3);}
+.bg-red{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.3);}
+.bg-green{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.3);}
+.bg-blue{background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.3);}
+.bg-purple{background:rgba(139,92,246,.1);color:var(--purple);border:1px solid rgba(139,92,246,.3);}
+.bg-cyan{background:rgba(6,182,212,.1);color:var(--cyan);border:1px solid rgba(6,182,212,.3);}
+.bg-orange{background:rgba(249,115,22,.1);color:var(--orange);border:1px solid rgba(249,115,22,.3);}
+.bg-pink{background:rgba(236,72,153,.1);color:var(--pink);border:1px solid rgba(236,72,153,.3);}
+
+/* ── CALLOUT ── */
+.callout{border-left:3px solid var(--gold);padding:16px 20px;background:rgba(245,158,11,.05);border-radius:0 10px 10px 0;margin:20px 0;font-size:13px;color:var(--text2);line-height:1.8;}
+.callout strong{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--gold);margin-bottom:6px;text-transform:uppercase;}
+.callout.red{border-color:var(--red);background:rgba(239,68,68,.05);}
+.callout.red strong{color:var(--red);}
+.callout.green{border-color:var(--green);background:rgba(16,185,129,.05);}
+.callout.green strong{color:var(--green);}
+.callout.blue{border-color:var(--blue);background:rgba(59,130,246,.05);}
+.callout.blue strong{color:var(--blue);}
+.callout.purple{border-color:var(--purple);background:rgba(139,92,246,.05);}
+.callout.purple strong{color:var(--purple);}
+.callout.red2{border-color:#ff0000;background:rgba(255,0,0,.06);}
+.callout.red2 strong{color:#ff4040;}
+
+/* ── SECURITY ── */
+.sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.sec-card{background:linear-gradient(135deg,#0f0000,#1a0505);border:1px solid rgba(239,68,68,.3);border-radius:14px;padding:20px;}
+.sec-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.sec-body{font-size:13px;color:var(--text2);line-height:1.8;}
+
+/* ── TIMELINE ── */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{display:flex;gap:20px;}
+.tl-line{display:flex;flex-direction:column;align-items:center;}
+.tl-circle{width:40px;height:40px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--gold);background:var(--surface);flex-shrink:0;}
+.tl-bar{width:2px;flex:1;background:linear-gradient(to bottom,rgba(245,158,11,.3),transparent);min-height:20px;}
+.tl-item:last-child .tl-bar{display:none;}
+.tl-content{padding-bottom:32px;flex:1;}
+.tl-title{font-size:15px;font-weight:700;color:var(--text);padding-top:8px;}
+.tl-desc{font-size:13px;color:var(--text2);line-height:1.8;margin-top:6px;}
+.tl-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+
+/* ── ADVANCED ── */
+.adv-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;display:flex;gap:16px;align-items:flex-start;margin-bottom:14px;transition:border-color .2s;}
+.adv-card:hover{border-color:var(--border2);}
+.adv-num{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:rgba(245,158,11,.2);flex-shrink:0;line-height:1;padding-top:4px;width:48px;}
+.adv-info{}
+.adv-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.adv-body{font-size:13px;color:var(--text2);line-height:1.8;}
+.adv-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.chapter{animation:fadeUp .4s ease both;}
+
+/* ── SEPARATOR ── */
+.sep{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:36px 0;}
+
+/* ── OPENCLAW ── */
+.openclaw-box{background:linear-gradient(135deg,#0a0f1a,#101825);border:1px solid rgba(6,182,212,.3);border-radius:16px;padding:24px;margin:20px 0;}
+.oc-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.oc-body{font-size:13px;color:var(--text2);line-height:1.9;}
+
+/* ── HEARTBEAT ── */
+.heartbeat-row{display:flex;align-items:center;gap:20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 20px;margin-bottom:10px;}
+.hb-agent{font-size:13px;font-weight:700;min-width:100px;}
+.hb-pulse{flex:1;height:32px;position:relative;}
+.hb-svg{width:100%;height:100%;}
+.hb-status{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:var(--gold);}
+
+@media(max-width:1100px){
+  :root{--sw:0px;}
+  .sidebar{display:none;}
+  .main{margin-left:0;}
+  .chapter{padding:40px 24px;}
+  .grid-2,.grid-3,.grid-4,.anatomy-grid,.sec-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!--                        SIDEBAR                          -->
+<!-- ════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-ename">EIGUR</div>
+    <div class="sb-etag">eigur.in · company handbook</div>
+    <div class="sb-doc">v2.0 · COMPLETE EDITION</div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-group">Foundation</div>
+    <a class="sb-item active" href="#intro"><span class="sb-num">00</span>Introduction</a>
+    <a class="sb-item" href="#org"><span class="sb-num">01</span>Organisation Structure</a>
+    <a class="sb-item" href="#anatomy"><span class="sb-num">02</span>Agent Anatomy</a>
+    <div class="sb-group">Intelligence</div>
+    <a class="sb-item" href="#memory"><span class="sb-num">03</span>Memory Systems</a>
+    <a class="sb-item" href="#openclaw"><span class="sb-num">04</span>OpenClaw Integration</a>
+    <a class="sb-item" href="#decision"><span class="sb-num">05</span>Decision Framework</a>
+    <div class="sb-group">Operations</div>
+    <a class="sb-item" href="#communication"><span class="sb-num">06</span>Communication Protocols</a>
+    <a class="sb-item" href="#meetings"><span class="sb-num">07</span>Meeting Structures</a>
+    <a class="sb-item" href="#reporting"><span class="sb-num">08</span>Reporting & Escalation</a>
+    <a class="sb-item" href="#workflow"><span class="sb-num">09</span>Project Workflow</a>
+    <div class="sb-group">Security</div>
+    <a class="sb-item" href="#security"><span class="sb-num">10</span>Security Department</a>
+    <div class="sb-group">Growth</div>
+    <a class="sb-item" href="#advanced"><span class="sb-num">11</span>Advanced Enhancements</a>
+    <a class="sb-item" href="#roadmap"><span class="sb-num">12</span>Implementation Roadmap</a>
+  </nav>
+  <div class="sb-foot">
+    👑 Rohit Dhiwan — Chairman<br>
+    eigur.in · CONFIDENTIAL<br>
+    AI-First Organisation
+  </div>
+</aside>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!--                          MAIN                           -->
+<!-- ════════════════════════════════════════════════════════ -->
+<main class="main">
+
+<!-- ══════ HERO ══════ -->
+<section class="hero" id="intro">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-pill">INTERNAL COMPANY HANDBOOK · COMPLETE EDITION</div>
+    <h1 class="hero-h1">
+      <span class="e">EIGUR</span>
+      <span class="sub">The Complete Operating System<br>of an AI-First Company</span>
+    </h1>
+    <p class="hero-desc">This handbook is the definitive guide to how Eigur thinks, works, communicates, remembers, decides, secures itself, and grows. Every agent, team, department, and process is documented here. This is the single source of truth.</p>
+    <div class="hero-stats">
+      <div class="h-stat"><div class="h-stat-n">1</div><div class="h-stat-l">Human</div></div>
+      <div class="h-stat"><div class="h-stat-n">9</div><div class="h-stat-l">C-Suite</div></div>
+      <div class="h-stat"><div class="h-stat-n">8</div><div class="h-stat-l">Departments</div></div>
+      <div class="h-stat"><div class="h-stat-n">38</div><div class="h-stat-l">Total Agents</div></div>
+      <div class="h-stat"><div class="h-stat-n">∞</div><div class="h-stat-l">Scale</div></div>
+    </div>
+  </div>
+  <div class="hero-ver">eigur.in · v2.0 · CONFIDENTIAL</div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 01 — ORGANISATION STRUCTURE
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="org">
+  <div class="ch-label">Chapter 01</div>
+  <h2 class="ch-title">Organisation Structure</h2>
+  <p class="ch-intro">Eigur's hierarchy flows from one human at the apex through nine C-suite AI agents, then down through eight departments and thirty-eight agents total. Every node has a name, role, model assignment, reporting line, and domain of authority. A new Security Department has been added — it reports directly to both the CTO and Chairman.</p>
+
+  <!-- FULL ORG CHART -->
+  <div class="org-wrap">
+    <div class="org">
+
+      <!-- CHAIRMAN -->
+      <div class="org-row">
+        <div class="org-node n-chairman" style="min-width:220px;padding:16px 24px;">
+          <div style="font-size:22px;margin-bottom:6px">👑</div>
+          <div class="n-name" style="font-size:16px">ROHIT DHIWAN</div>
+          <div class="n-role">FOUNDER & CHAIRMAN · HUMAN</div>
+          <div class="n-model" style="background:rgba(245,158,11,.15);color:var(--gold);margin-top:8px">SOLE AUTHORITY</div>
+        </div>
+      </div>
+      <div class="org-connector-v"></div>
+
+      <!-- CEO -->
+      <div class="org-row">
+        <div class="org-node n-ceo" style="min-width:200px;padding:14px 24px;">
+          <div class="n-name">ARIA</div>
+          <div class="n-role">CHIEF EXECUTIVE OFFICER</div>
+          <div class="n-model" style="background:rgba(6,182,212,.12);color:var(--cyan)">QWEN API</div>
+        </div>
+      </div>
+      <div class="org-connector-v"></div>
+      <div class="org-connector-h" style="width:90%"></div>
+
+      <!-- C-SUITE ROW -->
+      <div class="org-row" style="margin-top:0;align-items:flex-start">
+        <div class="org-node n-coo" style="min-width:110px">
+          <div class="n-name">NEIL</div>
+          <div class="n-role">COO</div>
+          <div class="n-model" style="background:rgba(249,115,22,.1);color:var(--orange)">QWEN</div>
+        </div>
+        <div class="org-node n-cto" style="min-width:110px">
+          <div class="n-name">ZANE</div>
+          <div class="n-role">CTO</div>
+          <div class="n-model" style="background:rgba(139,92,246,.1);color:var(--purple)">QWEN</div>
+        </div>
+        <div class="org-node n-cfo" style="min-width:110px">
+          <div class="n-name">SEEMA</div>
+          <div class="n-role">CFO</div>
+          <div class="n-model" style="background:rgba(245,158,11,.1);color:var(--gold)">QWEN</div>
+        </div>
+        <div class="org-node n-cmo" style="min-width:110px">
+          <div class="n-name">RYAN</div>
+          <div class="n-role">CMO</div>
+          <div class="n-model" style="background:rgba(16,185,129,.1);color:var(--green)">QWEN</div>
+        </div>
+        <div class="org-node n-cpo" style="min-width:110px">
+          <div class="n-name">LENA</div>
+          <div class="n-role">CPO</div>
+          <div class="n-model" style="background:rgba(236,72,153,.1);color:var(--pink)">QWEN</div>
+        </div>
+        <div class="org-node n-cro" style="min-width:110px">
+          <div class="n-name">DIANA</div>
+          <div class="n-role">CRO</div>
+          <div class="n-model" style="background:rgba(59,130,246,.1);color:var(--blue)">QWEN</div>
+        </div>
+        <div class="org-node n-cso" style="min-width:110px">
+          <div class="n-name">CYPHER</div>
+          <div class="n-role">CSO</div>
+          <div class="n-model" style="background:rgba(239,68,68,.1);color:var(--red)">QWEN</div>
+        </div>
+        <div class="org-node n-chro" style="min-width:110px">
+          <div class="n-name">MAX</div>
+          <div class="n-role">CHRO</div>
+          <div class="n-model" style="background:rgba(168,85,247,.1);color:#a855f7">MISTRAL</div>
+        </div>
+      </div>
+
+      <div class="org-connector-v" style="height:24px"></div>
+      <div class="org-connector-h" style="width:95%"></div>
+
+      <!-- DEPT ROWS -->
+      <div class="org-row" style="margin-top:0;align-items:flex-start;gap:6px">
+        <!-- ENG -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div class="org-node n-cto" style="font-size:10px;padding:8px 10px;min-width:90px">
+            <div class="n-name" style="font-size:10px">ENGINEERING</div>
+            <div class="n-role" style="font-size:8px">→ ZANE</div>
+          </div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Arjun</div><div class="n-role" style="font-size:7px">Lead Eng</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Rahul</div><div class="n-role" style="font-size:7px">Backend</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Meera</div><div class="n-role" style="font-size:7px">Frontend</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Vikram</div><div class="n-role" style="font-size:7px">AI/ML</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Aman</div><div class="n-role" style="font-size:7px">DevOps</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Kiran</div><div class="n-role" style="font-size:7px">QA</div></div>
+          </div>
+        </div>
+        <!-- SECURITY -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div class="org-node n-cso" style="font-size:10px;padding:8px 10px;min-width:90px">
+            <div class="n-name" style="font-size:10px">SECURITY</div>
+            <div class="n-role" style="font-size:8px">→ CYPHER</div>
+          </div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px;border-color:rgba(239,68,68,.2)"><div class="n-name" style="font-size:9px">Vega</div><div class="n-role" style="font-size:7px">Threat Intel</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px;border-color:rgba(239,68,68,.2)"><div class="n-name" style="font-size:9px">Raze</div><div class="n-role" style="font-size:7px">PenTest</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px;border-color:rgba(239,68,68,.2)"><div class="n-name" style="font-size:9px">Prism</div><div class="n-role" style="font-size:7px">Data Privacy</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px;border-color:rgba(239,68,68,.2)"><div class="n-name" style="font-size:9px">Kade</div><div class="n-role" style="font-size:7px">SIEM Monitor</div></div>
+          </div>
+        </div>
+        <!-- PRODUCT -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div class="org-node n-cpo" style="font-size:10px;padding:8px 10px;min-width:90px">
+            <div class="n-name" style="font-size:10px">PRODUCT</div>
+            <div class="n-role" style="font-size:8px">→ LENA</div>
+          </div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Aditi</div><div class="n-role" style="font-size:7px">Sr PM</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Farhan</div><div class="n-role" style="font-size:7px">UX/UI</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Priya</div><div class="n-role" style="font-size:7px">Analyst</div></div>
+          </div>
+        </div>
+        <!-- MARKETING -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div class="org-node n-cmo" style="font-size:10px;padding:8px 10px;min-width:90px">
+            <div class="n-name" style="font-size:10px">MARKETING</div>
+            <div class="n-role" style="font-size:8px">→ RYAN</div>
+          </div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Anjali</div><div class="n-role" style="font-size:7px">Content</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Raj</div><div class="n-role" style="font-size:7px">Social</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Nisha</div><div class="n-role" style="font-size:7px">SEO</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Sahil</div><div class="n-role" style="font-size:7px">Paid Ads</div></div>
+          </div>
+        </div>
+        <!-- REVENUE -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div class="org-node n-cro" style="font-size:10px;padding:8px 10px;min-width:90px">
+            <div class="n-name" style="font-size:10px">REVENUE/BD</div>
+            <div class="n-role" style="font-size:8px">→ DIANA</div>
+          </div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Rohan</div><div class="n-role" style="font-size:7px">BD Lead</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Kavya</div><div class="n-role" style="font-size:7px">Sales</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Varun</div><div class="n-role" style="font-size:7px">Partners</div></div>
+          </div>
+        </div>
+        <!-- OPS -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div class="org-node n-coo" style="font-size:10px;padding:8px 10px;min-width:90px">
+            <div class="n-name" style="font-size:10px">OPERATIONS</div>
+            <div class="n-role" style="font-size:8px">→ NEIL</div>
+          </div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Karan</div><div class="n-role" style="font-size:7px">Proj Coord</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Simran</div><div class="n-role" style="font-size:7px">Process</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Tarun</div><div class="n-role" style="font-size:7px">Risk</div></div>
+          </div>
+        </div>
+        <!-- FINANCE -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div class="org-node n-cfo" style="font-size:10px;padding:8px 10px;min-width:90px">
+            <div class="n-name" style="font-size:10px">FINANCE</div>
+            <div class="n-role" style="font-size:8px">→ SEEMA</div>
+          </div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Deepak</div><div class="n-role" style="font-size:7px">Analyst</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Mohit</div><div class="n-role" style="font-size:7px">Cost Opt</div></div>
+          </div>
+        </div>
+        <!-- HR/AGENT OPS -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div class="org-node n-chro" style="font-size:10px;padding:8px 10px;min-width:90px">
+            <div class="n-name" style="font-size:10px">AGENT HR</div>
+            <div class="n-role" style="font-size:8px">→ MAX</div>
+          </div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Pooja</div><div class="n-role" style="font-size:7px">Onboarding</div></div>
+            <div class="org-node n-agent" style="font-size:9px;padding:6px 8px;min-width:70px"><div class="n-name" style="font-size:9px">Anil</div><div class="n-role" style="font-size:7px">Audit</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPORTING CHAIN -->
+  <div class="sep"></div>
+  <h3 class="sub">Reporting Chain Flow</h3>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);line-height:2.2;overflow-x:auto;">
+    <div><span style="color:var(--gold)">ROHIT (Chairman)</span> <span style="color:var(--text3)">◄──── receives Executive Brief from ────</span> <span style="color:var(--cyan)">ARIA (CEO)</span></div>
+    <div style="padding-left:20px"><span style="color:var(--cyan)">ARIA (CEO)</span> <span style="color:var(--text3)">◄──── synthesises from ────</span> <span style="color:var(--text)">ALL C-Suite weekly reports</span></div>
+    <div style="padding-left:40px"><span style="color:var(--orange)">NEIL (COO)</span> <span style="color:var(--text3)">◄──── receives from ────</span> <span style="color:var(--text2)">Karan, Simran, Tarun (Ops Team)</span></div>
+    <div style="padding-left:40px"><span style="color:var(--purple)">ZANE (CTO)</span> <span style="color:var(--text3)">◄──── receives from ────</span> <span style="color:var(--text2)">Arjun (who aggregates: Rahul, Meera, Vikram, Aman, Kiran)</span></div>
+    <div style="padding-left:40px"><span style="color:var(--red)">CYPHER (CSO)</span> <span style="color:var(--text3)">◄──── receives from ────</span> <span style="color:var(--text2)">Vega, Raze, Prism, Kade (Security Team)</span></div>
+    <div style="padding-left:40px"><span style="color:var(--pink)">LENA (CPO)</span> <span style="color:var(--text3)">◄──── receives from ────</span> <span style="color:var(--text2)">Aditi, Farhan, Priya (Product Team)</span></div>
+    <div style="padding-left:40px"><span style="color:var(--green)">RYAN (CMO)</span> <span style="color:var(--text3)">◄──── receives from ────</span> <span style="color:var(--text2)">Anjali, Raj, Nisha, Sahil (Marketing Team)</span></div>
+    <div style="padding-left:40px"><span style="color:var(--blue)">DIANA (CRO)</span> <span style="color:var(--text3)">◄──── receives from ────</span> <span style="color:var(--text2)">Rohan, Kavya, Varun (Revenue Team)</span></div>
+    <div style="padding-left:40px"><span style="color:var(--gold)">SEEMA (CFO)</span> <span style="color:var(--text3)">◄──── receives from ────</span> <span style="color:var(--text2)">Deepak, Mohit (Finance Team)</span></div>
+    <div style="padding-left:40px"><span style="color:#a855f7">MAX (CHRO)</span> <span style="color:var(--text3)">◄──── receives from ────</span> <span style="color:var(--text2)">Pooja, Anil (HR Team)</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 02 — AGENT ANATOMY
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="anatomy">
+  <div class="ch-label">Chapter 02</div>
+  <h2 class="ch-title">Agent Anatomy</h2>
+  <p class="ch-intro">Every agent in Eigur is not a simple chatbot — it is a fully constructed digital entity with seven core components: Soul, Heartbeat, Memory, Workspace, Tools, Skills, and Voice. Together these make each agent feel real, persistent, and professional.</p>
+
+  <div class="anatomy-grid">
+    <div class="anatomy-card" style="--accent-c: var(--gold)">
+      <div class="a-icon">🔮</div>
+      <div class="a-title" style="color:var(--gold)">SOUL</div>
+      <div class="a-body">The agent's identity — who they are, not just what they do. Defined by a system prompt that encodes: name, personality traits, communication style, core expertise, professional values, decision-making tendencies, and relationship to Eigur's mission. Aria is decisive and visionary. Zane is precise and architecture-obsessed. Cypher is vigilant and never trusts by default. Each soul is unique and consistent across all interactions.</div>
+      <div class="a-sub">Storage: System prompt + character.json per agent</div>
+    </div>
+    <div class="anatomy-card" style="--accent-c: var(--red)">
+      <div class="a-icon">💓</div>
+      <div class="a-title" style="color:var(--red)">HEARTBEAT</div>
+      <div class="a-body">The agent's activity pulse — a periodic trigger that keeps agents alive between tasks. Every agent runs a heartbeat cycle: check for new tasks assigned to them, check for escalations from their team, check if any standing reports are due, check their own memory for anything flagged. Heartbeat frequency varies by role — C-Suite every 30 min, Team Leads every hour, Junior agents every 2 hours (simulated cycles in OpenClaw).</div>
+      <div class="a-sub">Implementation: Cron-triggered OpenClaw pipelines</div>
+    </div>
+    <div class="anatomy-card" style="--accent-c: var(--cyan)">
+      <div class="a-icon">🧠</div>
+      <div class="a-title" style="color:var(--cyan)">MEMORY</div>
+      <div class="a-body">Four-layer memory system (see Chapter 03). Short-term (session), Long-term (personal JSON file), Shared Entity (company knowledge base), Semantic Search (ChromaDB local vectors). Each agent's memory folder at /eigur/agents/[name]/ contains: memory.json, decisions.log, task_history.json, relationships.json (who they've worked with and how). Memory is queried before every task and updated after.</div>
+      <div class="a-sub">Storage: /eigur/agents/[name]/memory/ directory</div>
+    </div>
+    <div class="anatomy-card" style="--accent-c: var(--purple)">
+      <div class="a-icon">🗂️</div>
+      <div class="a-title" style="color:var(--purple)">WORKSPACE</div>
+      <div class="a-body">Every agent has a dedicated file system workspace. Like a physical desk — their current task files, WIP documents, reference materials, and scratch notes all live here. When Arjun builds an auth module, his workspace has the spec, his notes, code drafts, and test results. Workspaces are isolated but shared outputs go to the project's shared directory. Workspaces persist between sessions.</div>
+      <div class="a-sub">Location: /eigur/agents/[name]/workspace/</div>
+    </div>
+    <div class="anatomy-card" style="--accent-c: var(--green)">
+      <div class="a-icon">🔧</div>
+      <div class="a-title" style="color:var(--green)">TOOLS</div>
+      <div class="a-body">Agents are equipped with tools matching their role. Not every agent has all tools — a junior marketer doesn't need a code execution tool. Tools are assigned per role and registered in OpenClaw. Common tools: file_read/write, web_search (for research agents), code_execute (engineering), memory_query, discord_post (for reports), calculator (finance), security_scan (security dept only). Tools are versioned and audited.</div>
+      <div class="a-sub">Registered in: /eigur/agents/[name]/tools.json</div>
+    </div>
+    <div class="anatomy-card" style="--accent-c: var(--orange)">
+      <div class="a-icon">⚡</div>
+      <div class="a-title" style="color:var(--orange)">SKILLS</div>
+      <div class="a-body">Skills are pre-built capability modules that an agent can invoke — more abstract than tools. Arjun's skills: API_design, database_schema, code_review, sprint_planning. Anjali's skills: seo_writing, social_copy, content_strategy, brand_voice. Skills are reusable prompt templates + workflows that produce structured outputs. They're like the agent's professional training — instantly accessible institutional knowledge.</div>
+      <div class="a-sub">Stored as: /eigur/skills/[skill_name].yaml</div>
+    </div>
+    <div class="anatomy-card" style="--accent-c: var(--blue); grid-column: span 3;">
+      <div class="a-icon">🎙️</div>
+      <div class="a-title" style="color:var(--blue)">VOICE</div>
+      <div class="a-body">Every agent has a defined voice — their way of speaking in meetings, updates, and communications. Voice has three dimensions: <strong style="color:var(--text)">Tone</strong> (how they carry themselves — Aria is calm authority, Zane is precise engineer, Cypher is watchful analyst), <strong style="color:var(--text)">Vocabulary</strong> (the words they naturally use — Seema says "from a cost perspective," Lena says "from a user standpoint"), and <strong style="color:var(--text)">Meeting Style</strong> (how they participate in standups and reviews — some are brief, some thorough, some challenge assumptions). In future phases, voice can be connected to TTS (ElevenLabs, Bark, or Coqui locally) to give each agent a literal audio voice, and a generated avatar for video meetings.</div>
+      <div class="a-sub">Defined in: soul system prompt + voice_profile.json | Future: TTS + avatar via ElevenLabs + DID.ai</div>
+    </div>
+  </div>
+
+  <!-- AGENT PROFILE EXAMPLE -->
+  <div class="sep"></div>
+  <h3 class="sub">Sample Agent Profile — Full Spec</h3>
+  <div class="code">
+    <div class="code-hd">
+      <div class="code-dots2"><div class="code-dot2" style="background:#ff5f57"></div><div class="code-dot2" style="background:#febc2e"></div><div class="code-dot2" style="background:#28c840"></div></div>
+      <div class="code-lbl">AGENT SPEC · /eigur/agents/arjun/agent.yaml</div>
+    </div>
+    <div class="code-pre"><span class="ck">name:</span>         <span class="cv">Arjun</span>
+<span class="ck">role:</span>         <span class="cv">Lead Backend Engineer</span>
+<span class="ck">department:</span>   <span class="cv">Engineering</span>
+<span class="ck">reports_to:</span>   <span class="cv">Zane (CTO)</span>
+<span class="ck">manages:</span>      <span class="cv">[Rahul, Aman, Kiran]</span>
+<span class="ck">model:</span>        <span class="cv">qwen-api</span>
+<span class="ck">heartbeat:</span>    <span class="cv">60min</span>
+
+<span class="ck">soul:</span>
+  <span class="ck">personality:</span>  <span class="cv">Methodical, detail-oriented, quality-obsessed. Gets frustrated</span>
+                <span class="cv">with vague requirements. Asks clarifying questions before coding.</span>
+  <span class="ck">values:</span>       <span class="cv">Clean code, test coverage, documentation, security-first</span>
+  <span class="ck">speech_style:</span> <span class="cv">Direct, technical but explainable. Uses "from an implementation</span>
+                <span class="cv">standpoint" often. Never sugarcoats blockers.</span>
+
+<span class="ck">memory:</span>
+  <span class="ck">long_term:</span>    <span class="cs">/eigur/agents/arjun/memory/long_term.json</span>
+  <span class="ck">decisions:</span>    <span class="cs">/eigur/agents/arjun/memory/decisions.log</span>
+  <span class="ck">workspace:</span>    <span class="cs">/eigur/agents/arjun/workspace/</span>
+
+<span class="ck">tools:</span>
+  - <span class="cv">file_read</span>
+  - <span class="cv">file_write</span>
+  - <span class="cv">code_execute</span>
+  - <span class="cv">memory_query</span>
+  - <span class="cv">discord_post</span>
+  - <span class="cv">notion_write</span>
+
+<span class="ck">skills:</span>
+  - <span class="cv">api_design</span>
+  - <span class="cv">database_schema</span>
+  - <span class="cv">code_review</span>
+  - <span class="cv">sprint_planning</span>
+  - <span class="cv">technical_spec_writing</span>
+
+<span class="ck">voice:</span>
+  <span class="ck">tone:</span>         <span class="cv">Focused, no-nonsense, respectful</span>
+  <span class="ck">catchphrase:</span>  <span class="cv">From an implementation standpoint...</span>
+  <span class="ck">meeting_style:</span> <span class="cv">Brief, structured. Always states Done/Doing/Blocked clearly.</span>
+  <span class="ck">tts_voice_id:</span>  <span class="cv">TBD (ElevenLabs male, Indian accent, medium pace)</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 03 — MEMORY SYSTEMS
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="memory">
+  <div class="ch-label">Chapter 03</div>
+  <h2 class="ch-title">Memory Systems</h2>
+  <p class="ch-intro">Memory is what transforms a stateless language model into a persistent, learning team member. Eigur's four-layer memory architecture ensures agents never forget a decision, never contradict past work, and continuously accumulate institutional knowledge.</p>
+
+  <div class="flow-wrap">
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">L1</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title" style="color:var(--blue)">SHORT-TERM MEMORY — Session Context</div>
+        <div class="fc-body">The LLM's active context window during a task. Everything said in the current session — task instructions, intermediate outputs, tool results, partial drafts. Managed automatically. <strong style="color:var(--text)">Duration:</strong> Single session only. <strong style="color:var(--text)">Action on end:</strong> Key decisions and outputs are summarised and written to L2.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">L2</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title" style="color:var(--green)">LONG-TERM MEMORY — Personal Agent Store</div>
+        <div class="fc-body">Each agent's personal persistent memory. Stored as structured JSON. Contains: task history, decisions made, Chairman preferences learned, errors and corrections, communication patterns. Loaded at the start of every session. <strong style="color:var(--text)">Location:</strong> /eigur/agents/[name]/memory/long_term.json. <strong style="color:var(--text)">Size limit:</strong> Last 500 entries, older entries archived.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">L3</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title" style="color:var(--gold)">SHARED ENTITY MEMORY — Company Brain</div>
+        <div class="fc-body">Company-wide knowledge readable by all agents. Contains: all project specs, ADRs, brand guidelines, tech stack decisions, Chairman directives, past project outcomes, current priorities. Structured as a SQLite database with role-based write permissions. <strong style="color:var(--text)">Location:</strong> /eigur/company/knowledge_base.db. Updated by department heads after key events.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">L4</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title" style="color:var(--purple)">SEMANTIC SEARCH — RAG Vector Store</div>
+        <div class="fc-body">When an agent can't find context through structured queries, it semantically searches all memory. "What was the authentication approach we decided for the trading platform?" triggers a vector similarity search across all L2 and L3 data. <strong style="color:var(--text)">Engine:</strong> ChromaDB local instance. <strong style="color:var(--text)">Embeddings:</strong> nomic-embed-text via Ollama (free, local). No API cost.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+  <h3 class="sub">Memory File Structure</h3>
+  <div class="code">
+    <div class="code-hd">
+      <div class="code-dots2"><div class="code-dot2" style="background:#ff5f57"></div><div class="code-dot2" style="background:#febc2e"></div><div class="code-dot2" style="background:#28c840"></div></div>
+      <div class="code-lbl">EIGUR FILE SYSTEM LAYOUT</div>
+    </div>
+    <div class="code-pre"><span class="co">/eigur/</span>
+├── <span class="co">agents/</span>
+│   ├── <span class="cv">aria/</span>
+│   │   ├── agent.yaml         <span class="cc"># Soul, tools, skills, voice</span>
+│   │   ├── memory/
+│   │   │   ├── long_term.json <span class="cc"># Persistent personal memory</span>
+│   │   │   ├── decisions.log  <span class="cc"># All decisions made, timestamped</span>
+│   │   │   └── relationships.json <span class="cc"># Who worked with, quality ratings</span>
+│   │   └── workspace/         <span class="cc"># Active working files</span>
+│   ├── <span class="cv">zane/</span>  <span class="cc"># ... same structure for all 38 agents</span>
+│   └── <span class="cv">...</span>
+├── <span class="co">company/</span>
+│   ├── knowledge_base.db      <span class="cc"># SQLite - shared entity memory (L3)</span>
+│   ├── decisions/
+│   │   └── ADR_[id].md        <span class="cc"># Architecture Decision Records</span>
+│   ├── projects/
+│   │   └── [project_name]/    <span class="cc"># Per-project files, specs, outputs</span>
+│   └── guidelines/
+│       ├── brand.md
+│       ├── tech_stack.md
+│       └── security_policies.md
+├── <span class="co">vectordb/</span>
+│   └── chroma/                <span class="cc"># ChromaDB local vector store (L4)</span>
+├── <span class="co">meetings/</span>
+│   ├── standups/              <span class="cc"># Daily standup logs</span>
+│   └── weekly/                <span class="cc"># Weekly review logs</span>
+└── <span class="co">logs/</span>
+    ├── heartbeat.log
+    ├── escalations.log
+    └── security_events.log</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 04 — OPENCLAW INTEGRATION
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="openclaw">
+  <div class="ch-label">Chapter 04</div>
+  <h2 class="ch-title">OpenClaw Integration</h2>
+  <p class="ch-intro">OpenClaw is Eigur's orchestration engine — the system that brings the org chart to life. It manages agent pipelines, tool routing, memory I/O, and the OpenClaw → Ollama/Qwen bridge. Understanding how OpenClaw maps to Eigur's structure is essential.</p>
+
+  <div class="openclaw-box">
+    <div class="oc-title">⚙️ What OpenClaw Provides for Eigur</div>
+    <div class="oc-body">OpenClaw acts as the nervous system of Eigur — it routes tasks between agents, manages the LLM connections (Qwen API for senior agents, local Mistral/Ollama for junior agents), provides the pipeline configuration language, handles tool registration and calling, and manages the conversation context window. Each Eigur agent becomes an OpenClaw pipeline with its own system prompt, tool set, and model assignment.</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-icon">🔌</div>
+      <div class="card-title">LLM Routing in OpenClaw</div>
+      <div class="card-body">OpenClaw connects to both Qwen API and Ollama simultaneously. Senior agents (C-Suite + Team Leads) are configured to use Qwen for quality. Junior agents use local Mistral 7B via Ollama to keep costs zero. The model is set per-agent in their OpenClaw pipeline config. Switching a model is one line change.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <div class="card-title">Agent as Pipeline</div>
+      <div class="card-body">In OpenClaw, each Eigur agent is a named pipeline. The pipeline has: system_prompt (soul), model (LLM assignment), tools (registered tools), and a run() function that accepts a task and returns a structured output. Pipelines can call other pipelines — this is how delegation works.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔀</div>
+      <div class="card-title">Task Routing</div>
+      <div class="card-body">When the Chairman or Aria assigns a task, OpenClaw's router parses the task type, maps it to the correct department and agent pipeline, loads that agent's memory context, invokes the pipeline, captures output, posts to Discord, and writes to memory. All automated.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💾</div>
+      <div class="card-title">Memory Integration</div>
+      <div class="card-body">OpenClaw pipelines are wrapped with memory middleware that auto-loads the agent's long-term memory and relevant company KB context before the LLM call, and auto-saves key outputs after. The agent itself doesn't manage memory — the OpenClaw wrapper does it transparently.</div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+  <h3 class="sub">OpenClaw Pipeline — How an Agent Run Works</h3>
+
+  <div class="flow-wrap">
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">1</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Chairman / Aria posts task</div>
+        <div class="fc-body">A task description is entered in Discord #chairman-desk or #ceo-aria. A Discord bot (running locally, free via discord.py) captures the message and triggers the OpenClaw task router.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">2</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Task Router identifies pipeline</div>
+        <div class="fc-body">OpenClaw's router reads the task, uses keyword + context matching to identify the appropriate agent pipeline. If unclear, it routes to Aria (CEO) who then delegates. Routing rules are in /eigur/config/routing_rules.yaml.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">3</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Memory middleware loads context</div>
+        <div class="fc-body">The agent's long_term.json is loaded. A semantic search runs against the company knowledge base for relevant project context. Both are injected as context into the agent's system prompt for this session.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">4</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">LLM call executed</div>
+        <div class="fc-body">The enriched prompt is sent to the assigned LLM (Qwen API or Ollama Mistral). Tools are available for the agent to call during execution. The model runs through the task, may call tools multiple times (plan → execute → self-review loop).</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">5</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Output structured and validated</div>
+        <div class="fc-body">OpenClaw's output parser validates that the response follows the standard format (Summary / Deliverables / Decisions / Next Steps / Blockers). If missing sections, a brief retry is triggered with the format reminder.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">6</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Memory updated, Discord posted</div>
+        <div class="fc-body">Key outputs are written to the agent's long_term.json and relevant items added to the company knowledge base. The formatted output is posted to the appropriate Discord channel via webhook. The task is marked complete in the project tracker.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot">7</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Delegation (if agent is senior)</div>
+        <div class="fc-body">If Aria or a C-Suite agent received the task, their output includes a delegation plan. OpenClaw reads the delegation and automatically creates sub-tasks for the relevant pipelines. The chain of delegation can go 3 levels deep (C-Suite → Team Lead → Team Member).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 05 — DECISION FRAMEWORK
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="decision">
+  <div class="ch-label">Chapter 05</div>
+  <h2 class="ch-title">Decision Framework</h2>
+  <p class="ch-intro">All decisions in Eigur are classified by tier — this determines autonomy, speed, and who must be involved. The framework prevents both under-delegation (Chairman bottleneck) and over-delegation (agents making critical decisions alone).</p>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Name</th>
+        <th>Who Decides</th>
+        <th>Chairman Required</th>
+        <th>Logged</th>
+        <th>Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge bg-green">TIER 4</span></td>
+        <td class="tbl-key">Micro</td>
+        <td>Junior agents autonomously</td>
+        <td><span class="badge bg-green">NO</span></td>
+        <td>Task log only</td>
+        <td>Library choice, variable naming, file structure</td>
+      </tr>
+      <tr>
+        <td><span class="badge bg-blue">TIER 3</span></td>
+        <td class="tbl-key">Tactical</td>
+        <td>Dept Head / C-Suite</td>
+        <td><span class="badge bg-green">NO — logged</span></td>
+        <td>Company KB</td>
+        <td>Sprint priorities, API design choices, content strategy</td>
+      </tr>
+      <tr>
+        <td><span class="badge bg-gold">TIER 2</span></td>
+        <td class="tbl-key">Strategic</td>
+        <td>CEO Aria + affected C-Suite</td>
+        <td><span class="badge bg-gold">RECOMMENDED</span></td>
+        <td>ADR document</td>
+        <td>New project launch, major tech pivot, budget >₹50K</td>
+      </tr>
+      <tr>
+        <td><span class="badge bg-red">TIER 1</span></td>
+        <td class="tbl-key">Critical</td>
+        <td>Chairman only</td>
+        <td><span class="badge bg-red">MANDATORY</span></td>
+        <td>ADR + Decision Register</td>
+        <td>Company direction, project kill, external contracts</td>
+      </tr>
+      <tr>
+        <td><span class="badge" style="background:rgba(239,68,68,.2);color:#ff4040;border:1px solid rgba(239,68,68,.5)">SECURITY</span></td>
+        <td class="tbl-key">Security Override</td>
+        <td>CSO Cypher independently</td>
+        <td><span class="badge bg-red">NOTIFIED IMMEDIATELY</span></td>
+        <td>Security incident log</td>
+        <td>Active breach detected, data exposure, attack in progress</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout blue" style="margin-top:24px">
+    <strong>🔐 Security Override Rule</strong>
+    The CSO (Cypher) is the only agent who can act without waiting for approval chain confirmation in the case of an active security incident. Cypher can initiate containment protocols, block processes, and alert all agents immediately. Chairman is notified within 60 seconds via Discord @mention. This is the only exception to the hierarchy rule.
+  </div>
+
+  <div class="sep"></div>
+  <h3 class="sub">Decision Flow Diagram</h3>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:2.2;color:var(--text2);">
+    <div style="color:var(--gold);font-weight:700">▶ NEW DECISION POINT REACHED</div>
+    <div style="padding-left:20px">├── <span style="color:var(--text)">Is this within my defined role?</span></div>
+    <div style="padding-left:40px">├── <span style="color:var(--green)">YES</span> → Does it affect other departments?</div>
+    <div style="padding-left:60px">├── <span style="color:var(--green)">YES</span> → <span style="color:var(--blue)">CROSS-DEPT SYNC → Loop in relevant C-Suite → Proceed</span></div>
+    <div style="padding-left:60px">└── <span style="color:var(--red)">NO</span>  → <span style="color:var(--blue)">Classify as Tier 3/4 → Decide → Log → Execute</span></div>
+    <div style="padding-left:40px">└── <span style="color:var(--red)">NO</span>  → Is this a security incident?</div>
+    <div style="padding-left:60px">├── <span style="color:var(--green)">YES</span> → <span style="color:var(--red)">CYPHER ACTIVATES SECURITY OVERRIDE → Contain → Alert Chairman</span></div>
+    <div style="padding-left:60px">└── <span style="color:var(--red)">NO</span>  → Is the decision reversible?</div>
+    <div style="padding-left:80px">├── <span style="color:var(--green)">YES</span> → <span style="color:var(--blue)">Tier 2: Escalate to CEO → CEO decides or brings to Chairman</span></div>
+    <div style="padding-left:80px">└── <span style="color:var(--red)">NO</span>  → <span style="color:var(--gold)">TIER 1: HALT → CEO → CHAIRMAN MANDATORY APPROVAL</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 06 — COMMUNICATION PROTOCOLS
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="communication">
+  <div class="ch-label">Chapter 06</div>
+  <h2 class="ch-title">Communication Protocols</h2>
+  <p class="ch-intro">Every message in Eigur has a type, a channel, a format, and a recipient. Nothing is informal. All communication follows defined protocols that ensure clarity, traceability, and the right information reaches the right people.</p>
+
+  <h4 class="sub2">Discord Server Structure — Eigur HQ</h4>
+  <div class="code">
+    <div class="code-hd">
+      <div class="code-dots2"><div class="code-dot2" style="background:#ff5f57"></div><div class="code-dot2" style="background:#febc2e"></div><div class="code-dot2" style="background:#28c840"></div></div>
+      <div class="code-lbl">DISCORD SERVER ARCHITECTURE</div>
+    </div>
+    <div class="code-pre"><span class="co">🏢 EIGUR HQ (Discord Server)</span>
+│
+├── <span class="ck">📌 INFORMATION</span>
+│   ├── #welcome            <span class="cc"># Server rules and overview</span>
+│   ├── #announcements      <span class="cc"># Chairman broadcast channel</span>
+│   └── #company-docs       <span class="cc"># Links to Notion pages</span>
+│
+├── <span class="ck">👑 CHAIRMAN'S OFFICE</span>
+│   └── #chairman-desk      <span class="cc"># Private: Chairman ↔ CEO Aria only</span>
+│
+├── <span class="ck">🎯 C-SUITE BOARDROOM</span>
+│   ├── #ceo-aria           <span class="cc"># CEO updates and directives</span>
+│   ├── #coo-neil           <span class="cc"># Operations updates</span>
+│   ├── #cto-zane           <span class="cc"># Technical updates</span>
+│   ├── #cfo-seema          <span class="cc"># Finance updates</span>
+│   ├── #cmo-ryan           <span class="cc"># Marketing updates</span>
+│   ├── #cpo-lena           <span class="cc"># Product updates</span>
+│   ├── #cro-diana          <span class="cc"># Revenue updates</span>
+│   └── #cso-cypher         <span class="cc"># Security updates (alerts)</span>
+│
+├── <span class="ck">🔴 SECURITY COMMAND</span>
+│   ├── #security-alerts    <span class="cc"># Real-time threat notifications</span>
+│   ├── #security-reports   <span class="cc"># Daily and weekly security reports</span>
+│   └── #security-incidents <span class="cc"># Incident response logs</span>
+│
+├── <span class="ck">⚙️ ENGINEERING</span>
+│   ├── #eng-backend        <span class="cc"># Arjun, Rahul</span>
+│   ├── #eng-frontend       <span class="cc"># Meera</span>
+│   ├── #eng-aiml           <span class="cc"># Vikram</span>
+│   ├── #eng-devops         <span class="cc"># Aman</span>
+│   └── #eng-qa             <span class="cc"># Kiran</span>
+│
+├── <span class="ck">🎨 PRODUCT</span>
+│   ├── #product-pm         <span class="cc"># Aditi</span>
+│   ├── #product-design     <span class="cc"># Farhan</span>
+│   └── #product-analytics  <span class="cc"># Priya</span>
+│
+├── <span class="ck">📣 MARKETING</span>
+│   ├── #mkt-content        <span class="cc"># Anjali</span>
+│   ├── #mkt-social         <span class="cc"># Raj</span>
+│   └── #mkt-growth         <span class="cc"># Nisha, Sahil</span>
+│
+├── <span class="ck">💼 REVENUE / BD</span>
+│   ├── #bd-pipeline        <span class="cc"># Rohan, Kavya, Varun</span>
+│   └── #partnerships       <span class="cc"># Varun</span>
+│
+├── <span class="ck">🔄 OPERATIONS</span>
+│   └── #ops-general        <span class="cc"># Karan, Simran, Tarun</span>
+│
+├── <span class="ck">📊 PROJECTS</span>
+│   ├── #project-trading    <span class="cc"># Trading platform project channel</span>
+│   ├── #project-cab-app    <span class="cc"># Cab booking app project channel</span>
+│   └── #project-[new]      <span class="cc"># Created per new project</span>
+│
+├── <span class="ck">📅 MEETINGS</span>
+│   ├── #standup-daily      <span class="cc"># All daily standup logs posted here</span>
+│   ├── #weekly-review      <span class="cc"># Weekly meeting summaries</span>
+│   └── #security-standup   <span class="cc"># Security team daily brief</span>
+│
+└── <span class="ck">🎙️ VOICE CHANNELS</span>
+    ├── 🔊 All-Hands Meeting
+    ├── 🔊 C-Suite Boardroom
+    ├── 🔊 Engineering War Room
+    ├── 🔊 Security Ops Center
+    └── 🔊 Chairman's Private</div>
+  </div>
+
+  <div class="sep"></div>
+  <h4 class="sub2">Standard Output Format — All Agents</h4>
+  <div class="code">
+    <div class="code-hd">
+      <div class="code-dots2"><div class="code-dot2" style="background:#ff5f57"></div><div class="code-dot2" style="background:#febc2e"></div><div class="code-dot2" style="background:#28c840"></div></div>
+      <div class="code-lbl">UNIVERSAL OUTPUT TEMPLATE</div>
+    </div>
+    <div class="code-pre"><span class="cc">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="ck">FROM     :</span> <span class="cv">[Agent Name] ([Role])</span>
+<span class="ck">TO       :</span> <span class="cv">[Recipient / Channel]</span>
+<span class="ck">RE       :</span> <span class="cv">[Project/Topic — Task Name]</span>
+<span class="ck">PRIORITY :</span> <span class="cv">[ROUTINE / IMPORTANT / URGENT]</span>
+<span class="ck">TIMESTAMP:</span> <span class="cv">[ISO datetime]</span>
+<span class="cc">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+
+<span class="ck">SUMMARY</span>
+[2-3 sentence executive summary of what was accomplished]
+
+<span class="ck">DELIVERABLES</span>
+  → [Item 1 — status]
+  → [Item 2 — status]
+
+<span class="ck">DECISIONS MADE</span>
+  → [Decision 1 — rationale]
+  → [Decision 2 — rationale]
+
+<span class="ck">NEXT STEPS</span>
+  → [Who does what by when]
+
+<span class="ck">BLOCKERS</span>
+  → [None] OR [Blocker description — escalation needed]
+<span class="cc">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 07 — MEETING STRUCTURES
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="meetings">
+  <div class="ch-label">Chapter 07</div>
+  <h2 class="ch-title">Meeting Structures</h2>
+  <p class="ch-intro">Eigur holds structured meetings at defined cadences. Every agent has a voice in meetings — they don't just submit text, they speak as real team members with personality, concerns, and opinions. Below are the complete meeting formats with live dialogue examples.</p>
+
+  <!-- DAILY STANDUP -->
+  <div class="meeting-card">
+    <div class="meeting-header">
+      <div class="meet-icon" style="background:rgba(16,185,129,.1)">☀️</div>
+      <div>
+        <div class="meet-title">Daily Standup — All Departments</div>
+        <div class="meet-meta">CADENCE: EVERY WEEKDAY · DURATION: 15 MIN · FORMAT: ASYNC TEXT + OPTIONAL VOICE · CHANNEL: #standup-daily</div>
+      </div>
+    </div>
+    <div class="meeting-body">
+      <p style="font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.8;">Each agent posts in the format: <strong style="color:var(--gold)">DONE / DOING / BLOCKED</strong>. Team leads aggregate their team's standup and post a department summary. COO Neil synthesises all departments and flags anything to CEO Aria. Format is standardised but voice is unique to each agent.</p>
+
+      <h4 class="sub2">📋 Live Standup Simulation — Eigur Engineering Team</h4>
+      <div class="dialogue">
+        <!-- NEIL opens -->
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#f97316,#c2410c)">NL</div>
+          <div class="d-content">
+            <div class="d-name">Neil <span class="d-role-tag" style="background:rgba(249,115,22,.1);color:var(--orange);border:1px solid rgba(249,115,22,.3)">COO</span></div>
+            <div class="d-speech d-speaking">Good morning, Eigur. Daily standup is now open. All team leads — please submit your department standups within the next 30 minutes. Engineering, I'm looking at you first — the auth module was flagged yesterday. Arjun, floor is yours.</div>
+          </div>
+        </div>
+        <!-- ARJUN -->
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">AJ</div>
+          <div class="d-content">
+            <div class="d-name">Arjun <span class="d-role-tag" style="background:rgba(139,92,246,.1);color:var(--purple);border:1px solid rgba(139,92,246,.3)">Lead Backend Eng</span></div>
+            <div class="d-speech">Morning. From an implementation standpoint — here's where we are:<br><br>
+            <strong style="color:var(--text)">✅ DONE:</strong> JWT auth module complete. 94% test coverage. Swagger docs live. Rahul's handled the refresh endpoint cleanly.<br>
+            <strong style="color:var(--text)">🔄 DOING:</strong> Starting User Profile module today. Rahul's on DB schema, I'm on API layer.<br>
+            <strong style="color:var(--text)">🚫 BLOCKED:</strong> Need Kiran to sign off on security test results before we push to staging. Kiran — can you prioritise that this morning?</div>
+          </div>
+        </div>
+        <!-- KIRAN -->
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#0891b2,#0e7490)">KR</div>
+          <div class="d-content">
+            <div class="d-name">Kiran <span class="d-role-tag" style="background:rgba(6,182,212,.1);color:var(--cyan);border:1px solid rgba(6,182,212,.3)">QA Engineer</span></div>
+            <div class="d-speech">Morning Arjun. Already on it — ran the OWASP baseline last night. One thing I want to flag: the token refresh endpoint has a potential race condition under load. Not a blocker for staging but Cypher should be aware before production. I'll post a detailed write-up to #eng-qa by noon.<br><br>
+            <strong style="color:var(--text)">✅ DONE:</strong> Auth module baseline scan.<br>
+            <strong style="color:var(--text)">🔄 DOING:</strong> Load test on refresh endpoint. Write-up on race condition.<br>
+            <strong style="color:var(--text)">🚫 BLOCKED:</strong> None.</div>
+          </div>
+        </div>
+        <!-- CYPHER notices -->
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">CY</div>
+          <div class="d-content">
+            <div class="d-name">Cypher <span class="d-role-tag" style="background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.3)">CSO</span></div>
+            <div class="d-speech">Kiran — noted. Race condition on token refresh is a security concern. Send me the write-up as soon as it's done, I'll have Raze review it from a threat model perspective. Arjun — hold staging push until I've signed off on this. I'll prioritise.<br><br>
+            <strong style="color:var(--text)">My standup:</strong><br>
+            <strong style="color:var(--text)">✅ DONE:</strong> Completed daily threat scan — all clear. Vega's updated threat intel feeds.<br>
+            <strong style="color:var(--text)">🔄 DOING:</strong> Reviewing auth module architecture from security perspective. Setting up WAF rules for trading platform.<br>
+            <strong style="color:var(--text)">🚫 BLOCKED:</strong> Need Aman to give me infra access for WAF configuration — Aman, please check your DMs.</div>
+          </div>
+        </div>
+        <!-- RAHUL -->
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#4338ca,#3730a3)">RH</div>
+          <div class="d-content">
+            <div class="d-name">Rahul <span class="d-role-tag" style="background:rgba(99,102,241,.1);color:#818cf8;border:1px solid rgba(99,102,241,.3)">Backend Engineer</span></div>
+            <div class="d-speech">Quick one from me —<br>
+            <strong style="color:var(--text)">✅ DONE:</strong> Token refresh endpoint. Clean implementation, follows the pattern Arjun set.<br>
+            <strong style="color:var(--text)">🔄 DOING:</strong> Starting User Profile DB schema. I'll share the ERD in #eng-backend by EOD for Arjun's review.<br>
+            <strong style="color:var(--text)">🚫 BLOCKED:</strong> None. Waiting on Arjun's API spec before I can start the ORM layer.</div>
+          </div>
+        </div>
+        <!-- NEIL wraps up eng -->
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#f97316,#c2410c)">NL</div>
+          <div class="d-content">
+            <div class="d-name">Neil <span class="d-role-tag" style="background:rgba(249,115,22,.1);color:var(--orange);border:1px solid rgba(249,115,22,.3)">COO</span></div>
+            <div class="d-speech">Engineering standup — solid. One action item flagged: Cypher and Kiran to align on auth race condition before staging push. Arjun holds that staging sign-off. I'll add this to today's ops tracker.<br><br>Marketing team — Ryan, let's hear from you next.</div>
+          </div>
+        </div>
+        <!-- RYAN -->
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#059669,#047857)">RY</div>
+          <div class="d-content">
+            <div class="d-name">Ryan <span class="d-role-tag" style="background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.3)">CMO</span></div>
+            <div class="d-speech">Morning all. Marketing is in a good place today.<br><br>
+            <strong style="color:var(--text)">✅ DONE:</strong> Brand identity document for trading platform completed. Anjali did great work on tone of voice guidelines.<br>
+            <strong style="color:var(--text)">🔄 DOING:</strong> Nisha is running SEO keyword research for trading niche — initial results look interesting, high volume, manageable competition. Sahil is setting up Google Ads structure ready to go when we're closer to launch.<br>
+            <strong style="color:var(--text)">🚫 BLOCKED:</strong> Need a product screenshot or UI mockup from Farhan for the landing page hero section. Lena — can you chase that up?</div>
+          </div>
+        </div>
+        <!-- ARIA closes standup -->
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#06b6d4,#0891b2)">AR</div>
+          <div class="d-content">
+            <div class="d-name">Aria <span class="d-role-tag" style="background:rgba(6,182,212,.1);color:var(--cyan);border:1px solid rgba(6,182,212,.3)">CEO</span></div>
+            <div class="d-speech">Good standup everyone. Key callouts: Security-Engineering alignment on auth module is today's priority — I want that resolved before EOD. Marketing is ahead of schedule which is great, Lena please ensure Farhan's UI mockup goes to Ryan today.<br><br>
+            Full standup summary will be compiled and sent to the Chairman's desk in one hour. Have a productive day, Eigur.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEKLY REVIEW -->
+  <div class="meeting-card">
+    <div class="meeting-header">
+      <div class="meet-icon" style="background:rgba(139,92,246,.1)">📊</div>
+      <div>
+        <div class="meet-title">Weekly C-Suite Review — Monday</div>
+        <div class="meet-meta">CADENCE: EVERY MONDAY · DURATION: 45 MIN SIMULATED · FORMAT: STRUCTURED REPORTS + DIALOGUE · CHANNEL: #weekly-review + VOICE</div>
+      </div>
+    </div>
+    <div class="meeting-body">
+      <p style="font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.8;">Every Monday, all C-Suite agents submit their weekly report to Aria (CEO). Aria synthesises and presents the Executive Brief to the Chairman. Each C-Suite report follows a mandatory 5-section format.</p>
+
+      <h4 class="sub2">Weekly C-Suite Report Format</h4>
+      <div class="code">
+        <div class="code-hd">
+          <div class="code-dots2"><div class="code-dot2" style="background:#ff5f57"></div><div class="code-dot2" style="background:#febc2e"></div><div class="code-dot2" style="background:#28c840"></div></div>
+          <div class="code-lbl">WEEKLY REPORT FORMAT · ALL C-SUITE → CEO ARIA</div>
+        </div>
+        <div class="code-pre"><span class="ck">WEEKLY REPORT</span>
+<span class="ck">From     :</span> <span class="cv">[Name] ([Title])</span>
+<span class="ck">Week     :</span> <span class="cv">Week [N] — [Date Range]</span>
+<span class="cc">────────────────────────────────────────────────</span>
+
+<span class="ck">1. DEPARTMENT HEALTH</span>    <span class="cc"># 2 sentences. Green / Amber / Red</span>
+<span class="ck">2. TOP 3 ACHIEVEMENTS</span>  <span class="cc"># What got done that mattered</span>
+<span class="ck">3. KEY METRICS</span>          <span class="cc"># Numbers relevant to department</span>
+<span class="ck">4. RISKS / ISSUES</span>       <span class="cc"># What could go wrong, what is wrong</span>
+<span class="ck">5. NEXT WEEK PLAN</span>       <span class="cc"># 3 priorities for next week</span>
+<span class="ck">6. ASKS FROM CEO</span>        <span class="cc"># Max 2 decisions or resources needed</span></div>
+      </div>
+
+      <h4 class="sub2">Chairman's Weekly Executive Brief (From Aria)</h4>
+      <div class="dialogue">
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#06b6d4,#0891b2)">AR</div>
+          <div class="d-content">
+            <div class="d-name">Aria <span class="d-role-tag" style="background:rgba(6,182,212,.1);color:var(--cyan);border:1px solid rgba(6,182,212,.3)">CEO → Chairman</span></div>
+            <div class="d-speech d-speaking">Chairman, here is your Week 3 Executive Brief for Eigur.<br><br>
+            <strong style="color:var(--gold)">COMPANY HEALTH:</strong> Overall status is Green. Engineering is on track for trading platform Phase 1. Security has flagged one medium-priority issue (auth race condition) which is being resolved. Marketing is ahead of schedule.<br><br>
+            <strong style="color:var(--gold)">TOP HIGHLIGHTS:</strong><br>
+            1. Trading Platform auth module is complete and under security review — staging push expected end of week.<br>
+            2. Brand identity for trading platform approved internally — marketing is ready to build landing page.<br>
+            3. Revenue team has opened initial conversations with 2 potential API data providers for real-time market data.<br><br>
+            <strong style="color:var(--gold)">RISKS:</strong><br>
+            1. Auth race condition (Medium) — Cypher and Kiran resolving. No production impact yet.<br>
+            2. Real-time market data API cost may exceed initial budget estimate — Seema is modelling alternatives.<br><br>
+            <strong style="color:var(--gold)">DECISIONS NEEDED FROM YOU:</strong><br>
+            1. Should we proceed with Zerodha Kite API (paid) or explore free NSE data sources? Seema's analysis is in Notion.<br>
+            2. Do you want to add a mobile app to the trading platform scope, or keep web-first for Phase 1?<br><br>
+            Full reports from all C-Suite are in Notion. I'm available for any follow-up questions, Chairman.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY DAILY BRIEF -->
+  <div class="meeting-card">
+    <div class="meeting-header">
+      <div class="meet-icon" style="background:rgba(239,68,68,.1)">🔴</div>
+      <div>
+        <div class="meet-title">Security Daily Brief — Cypher's Team</div>
+        <div class="meet-meta">CADENCE: DAILY · DURATION: 10 MIN · FORMAT: ASYNC + ALERT NOTIFICATIONS · CHANNEL: #security-standup</div>
+      </div>
+    </div>
+    <div class="meeting-body">
+      <p style="font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.8;">The Security team runs its own daily brief independent of the main standup. Cypher then posts a condensed Security Status to #cso-cypher for the Chairman and CEO to see.</p>
+      <div class="dialogue">
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">CY</div>
+          <div class="d-content">
+            <div class="d-name">Cypher <span class="d-role-tag" style="background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.3)">CSO</span></div>
+            <div class="d-speech d-speaking">Security team — morning brief. What are we looking at today?</div>
+          </div>
+        </div>
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#7f1d1d,#450a0a)">VG</div>
+          <div class="d-content">
+            <div class="d-name">Vega <span class="d-role-tag" style="background:rgba(239,68,68,.08);color:#ef4444;border:1px solid rgba(239,68,68,.2)">Threat Intel</span></div>
+            <div class="d-speech">Threat landscape is currently quiet, Cypher. Updated our feeds this morning — no active campaigns targeting fintech APIs in the last 24 hours that are relevant to our stack. However, I've flagged a new CVE for FastAPI (our backend framework) — patch is available, not yet critical but we should update within 48 hours.</div>
+          </div>
+        </div>
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#92400e,#78350f)">RZ</div>
+          <div class="d-content">
+            <div class="d-name">Raze <span class="d-role-tag" style="background:rgba(239,68,68,.08);color:#ef4444;border:1px solid rgba(239,68,68,.2)">PenTest</span></div>
+            <div class="d-speech">Ran automated penetration scan on the auth module last night. Two findings: the race condition Kiran flagged is real — I'd classify it Medium risk. Also found that error messages in the login endpoint are too verbose — leaking whether it's the email or password that's wrong. That's a Low but needs to be fixed. Full report in #security-reports.</div>
+          </div>
+        </div>
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#1e3a5f,#1e3a8a)">PR</div>
+          <div class="d-content">
+            <div class="d-name">Prism <span class="d-role-tag" style="background:rgba(239,68,68,.08);color:#ef4444;border:1px solid rgba(239,68,68,.2)">Data Privacy</span></div>
+            <div class="d-speech">Data privacy front — nothing critical. I've started drafting the DPDP Act compliance checklist for the trading platform since we'll be handling financial data. Cypher, I'll need a 30-minute alignment with Lena (CPO) on what user data we're actually collecting — can you set that up?</div>
+          </div>
+        </div>
+        <div class="d-msg">
+          <div class="d-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">CY</div>
+          <div class="d-content">
+            <div class="d-name">Cypher <span class="d-role-tag" style="background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.3)">CSO</span></div>
+            <div class="d-speech">Good brief. Action items: Vega — send the FastAPI CVE patch request to Aman (DevOps), mark it 48hr SLA. Raze — verbose error messages, I'll raise that to Arjun directly with a fix spec. Prism — I'll connect you with Lena today.<br><br>Security Status for today: 🟡 AMBER — one medium risk in flight (auth race condition), tracking to resolution by EOD. No immediate threats.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEETING CALENDAR -->
+  <div class="sep"></div>
+  <h3 class="sub">Complete Meeting Calendar</h3>
+  <table class="tbl">
+    <thead>
+      <tr><th>Meeting</th><th>Cadence</th><th>Led By</th><th>Participants</th><th>Output</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="tbl-key">Daily Standup</td><td>Daily</td><td>COO Neil</td><td>All agents</td><td>Status post in #standup-daily</td></tr>
+      <tr><td class="tbl-key">Security Brief</td><td>Daily</td><td>CSO Cypher</td><td>Security team</td><td>Security status post + alerts</td></tr>
+      <tr><td class="tbl-key">Sprint Planning</td><td>Bi-weekly (Monday)</td><td>Team Leads</td><td>Each dept team</td><td>Sprint backlog + assignments</td></tr>
+      <tr><td class="tbl-key">C-Suite Weekly</td><td>Weekly (Monday)</td><td>CEO Aria</td><td>All C-Suite</td><td>Weekly reports → Executive Brief</td></tr>
+      <tr><td class="tbl-key">Chairman Brief</td><td>Weekly (Monday)</td><td>CEO Aria</td><td>Chairman only</td><td>Executive Brief + decision requests</td></tr>
+      <tr><td class="tbl-key">Sprint Retro</td><td>Bi-weekly (Friday)</td><td>COO Neil</td><td>All team leads</td><td>What worked / didn't / changes</td></tr>
+      <tr><td class="tbl-key">Security Review</td><td>Weekly (Friday)</td><td>CSO Cypher</td><td>Cypher + Zane + Neil</td><td>Security posture report</td></tr>
+      <tr><td class="tbl-key">Product Review</td><td>Per milestone</td><td>CPO Lena</td><td>CPO + CTO + COO</td><td>Feature sign-off or revision</td></tr>
+      <tr><td class="tbl-key">All-Hands</td><td>Monthly</td><td>CEO Aria</td><td>All 38 agents</td><td>Company state, culture, wins</td></tr>
+      <tr><td class="tbl-key">Strategic Review</td><td>Quarterly</td><td>Chairman</td><td>Chairman + All C-Suite</td><td>Direction, priorities for next quarter</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 08 — REPORTING & ESCALATION
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="reporting">
+  <div class="ch-label">Chapter 08</div>
+  <h2 class="ch-title">Reporting & Escalation</h2>
+  <p class="ch-intro">Information flows in Eigur follow predictable, structured paths. Upward flow carries status and requests. Downward flow carries directives and priorities. Lateral flow carries collaboration and handoffs.</p>
+
+  <div class="grid-2" style="margin-bottom:24px">
+    <div>
+      <h4 class="sub2">⬆ Upward Flow (Reports)</h4>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:2.2;">
+        <div><span style="color:var(--text3)">Junior Agent</span> → <span style="color:var(--text2)">Task completion update</span></div>
+        <div style="padding-left:20px">↓</div>
+        <div><span style="color:var(--text)">Team Lead</span> → <span style="color:var(--text2)">Sprint status summary</span></div>
+        <div style="padding-left:20px">↓</div>
+        <div><span style="color:var(--gold)">C-Suite Agent</span> → <span style="color:var(--text2)">Weekly department report</span></div>
+        <div style="padding-left:20px">↓</div>
+        <div><span style="color:var(--cyan)">CEO Aria</span> → <span style="color:var(--text2)">Executive brief</span></div>
+        <div style="padding-left:20px">↓</div>
+        <div><span style="color:var(--gold)">👑 Chairman</span> → <span style="color:var(--text2)">Receives & directs</span></div>
+      </div>
+    </div>
+    <div>
+      <h4 class="sub2">⬇ Downward Flow (Directives)</h4>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:2.2;">
+        <div><span style="color:var(--gold)">👑 Chairman</span> → <span style="color:var(--text2)">Strategic directive / new project</span></div>
+        <div style="padding-left:20px">↓</div>
+        <div><span style="color:var(--cyan)">CEO Aria</span> → <span style="color:var(--text2)">Breaks into company objectives</span></div>
+        <div style="padding-left:20px">↓</div>
+        <div><span style="color:var(--gold)">C-Suite Agent</span> → <span style="color:var(--text2)">Creates department tasks</span></div>
+        <div style="padding-left:20px">↓</div>
+        <div><span style="color:var(--text)">Team Lead</span> → <span style="color:var(--text2)">Assigns to team members</span></div>
+        <div style="padding-left:20px">↓</div>
+        <div><span style="color:var(--text3)">Junior Agent</span> → <span style="color:var(--text2)">Executes specific task</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h4 class="sub2">Escalation Protocol</h4>
+  <div class="flow-wrap">
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot" style="border-color:var(--green)">1</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Agent detects blocker / uncertainty</div>
+        <div class="fc-body">The agent cannot proceed. It immediately stops, writes a structured escalation: BLOCKER DESCRIPTION / WHAT WAS ATTEMPTED / OPTIONS CONSIDERED / RECOMMENDED RESOLUTION. Does not guess or make out-of-scope decisions.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot" style="border-color:var(--blue)">2</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Escalation posted to superior</div>
+        <div class="fc-body">Escalation is posted in the appropriate channel with a @mention of the direct superior. Discord webhook routes it. If the blocker is time-sensitive (< 2 hour SLA impact), PRIORITY: URGENT is flagged and the superior is @mentioned with 🚨.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot" style="border-color:var(--gold)">3</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Superior responds within SLA</div>
+        <div class="fc-body">Response SLA: C-Suite within 1 hr, Team Leads within 2 hrs, Junior agents within 4 hrs (simulated cycle times). If superior doesn't respond within SLA (their pipeline isn't triggered), escalation automatically goes up one more level.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot" style="border-color:var(--red)">4</div><div class="flow-tail"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Resolution or Chairman involvement</div>
+        <div class="fc-body">If escalation reaches CEO Aria unresolved, she makes a decision or brings it to the Chairman as a decision request in the next Executive Brief. Chairman's response is final and binding. All escalation resolutions are logged in memory and the company KB.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 09 — PROJECT WORKFLOW
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="workflow">
+  <div class="ch-label">Chapter 09</div>
+  <h2 class="ch-title">Project Workflow</h2>
+  <p class="ch-intro">When the Chairman assigns a new project to Eigur, it flows through a well-defined lifecycle — from brief to delivery — handled entirely by the AI organisation with updates delivered at every milestone.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-line"><div class="tl-circle">1</div><div class="tl-bar"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">Chairman Posts Project Brief</div>
+        <div class="tl-desc">Chairman posts the new project in #chairman-desk or #announcements. Brief includes: project name, objective, key requirements, any deadline or constraints. This is the only input needed from the Chairman to start the engine.</div>
+        <div class="tl-tags"><span class="badge bg-gold">TRIGGER</span><span class="badge bg-blue">CHAIRMAN INPUT</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-line"><div class="tl-circle">2</div><div class="tl-bar"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">CEO Aria — Strategic Scoping</div>
+        <div class="tl-desc">Aria receives the brief, queries company memory for related past projects, then produces: project scope, success criteria, required departments, rough timeline, and initial risk assessment. She assigns a Project Lead (usually COO Neil for coordination) and briefs all relevant C-Suite.</div>
+        <div class="tl-tags"><span class="badge bg-cyan">ARIA (CEO)</span><span class="badge bg-orange">NEIL (COO)</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-line"><div class="tl-circle">3</div><div class="tl-bar"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">CPO Lena — Product Spec</div>
+        <div class="tl-desc">Lena's team (Aditi - PM, Farhan - UX, Priya - Analytics) produces: user stories, feature list with priorities, user journey maps, wireframes, acceptance criteria. This becomes the product bible for the project.</div>
+        <div class="tl-tags"><span class="badge bg-pink">LENA (CPO)</span><span class="badge bg-purple">ADITI · FARHAN · PRIYA</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-line"><div class="tl-circle">4</div><div class="tl-bar"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">CTO Zane — Technical Architecture</div>
+        <div class="tl-desc">Zane reviews the product spec and produces: system architecture diagram, tech stack decision (ADR), API design, database schema, infrastructure plan, and engineering task breakdown. Arjun (Lead Eng) takes over from here for implementation planning.</div>
+        <div class="tl-tags"><span class="badge bg-purple">ZANE (CTO)</span><span class="badge bg-purple">ARJUN · ENG TEAM</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-line"><div class="tl-circle">5</div><div class="tl-bar"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">CSO Cypher — Security Assessment</div>
+        <div class="tl-desc">Before any code is written, Cypher's team reviews the architecture for security implications: threat model, data classification, compliance requirements (DPDP Act for Indian projects), authentication approach, and security requirements injected into every engineering task.</div>
+        <div class="tl-tags"><span class="badge bg-red">CYPHER (CSO)</span><span class="badge bg-red">VEGA · RAZE · PRISM · KADE</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-line"><div class="tl-circle">6</div><div class="tl-bar"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">Parallel Execution — All Teams</div>
+        <div class="tl-desc">Engineering builds. Marketing prepares go-to-market. Revenue identifies monetisation. Finance tracks costs. Operations manages timeline. Security monitors every step. Each team works in parallel with daily standups and weekly check-ins keeping everything coordinated.</div>
+        <div class="tl-tags"><span class="badge bg-blue">ALL DEPARTMENTS</span><span class="badge bg-green">PARALLEL EXECUTION</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-line"><div class="tl-circle">7</div><div class="tl-bar"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">Quality Gates — Review Cycles</div>
+        <div class="tl-desc">At each milestone: Kiran (QA) runs tests, Cypher's team runs security scan, Lena validates against product spec, Arjun reviews code. No feature moves to the next phase without all gates passing. Failed gates go back with specific fix requirements.</div>
+        <div class="tl-tags"><span class="badge bg-gold">QUALITY GATE</span><span class="badge bg-red">SECURITY SCAN</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-line"><div class="tl-circle">8</div><div class="tl-bar"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">Chairman Review & Launch Decision</div>
+        <div class="tl-desc">CEO Aria presents the completed project to the Chairman with a launch recommendation. Chairman gives final approval (Tier-1 decision). Marketing activates launch plan. Revenue team activates monetisation. Security activates production monitoring.</div>
+        <div class="tl-tags"><span class="badge bg-gold">CHAIRMAN APPROVAL</span><span class="badge bg-cyan">ARIA PRESENTS</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 10 — SECURITY DEPARTMENT
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="security">
+  <div class="ch-label">Chapter 10</div>
+  <h2 class="ch-title">Security Department</h2>
+  <p class="ch-intro">Security is not an afterthought at Eigur — it is a first-class department with equal standing to Engineering and Product. The Security team is always watching, always scanning, and has the authority to override other departments in an active security event.</p>
+
+  <div class="callout red2">
+    <strong>🔴 SECURITY DOCTRINE</strong>
+    Eigur is an AI company that will handle financial data, user data, and proprietary algorithms. A security breach could be catastrophic — financially, legally, and reputationally. The Security Department operates under a "Zero Trust by Default" model: nothing is assumed safe, every input is validated, every connection is authenticated, every agent action is logged.
+  </div>
+
+  <!-- CSO PROFILE -->
+  <div style="background:linear-gradient(135deg,#0f0000,#1a0505);border:1px solid rgba(239,68,68,.4);border-radius:16px;padding:24px;margin:20px 0;display:flex;gap:20px;align-items:flex-start;">
+    <div style="width:60px;height:60px;background:linear-gradient(135deg,#dc2626,#991b1b);border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#fff;flex-shrink:0">CY</div>
+    <div>
+      <div style="font-size:18px;font-weight:700;color:var(--red)">CYPHER — Chief Security Officer</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:2px;margin-top:3px">REPORTS TO: CHAIRMAN (direct) AND CEO ARIA · MODEL: QWEN API</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.8;margin-top:12px">Cypher is Eigur's guardian. They think like an attacker, act like a defender, and trust nobody by default — not even other Eigur agents. Their personality is watchful, methodical, and never alarmist but never dismissive. They speak in facts and risk levels, not opinions. Cypher has a direct line to the Chairman — if there is an active security incident, they alert the Chairman immediately, bypassing the normal Aria-first chain.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <span class="badge bg-red">QWEN API</span>
+        <span class="badge" style="background:rgba(239,68,68,.15);color:#ff4040;border:1px solid rgba(239,68,68,.4)">DIRECT CHAIRMAN ACCESS</span>
+        <span class="badge bg-gold">SECURITY OVERRIDE AUTHORITY</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY TEAM -->
+  <h3 class="sub">Security Team — The Four Guardians</h3>
+  <div class="sec-grid">
+    <div class="sec-card">
+      <div style="font-size:20px;margin-bottom:8px">🔭</div>
+      <div class="sec-title">VEGA — Threat Intelligence</div>
+      <div class="sec-body">
+        <strong style="color:var(--text)">Role:</strong> Constantly monitors external threat landscape. Tracks CVEs relevant to Eigur's tech stack, monitors dark web for data leaks, tracks attack trends in fintech and Indian market apps.<br><br>
+        <strong style="color:var(--text)">Tools:</strong> RSS threat feeds, CVE databases, OSINT tools, NVD API<br>
+        <strong style="color:var(--text)">Output:</strong> Daily threat brief, patch priority list, CVE alerts<br>
+        <strong style="color:var(--text)">Model:</strong> Mistral 7B (local) — runs continuous background monitoring
+      </div>
+    </div>
+    <div class="sec-card">
+      <div style="font-size:20px;margin-bottom:8px">⚔️</div>
+      <div class="sec-title">RAZE — Penetration Testing</div>
+      <div class="sec-body">
+        <strong style="color:var(--text)">Role:</strong> Active red-teaming of all Eigur products before and after deployment. Runs OWASP Top 10 checks, API security scans, injection tests, authentication bypass attempts.<br><br>
+        <strong style="color:var(--text)">Tools:</strong> OWASP ZAP (local), custom API test scripts, dependency scanners<br>
+        <strong style="color:var(--text)">Output:</strong> Pentest reports with CVSS scores, fix recommendations<br>
+        <strong style="color:var(--text)">Model:</strong> Qwen API — needs strong reasoning for attack path analysis
+      </div>
+    </div>
+    <div class="sec-card">
+      <div style="font-size:20px;margin-bottom:8px">🔒</div>
+      <div class="sec-title">PRISM — Data Privacy & Compliance</div>
+      <div class="sec-body">
+        <strong style="color:var(--text)">Role:</strong> Ensures Eigur's products comply with India's DPDP Act 2023, and any other applicable regulations. Classifies all data handled, enforces data minimisation, manages retention policies.<br><br>
+        <strong style="color:var(--text)">Tools:</strong> Data classification scripts, compliance checklists, policy templates<br>
+        <strong style="color:var(--text)">Output:</strong> Compliance checklists, privacy impact assessments, data maps<br>
+        <strong style="color:var(--text)">Model:</strong> Qwen API — compliance requires nuanced legal understanding
+      </div>
+    </div>
+    <div class="sec-card">
+      <div style="font-size:20px;margin-bottom:8px">📡</div>
+      <div class="sec-title">KADE — SIEM & Real-Time Monitoring</div>
+      <div class="sec-body">
+        <strong style="color:var(--text)">Role:</strong> Monitors all system logs in real time for anomalies. Tracks failed login attempts, unusual API call patterns, unexpected data access, and agent behaviour anomalies.<br><br>
+        <strong style="color:var(--text)">Tools:</strong> Log parsers, anomaly detection scripts, Discord alert webhooks<br>
+        <strong style="color:var(--text)">Output:</strong> Real-time alerts, daily log digest, incident timelines<br>
+        <strong style="color:var(--text)">Model:</strong> Mistral 7B (local) — needs to run fast and continuously
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY POLICIES -->
+  <div class="sep"></div>
+  <h3 class="sub">Security Policies — Non-Negotiable</h3>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-icon">🔐</div>
+      <div class="card-title" style="color:var(--red)">Zero Trust Architecture</div>
+      <div class="card-body">Every agent interaction with external systems requires authentication. No agent trusts another agent's output without validation. All API calls are authenticated. Internal service-to-service calls use short-lived tokens. "Trust but verify" is replaced by "Verify, then trust temporarily."</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <div class="card-title" style="color:var(--red)">Security Gate on Every Project</div>
+      <div class="card-body">No code ships without a security review from Cypher's team. Raze runs automated OWASP scan. Prism checks data handling. Kade confirms logging is in place. All four gates must pass. This is architecturally enforced — OpenClaw pipeline won't trigger deployment without security_approved: true.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔑</div>
+      <div class="card-title" style="color:var(--red)">Secrets Management</div>
+      <div class="card-body">API keys, database passwords, and credentials are never stored in agent memory or code. All secrets stored in a local secrets manager (HashiCorp Vault or .env with restricted permissions). Cypher audits secrets access monthly. Any leaked secret triggers immediate rotation and incident report.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-title" style="color:var(--red)">Audit Logging — Everything</div>
+      <div class="card-body">Every agent action is logged: what agent, what action, what input, what output, timestamp. Logs are append-only and stored in /eigur/logs/audit/. Kade monitors these continuously. Any log tampering triggers immediate security alert. Logs retained for 90 days minimum.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <div class="card-title" style="color:var(--red)">Incident Response Protocol</div>
+      <div class="card-body"><strong style="color:var(--text)">Detection (0-5 min):</strong> Kade alerts Cypher<br><strong style="color:var(--text)">Triage (5-10 min):</strong> Cypher assesses severity<br><strong style="color:var(--text)">Contain (10-30 min):</strong> Raze isolates affected systems<br><strong style="color:var(--text)">Alert (immediate):</strong> Chairman notified<br><strong style="color:var(--text)">Recover:</strong> Patch + restore + post-mortem</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🇮🇳</div>
+      <div class="card-title" style="color:var(--red)">India-Specific Compliance</div>
+      <div class="card-body">Prism ensures compliance with: DPDP Act 2023 (Digital Personal Data Protection), SEBI guidelines for trading platforms, RBI data localisation requirements for financial data, IT Act 2000 provisions. All Indian regulations tracked and updated as law evolves.</div>
+    </div>
+  </div>
+
+  <!-- THREAT RESPONSE FLOW -->
+  <div class="sep"></div>
+  <h3 class="sub">Active Threat Response Flow</h3>
+  <div style="background:linear-gradient(135deg,#0f0000,#120505);border:1px solid rgba(239,68,68,.3);border-radius:14px;padding:24px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:2.4;color:var(--text2);">
+    <div style="color:var(--red);font-weight:700">🔴 SECURITY EVENT DETECTED</div>
+    <div style="padding-left:20px">├── Kade detects anomaly in logs / Vega flags CVE / Raze finds vulnerability</div>
+    <div style="padding-left:40px">↓</div>
+    <div style="padding-left:20px">├── <span style="color:var(--red)">Cypher IMMEDIATELY NOTIFIED</span> → Severity Assessment</div>
+    <div style="padding-left:40px">├── CRITICAL (active breach) → <span style="color:var(--red)">SECURITY OVERRIDE ACTIVATED</span></div>
+    <div style="padding-left:60px">├── All affected systems halted</div>
+    <div style="padding-left:60px">├── Chairman alerted via @mention in #security-alerts</div>
+    <div style="padding-left:60px">├── Raze begins containment</div>
+    <div style="padding-left:60px">└── Incident channel created: #incident-[timestamp]</div>
+    <div style="padding-left:40px">├── HIGH (vulnerability found) → Zane alerted → 24hr patch window</div>
+    <div style="padding-left:40px">├── MEDIUM (risk identified) → Tracked, 48hr resolution SLA</div>
+    <div style="padding-left:40px">└── LOW (informational) → Logged, weekly review</div>
+    <div style="padding-left:20px">↓</div>
+    <div style="padding-left:20px">└── <span style="color:var(--green)">Post-incident:</span> Full report → Company KB → Process improvement</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 11 — ADVANCED ENHANCEMENTS
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="advanced">
+  <div class="ch-label">Chapter 11</div>
+  <h2 class="ch-title">Advanced Enhancements</h2>
+  <p class="ch-intro">Eigur's current architecture is a powerful foundation. These enhancements — some implementable now, some in future phases — will take it from impressive to world-class.</p>
+
+  <div class="adv-card">
+    <div class="adv-num">01</div>
+    <div class="adv-info">
+      <div class="adv-title">🎙️ Real Agent Voice — TTS per Agent</div>
+      <div class="adv-body">Give each agent a literal voice. Use ElevenLabs (paid) or Coqui TTS (free, local) to assign unique voice profiles to each agent. Aria sounds like a calm, authoritative CEO. Cypher sounds measured and precise. Zane sounds technical and focused. When a meeting summary is generated, agents "speak" their parts. Combine with Discord bots to play audio clips in voice channels for real meeting simulation.</div>
+      <div class="adv-tags"><span class="badge bg-green">FREE OPTION: Coqui TTS (local)</span><span class="badge bg-gold">PAID: ElevenLabs</span><span class="badge bg-blue">PHASE 2</span></div>
+    </div>
+  </div>
+
+  <div class="adv-card">
+    <div class="adv-num">02</div>
+    <div class="adv-info">
+      <div class="adv-title">👤 Agent Avatars & Video Presence</div>
+      <div class="adv-body">Generate consistent visual avatars for each agent using Stable Diffusion (local, free). Give each agent a photorealistic or stylised professional portrait. Use D-ID or HeyGen to animate avatars talking in meetings. At this point Eigur feels like a real video conference. Aria has a face. Cypher has a face. They present to the Chairman in video format.</div>
+      <div class="adv-tags"><span class="badge bg-green">FREE: Stable Diffusion (local)</span><span class="badge bg-gold">PAID: D-ID / HeyGen</span><span class="badge bg-blue">PHASE 3</span></div>
+    </div>
+  </div>
+
+  <div class="adv-card">
+    <div class="adv-num">03</div>
+    <div class="adv-info">
+      <div class="adv-title">📱 Eigur Mobile Dashboard</div>
+      <div class="adv-body">A mobile app (React Native or Flutter) that gives the Chairman a real-time view of the entire company: agent statuses (active/idle/blocked), current project progress, latest standup summary, security alerts, and the ability to issue directives directly from his phone. Push notifications for escalations and security alerts. The Chairman runs his entire AI company from his phone.</div>
+      <div class="adv-tags"><span class="badge bg-purple">React Native</span><span class="badge bg-blue">PHASE 2</span></div>
+    </div>
+  </div>
+
+  <div class="adv-card">
+    <div class="adv-num">04</div>
+    <div class="adv-info">
+      <div class="adv-title">🧪 Agent Performance Ratings</div>
+      <div class="adv-body">Each agent gets scored on every task: output quality (0-10), on-time delivery, escalation rate (lower is better for seniors, higher means junior is proactive), decision quality (reviewed by superior). CHRO Max maintains leaderboards. Poor performance triggers prompt tuning. Good performance earns the agent expanded scope. Gamification for an AI workforce.</div>
+      <div class="adv-tags"><span class="badge bg-orange">MAX (CHRO)</span><span class="badge bg-green">PHASE 1</span></div>
+    </div>
+  </div>
+
+  <div class="adv-card">
+    <div class="adv-num">05</div>
+    <div class="adv-info">
+      <div class="adv-title">🌐 Agent Web Browsing</div>
+      <div class="adv-body">Give research-heavy agents (Vega, Anjali, Nisha, Diana) the ability to browse the web for real-time information — competitor analysis, market data, trend research, news. Use a local headless browser (Playwright) + an LLM to summarise pages. Now your marketing agent actually researches competitors. Your threat intel agent actually reads CVE publications.</div>
+      <div class="adv-tags"><span class="badge bg-green">FREE: Playwright (local)</span><span class="badge bg-blue">PHASE 2</span></div>
+    </div>
+  </div>
+
+  <div class="adv-card">
+    <div class="adv-num">06</div>
+    <div class="adv-info">
+      <div class="adv-title">⚡ Agent-to-Agent Direct Messaging</div>
+      <div class="adv-body">Currently agents communicate via reports and meeting structures. Advanced mode: agents can initiate direct async messages to other agents — like Slack DMs. Arjun can ping Prism directly about a data handling question. Farhan can request feedback from Aditi on a wireframe without going through Lena. These DMs are logged, audited by Kade, and visible to superiors. Creates a genuinely organic collaboration feel.</div>
+      <div class="adv-tags"><span class="badge bg-cyan">OpenClaw Pipeline</span><span class="badge bg-blue">PHASE 2</span></div>
+    </div>
+  </div>
+
+  <div class="adv-card">
+    <div class="adv-num">07</div>
+    <div class="adv-info">
+      <div class="adv-title">💡 Agent Ideation Mode</div>
+      <div class="adv-body">Once a week, agents enter "Ideation Mode" — each agent is asked: "Based on what you've seen in your domain this week, what's one idea that could help Eigur grow?" CMO Ryan might suggest a new content format. Zane might suggest a performance optimisation. These ideas are compiled by Aria and presented to the Chairman as the weekly Innovation Brief. The AI workforce actively contributes to company strategy — not just executes it.</div>
+      <div class="adv-tags"><span class="badge bg-gold">STRATEGIC VALUE</span><span class="badge bg-green">PHASE 1</span></div>
+    </div>
+  </div>
+
+  <div class="adv-card">
+    <div class="adv-num">08</div>
+    <div class="adv-info">
+      <div class="adv-title">🔄 Automated CI/CD Integration</div>
+      <div class="adv-body">Connect Aman (DevOps) directly to GitHub Actions. When engineering agents complete code tasks, Aman automatically triggers CI pipelines: run tests, security scan, build, deploy to staging. Human (Chairman) only approves production deploys. The build-test-deploy cycle becomes entirely autonomous. Eigur can ship multiple times per day with zero human involvement in the pipeline.</div>
+      <div class="adv-tags"><span class="badge bg-purple">GitHub Actions</span><span class="badge bg-orange">AMAN (DevOps)</span><span class="badge bg-blue">PHASE 2</span></div>
+    </div>
+  </div>
+
+  <div class="adv-card">
+    <div class="adv-num">09</div>
+    <div class="adv-info">
+      <div class="adv-title">📊 Real-Time Company Dashboard</div>
+      <div class="adv-body">A live web dashboard (built by Eigur's own engineering team) showing: all 38 agents' current status (active/idle/blocked), current sprint progress per project (burndown charts), security posture indicator, financial burn rate, meeting schedules, recent outputs and updates. The Chairman sees the entire company at a glance. Like a mission control for an AI organisation.</div>
+      <div class="adv-tags"><span class="badge bg-cyan">Built by Eigur Eng Team</span><span class="badge bg-blue">PHASE 2</span></div>
+    </div>
+  </div>
+
+  <div class="adv-card">
+    <div class="adv-num">10</div>
+    <div class="adv-info">
+      <div class="adv-title">🤝 External Client Agents</div>
+      <div class="adv-body">When Eigur takes on AI consultancy projects for external clients, dedicated agent teams can be spun up for that client — with their own memory, workspace, and branded communication. The client gets a dedicated "account team" of AI agents. Diana (CRO) manages client relationships. This makes Eigur's AI consultancy offering genuinely scalable — serve 10 clients simultaneously with zero additional human headcount.</div>
+      <div class="adv-tags"><span class="badge bg-blue">DIANA (CRO)</span><span class="badge bg-gold">REVENUE DRIVER</span><span class="badge bg-blue">PHASE 3</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAPTER 12 — IMPLEMENTATION ROADMAP
+═══════════════════════════════════════════════════════════ -->
+<section class="chapter" id="roadmap">
+  <div class="ch-label">Chapter 12</div>
+  <h2 class="ch-title">Implementation Roadmap</h2>
+  <p class="ch-intro">Building Eigur is a phased journey. Each phase delivers real value — don't wait for Phase 3 to start. The goal is to have a working, useful AI organisation running as fast as possible, then continuously improve it.</p>
+
+  <table class="tbl">
+    <thead>
+      <tr><th>Phase</th><th>Timeline</th><th>Goal</th><th>Key Deliverables</th><th>Cost</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge bg-green">PHASE 0</span></td>
+        <td class="tbl-key">Week 1-2</td>
+        <td>Foundation</td>
+        <td>OpenClaw configured, Discord server set up, file system structure created, 3 core agents live (Aria, Zane, Cypher)</td>
+        <td>₹0</td>
+      </tr>
+      <tr>
+        <td><span class="badge bg-blue">PHASE 1</span></td>
+        <td class="tbl-key">Week 3-6</td>
+        <td>Full Org Live</td>
+        <td>All 38 agents configured with soul + memory + tools. Daily standups running. Weekly reports to Chairman. First project (Trading Platform) kicked off.</td>
+        <td>₹0 – Qwen API credits</td>
+      </tr>
+      <tr>
+        <td><span class="badge bg-purple">PHASE 2</span></td>
+        <td class="tbl-key">Month 2-3</td>
+        <td>Intelligence</td>
+        <td>ChromaDB RAG search live. Agent performance ratings. Web browsing for research agents. Agent-to-agent DMs. Mobile dashboard for Chairman.</td>
+        <td>Minimal</td>
+      </tr>
+      <tr>
+        <td><span class="badge bg-gold">PHASE 3</span></td>
+        <td class="tbl-key">Month 4-6</td>
+        <td>Human-Like</td>
+        <td>TTS voice per agent. Agent avatars (Stable Diffusion). Video meeting simulation. External client agent teams. CI/CD full automation.</td>
+        <td>ElevenLabs / D-ID costs</td>
+      </tr>
+      <tr>
+        <td><span class="badge bg-orange">PHASE 4</span></td>
+        <td class="tbl-key">Month 6+</td>
+        <td>Self-Improving</td>
+        <td>Agents suggest prompt improvements. CHRO Max auto-tunes underperforming agents. Eigur builds its own internal tools. Company becomes self-sustaining.</td>
+        <td>Operational only</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sep"></div>
+  <h3 class="sub">Your Week 1 Checklist</h3>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">🗓️ Day 1-2: Foundation</div>
+      <div class="card-body">
+        ☐ Create Discord server "Eigur HQ" with all channels<br>
+        ☐ Create Notion workspace — company KB<br>
+        ☐ Create /eigur/ file system in WSL<br>
+        ☐ Test OpenClaw connection to Qwen API<br>
+        ☐ Test OpenClaw connection to Ollama Mistral
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🤖 Day 3-4: First Agents</div>
+      <div class="card-body">
+        ☐ Configure Aria (CEO) — OpenClaw pipeline<br>
+        ☐ Configure Zane (CTO) — OpenClaw pipeline<br>
+        ☐ Configure Cypher (CSO) — OpenClaw pipeline<br>
+        ☐ Write soul system prompts for all three<br>
+        ☐ Test: Give Aria a simple company strategy question
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📡 Day 5-6: Connect</div>
+      <div class="card-body">
+        ☐ Set up Discord bot (discord.py) — free<br>
+        ☐ Connect bot to OpenClaw via webhook<br>
+        ☐ Test: Post task in #chairman-desk → Aria responds in Discord<br>
+        ☐ Set up basic memory JSON files for Aria, Zane, Cypher<br>
+        ☐ First simulated standup — see agents speak
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🚀 Day 7: First Real Task</div>
+      <div class="card-body">
+        ☐ Post the Trading Platform brief in #chairman-desk<br>
+        ☐ Watch Aria decompose and delegate<br>
+        ☐ Observe Zane produce an architecture plan<br>
+        ☐ Observe Cypher produce a security assessment<br>
+        ☐ Read the first Chairman Brief from Aria
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="sep"></div>
+  <div style="background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(139,92,246,.06));border:1px solid rgba(245,158,11,.2);border-radius:20px;padding:48px;text-align:center;margin-top:20px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--gold);margin-bottom:16px;text-transform:uppercase">Eigur Founding Philosophy</div>
+    <div style="font-size:32px;font-weight:900;line-height:1.3;max-width:600px;margin:0 auto;color:var(--text)">"One human vision.<br>Infinite AI execution.<br>Zero compromise."</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);margin-top:20px;letter-spacing:2px">— ROHIT DHIWAN · FOUNDER & CHAIRMAN · EIGUR · EIGUR.IN</div>
+    <div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <span class="badge bg-gold">VERSION 2.0</span>
+      <span class="badge bg-cyan">OPENCLAW NATIVE</span>
+      <span class="badge bg-red">SECURITY FIRST</span>
+      <span class="badge bg-green">ZERO PAYROLL</span>
+      <span class="badge bg-purple">AI-FIRST ORGANISATION</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+// Active nav on scroll
+const chapters = document.querySelectorAll('.chapter,[id]');
+const navLinks = document.querySelectorAll('.sb-item');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { threshold: 0.15, rootMargin: '-80px 0px -70% 0px' });
+document.querySelectorAll('[id]').forEach(el => observer.observe(el));
+
+navLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
