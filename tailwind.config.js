@@ -33,32 +33,19 @@ module.exports = {
       },
       animation: {
         'fade-up':    'fadeUp 0.7s cubic-bezier(0.21,0.47,0.32,0.98) forwards',
-        'fade-in':    'fadeIn 0.6s ease-out forwards',
-        'float':      'float 10s ease-in-out infinite',
-        'marquee':    'marquee 40s linear infinite',
-        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+        'fade-in':    'fadeIn 0.5s ease-out forwards',
+        'float':      'float 9s ease-in-out infinite',
+        'marquee':    'marquee 38s linear infinite',
+        'pulse-ring': 'pulseRing 2.5s ease-out infinite',
+        'blink':      'blink 1s step-end infinite',
       },
       keyframes: {
-        fadeUp: {
-          from: { opacity: '0', transform: 'translateY(22px)' },
-          to:   { opacity: '1', transform: 'translateY(0)' },
-        },
-        fadeIn: {
-          from: { opacity: '0' },
-          to:   { opacity: '1' },
-        },
-        float: {
-          '0%,100%': { transform: 'translateY(0px)' },
-          '50%':     { transform: 'translateY(-30px)' },
-        },
-        marquee: {
-          from: { transform: 'translateX(0)' },
-          to:   { transform: 'translateX(-50%)' },
-        },
-        pulseGlow: {
-          '0%,100%': { boxShadow: '0 0 15px rgba(124,58,237,0.2)' },
-          '50%':     { boxShadow: '0 0 40px rgba(124,58,237,0.55)' },
-        },
+        fadeUp:    { from:{ opacity:'0',transform:'translateY(20px)' }, to:{ opacity:'1',transform:'translateY(0)' } },
+        fadeIn:    { from:{ opacity:'0' }, to:{ opacity:'1' } },
+        float:     { '0%,100%':{ transform:'translateY(0)' }, '50%':{ transform:'translateY(-18px)' } },
+        marquee:   { from:{ transform:'translateX(0)' }, to:{ transform:'translateX(-50%)' } },
+        pulseRing: { '0%':{ transform:'scale(1)',opacity:'0.6' }, '100%':{ transform:'scale(1.6)',opacity:'0' } },
+        blink:     { '0%,100%':{ opacity:'1' }, '50%':{ opacity:'0' } },
       },
     },
   },
