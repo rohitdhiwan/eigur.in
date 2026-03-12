@@ -1,141 +1,127 @@
 import Link from 'next/link';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, Copyright } from 'lucide-react';
+import { Mail, Phone, MapPin, Twitter, Linkedin, Github, Sparkles } from 'lucide-react';
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
+const footerLinks = [
+  {
+    heading: 'Company',
+    links: [
+      { name: 'About',        href: '/about' },
+      { name: 'Services',     href: '/services' },
+      { name: 'Case Studies', href: '/case-studies' },
+      { name: 'Blog',         href: '/blog' },
+      { name: 'Contact',      href: '/contact' },
+    ],
+  },
+  {
+    heading: 'Solutions',
+    links: [
+      { name: 'IT Automation',      href: '/services' },
+      { name: 'Finance AI',         href: '/services' },
+      { name: 'Agriculture Tech',   href: '/services' },
+      { name: 'Retail Intelligence',href: '/services' },
+      { name: 'AI Assistant',       href: '/ai-assistant' },
+    ],
+  },
+  {
+    heading: 'Resources',
+    links: [
+      { name: 'Blog',           href: '/blog' },
+      { name: 'AI Insights',    href: '/blog' },
+      { name: 'Case Studies',   href: '/case-studies' },
+      { name: 'Privacy Policy', href: '#' },
+      { name: 'Terms',          href: '#' },
+    ],
+  },
+];
 
-  const footerLinks = [
-    {
-      heading: 'Company',
-      links: [
-        { name: 'About Us', href: '/about' },
-        { name: 'Services', href: '/services' },
-        { name: 'Case Studies', href: '/case-studies' },
-        { name: 'Careers', href: '#' },
-        { name: 'Contact', href: '/contact' },
-      ],
-    },
-    {
-      heading: 'Solutions',
-      links: [
-        { name: 'IT Automation', href: '/services' },
-        { name: 'Finance AI', href: '/services' },
-        { name: 'Agriculture Tech', href: '/services' },
-        { name: 'Retail Intelligence', href: '/services' },
-        { name: 'Business Automation', href: '/services' },
-      ],
-    },
-    {
-      heading: 'Resources',
-      links: [
-        { name: 'Blog', href: '/blog' },
-        { name: 'AI Insights', href: '/blog' },
-        { name: 'Case Studies', href: '/case-studies' },
-        { name: 'Documentation', href: '#' },
-        { name: 'Help Center', href: '#' },
-      ],
-    },
-    {
-      heading: 'Legal',
-      links: [
-        { name: 'Privacy Policy', href: '#' },
-        { name: 'Terms of Service', href: '#' },
-        { name: 'Cookie Policy', href: '#' },
-        { name: 'GDPR Compliance', href: '#' },
-      ],
-    },
-  ];
-
+export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Brand and Contact Info */}
+    <footer className="border-t border-white/[0.055] bg-[#05050a]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+
+          {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex flex-col">
-              <Link href="/" className="text-2xl font-bold text-white mb-4">Eigur</Link>
-              <p className="text-gray-400 mb-4">
-                Transforming Indian businesses with cutting-edge AI solutions. 
-                We help companies leverage artificial intelligence to drive growth and innovation.
-              </p>
-              
-              <div className="flex space-x-4 mt-4">
-                <Link href="#" className="text-gray-400 hover:text-white">
-                  <Facebook className="h-5 w-5" />
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-white">
-                  <Twitter className="h-5 w-5" />
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-white">
-                  <Linkedin className="h-5 w-5" />
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-white">
-                  <Instagram className="h-5 w-5" />
-                </Link>
+            <Link href="/" className="inline-flex items-center gap-2 group mb-5">
+              <div className="w-7 h-7 rounded-lg bg-primary-600/20 border border-primary-500/30 flex items-center justify-center">
+                <Sparkles className="h-3.5 w-3.5 text-primary-400" />
               </div>
+              <span className="font-display text-xl font-bold gradient-text">Eigur</span>
+            </Link>
+            <p className="text-sm text-[#686890] leading-relaxed max-w-xs">
+              Engineering AI solutions that transform Indian businesses.
+              Built for enterprise complexity, delivered with startup speed.
+            </p>
+            <div className="flex items-center gap-4 mt-6">
+              {[
+                { href: '#', Icon: Twitter },
+                { href: '#', Icon: Linkedin },
+                { href: '#', Icon: Github },
+              ].map(({ href, Icon }, i) => (
+                <Link
+                  key={i}
+                  href={href}
+                  className="w-8 h-8 rounded-lg border border-white/[0.07] flex items-center justify-center text-[#686890] hover:text-white hover:border-white/20 transition-all"
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Footer Links */}
-          {footerLinks.map((section, index) => (
-            <div key={index}>
-              <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">
-                {section.heading}
-              </h3>
-              <ul className="space-y-2">
-                {section.links.map((link, idx) => (
-                  <li key={idx}>
-                    <Link 
-                      href={link.href} 
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+          {/* Nav columns */}
+          {footerLinks.map((col) => (
+            <div key={col.heading}>
+              <h4 className="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#454565] mb-5">
+                {col.heading}
+              </h4>
+              <ul className="space-y-2.5">
+                {col.links.map((l) => (
+                  <li key={l.name}>
+                    <Link
+                      href={l.href}
+                      className="text-sm text-[#686890] hover:text-white transition-colors"
                     >
-                      {link.name}
+                      {l.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">
-              Contact Us
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-gray-400 mr-2 mt-0.5" />
-                <span className="text-gray-400">New Delhi 110001, India</span>
-              </li>
-              <li className="flex items-start">
-                <Phone className="h-5 w-5 text-gray-400 mr-2 mt-0.5" />
-                <span className="text-gray-400">+91 98765 43210</span>
-              </li>
-              <li className="flex items-start">
-                <Mail className="h-5 w-5 text-gray-400 mr-2 mt-0.5" />
-                <span className="text-gray-400">support@eigur.in</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-          <div className="flex items-center">
-            <Copyright className="h-4 w-4 mr-1" />
-            <span className="text-gray-400 text-sm">
-              {currentYear} Eigur AI Solutions. All rights reserved.
-            </span>
-          </div>
-          
-          <div className="mt-4 md:mt-0">
-            <p className="text-gray-400 text-sm">
-              Built with ❤️ for Indian businesses
-            </p>
-          </div>
+        {/* Contact strip */}
+        <div className="flex flex-wrap gap-6 pb-8 border-b border-white/[0.055]">
+          {[
+            { Icon: MapPin, text: 'New Delhi 110001, India' },
+            { Icon: Phone, text: '+91 98765 43210' },
+            { Icon: Mail,  text: 'support@eigur.in', href: 'mailto:support@eigur.in' },
+          ].map(({ Icon, text, href }, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <Icon className="h-3.5 w-3.5 text-[#454565]" />
+              {href ? (
+                <Link href={href} className="text-xs text-[#686890] hover:text-white transition-colors">
+                  {text}
+                </Link>
+              ) : (
+                <span className="text-xs text-[#686890]">{text}</span>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom */}
+        <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="text-xs text-[#454565]">
+            © {new Date().getFullYear()} Eigur AI Solutions Pvt. Ltd. All rights reserved.
+          </p>
+          <p className="text-xs text-[#454565]">
+            Built for India&apos;s next decade
+          </p>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

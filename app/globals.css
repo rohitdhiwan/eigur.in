@@ -2,61 +2,166 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Variables ──────────────────────────────────────────────────────────── */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --c-bg:          #05050a;
+  --c-surface:     #0d0d15;
+  --c-elevated:    #13131e;
+  --c-border:      rgba(255, 255, 255, 0.065);
+  --c-border-h:    rgba(124, 58, 237, 0.35);
+  --c-primary:     #7c3aed;
+  --c-primary-l:   #9d70f5;
+  --c-accent:      #06b6d4;
+  --c-text-1:      #f0f0fc;
+  --c-text-2:      #7878a0;
+  --c-text-3:      #454560;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+*  { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--c-bg);
+  color: var(--c-text-1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--c-bg); }
 ::-webkit-scrollbar-thumb {
-  background: #c5c5c5;
-  border-radius: 4px;
+  background: rgba(124, 58, 237, 0.5);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(124, 58, 237, 0.75); }
+
+/* ─── Dot grid background ────────────────────────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.065) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+/* ─── Glass card ─────────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(13, 13, 21, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--c-border);
+  border-radius: 18px;
+  transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+}
+.glass:hover {
+  border-color: var(--c-border-h);
+  box-shadow: 0 8px 40px rgba(124, 58, 237, 0.12), 0 2px 8px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px);
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* ─── Gradient text ──────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #c4b5fd 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-white {
+  background: linear-gradient(160deg, #ffffff 25%, rgba(196, 181, 253, 0.75) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-number {
+  background: linear-gradient(135deg, #a78bfa, #67e8f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Focus styles for accessibility */
-.focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #fff;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(124, 58, 237, 0.45), 0 1px 0 rgba(255,255,255,0.1) inset;
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: rgba(240, 240, 252, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.btn-ghost:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* ─── Section label pill ─────────────────────────────────────────────────── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(196, 181, 253, 0.9);
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.28);
+}
+
+/* ─── Orb animations ─────────────────────────────────────────────────────── */
+.orb-1 { animation: orbFloat 12s ease-in-out infinite; }
+.orb-2 { animation: orbFloat 16s ease-in-out infinite reverse; animation-delay: -5s; }
+.orb-3 { animation: orbFloat 14s ease-in-out infinite; animation-delay: -8s; }
+
+@keyframes orbFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  50%     { transform: translateY(-32px) scale(1.04); }
+}
+
+/* ─── Marquee ────────────────────────────────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Section divider ────────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+}
+
+/* ─── Focus ──────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--c-primary-l);
+  outline-offset: 3px;
 }
