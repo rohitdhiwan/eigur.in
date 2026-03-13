@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
@@ -12,6 +12,21 @@ const navItems = [
   { name: 'Blog',         href: '/blog' },
   { name: 'Contact',      href: '/contact' },
 ];
+
+// Neural-circuit "E" logo mark
+function LogoMark() {
+  return (
+    <div className="w-8 h-8 rounded-[8px] bg-gradient-to-br from-violet-700 to-cyan-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+      <svg viewBox="0 0 20 20" fill="none" className="w-[18px] h-[18px]">
+        <path d="M4 4L4 16M4 4L14 4M4 10L12 10M4 16L14 16"
+              stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="14" cy="4" r="2" fill="white"/>
+        <circle cx="12" cy="10" r="1.5" fill="white" opacity="0.75"/>
+        <circle cx="14" cy="16" r="2" fill="white"/>
+      </svg>
+    </div>
+  );
+}
 
 export default function Navbar() {
   const [isOpen,   setIsOpen]   = useState(false);
@@ -33,11 +48,12 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-7 h-7 rounded-lg bg-primary-100 border border-primary-200 flex items-center justify-center group-hover:bg-primary-200 transition-colors">
-              <Sparkles className="h-3.5 w-3.5 text-primary-600" />
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <LogoMark />
+            <div className="flex flex-col leading-none">
+              <span className="font-display text-[18px] font-bold gradient-text tracking-tight">Eigur</span>
+              <span className="text-[9px] font-semibold tracking-[0.12em] uppercase text-[#b0aec8] mt-0.5">Think AI. Build India.</span>
             </div>
-            <span className="font-display text-xl font-bold gradient-text tracking-tight">Eigur</span>
           </Link>
 
           {/* Desktop */}
@@ -53,7 +69,14 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link href="/ai-assistant"
               className="hidden md:flex items-center gap-1.5 text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors px-3 py-1.5 rounded-lg hover:bg-primary-50">
-              <Sparkles className="h-3.5 w-3.5" /> AI Assistant
+              <svg viewBox="0 0 20 20" fill="none" className="w-3.5 h-3.5">
+                <path d="M4 4L4 16M4 4L14 4M4 10L12 10M4 16L14 16"
+                      stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="14" cy="4" r="1.75" fill="currentColor"/>
+                <circle cx="12" cy="10" r="1.25" fill="currentColor" opacity="0.6"/>
+                <circle cx="14" cy="16" r="1.75" fill="currentColor"/>
+              </svg>
+              AI Assistant
             </Link>
             <Link href="/contact" className="hidden md:flex btn-primary !py-2 !px-4 !text-sm">
               Get Started <ArrowRight className="h-3.5 w-3.5" />

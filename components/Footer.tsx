@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Twitter, Linkedin, Github, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Twitter, Linkedin, Github } from 'lucide-react';
 
 const cols = [
   { heading: 'Company', links: [
@@ -25,6 +25,21 @@ const cols = [
   ]},
 ];
 
+// Shared logo mark component
+function LogoMark() {
+  return (
+    <div className="w-8 h-8 rounded-[8px] bg-gradient-to-br from-violet-700 to-cyan-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+      <svg viewBox="0 0 20 20" fill="none" className="w-[18px] h-[18px]">
+        <path d="M4 4L4 16M4 4L14 4M4 10L12 10M4 16L14 16"
+              stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="14" cy="4" r="2" fill="white"/>
+        <circle cx="12" cy="10" r="1.5" fill="white" opacity="0.75"/>
+        <circle cx="14" cy="16" r="2" fill="white"/>
+      </svg>
+    </div>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className="bg-[#fafaf9] border-t border-black/[0.07]">
@@ -33,15 +48,15 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-2 mb-5">
-              <div className="w-7 h-7 rounded-lg bg-primary-100 border border-primary-200 flex items-center justify-center">
-                <Sparkles className="h-3.5 w-3.5 text-primary-600" />
+            <Link href="/" className="inline-flex items-center gap-2.5 mb-5">
+              <LogoMark />
+              <div className="flex flex-col leading-none">
+                <span className="font-display text-[18px] font-bold gradient-text">Eigur</span>
+                <span className="text-[9px] font-semibold tracking-[0.12em] uppercase text-[#b0aec8] mt-0.5">Think AI. Build India.</span>
               </div>
-              <span className="font-display text-xl font-bold gradient-text">Eigur</span>
             </Link>
             <p className="text-sm text-[#7878a0] leading-relaxed max-w-xs mb-6">
-              Engineering AI that transforms Indian businesses.
-              Built for enterprise complexity, delivered with startup speed.
+              Building AI systems that drive measurable outcomes for India&apos;s most ambitious companies. Enterprise-grade intelligence, startup speed.
             </p>
             <div className="flex gap-3">
               {[Twitter, Linkedin, Github].map((Icon, i) => (
@@ -72,12 +87,12 @@ export default function Footer() {
         {/* Contact strip */}
         <div className="flex flex-wrap gap-6 pb-8 border-b border-black/[0.06] mb-6">
           {[
-            { Icon: MapPin, text: 'New Delhi 110001, India' },
-            { Icon: Phone,  text: '+91 98765 43210' },
+            { Icon: MapPin, text: '8, Birla Tower, 25 Barakhamba Road, New Delhi 110001, India' },
+            { Icon: Phone,  text: '+91 80030 75046', href: 'tel:+918003075046' },
             { Icon: Mail,   text: 'support@eigur.in', href: 'mailto:support@eigur.in' },
           ].map(({ Icon, text, href }, i) => (
             <div key={i} className="flex items-center gap-2">
-              <Icon className="h-3.5 w-3.5 text-[#b0aec8]" />
+              <Icon className="h-3.5 w-3.5 text-[#b0aec8] flex-shrink-0" />
               {href
                 ? <Link href={href} className="text-xs text-[#7878a0] hover:text-[#0f0f1a] transition-colors">{text}</Link>
                 : <span className="text-xs text-[#7878a0]">{text}</span>
@@ -88,7 +103,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-xs text-[#b0aec8]">© {new Date().getFullYear()} Eigur AI Solutions Pvt. Ltd. All rights reserved.</p>
-          <p className="text-xs text-[#b0aec8]">Built for India&apos;s next decade</p>
+          <p className="text-xs text-[#b0aec8]">Think AI. Build India.</p>
         </div>
       </div>
     </footer>
