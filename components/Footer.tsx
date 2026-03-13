@@ -25,16 +25,17 @@ const cols = [
   ]},
 ];
 
-// Shared logo mark component
+// Modern node-network logo mark
 function LogoMark() {
   return (
-    <div className="w-8 h-8 rounded-[8px] bg-gradient-to-br from-violet-700 to-cyan-600 flex items-center justify-center flex-shrink-0 shadow-sm">
-      <svg viewBox="0 0 20 20" fill="none" className="w-[18px] h-[18px]">
-        <path d="M4 4L4 16M4 4L14 4M4 10L12 10M4 16L14 16"
-              stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="14" cy="4" r="2" fill="white"/>
-        <circle cx="12" cy="10" r="1.5" fill="white" opacity="0.75"/>
-        <circle cx="14" cy="16" r="2" fill="white"/>
+    <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-700 flex items-center justify-center flex-shrink-0 shadow-[0_2px_10px_rgba(109,40,217,0.35)]">
+      <svg viewBox="0 0 20 20" fill="none" className="w-[15px] h-[15px]">
+        <circle cx="10" cy="4" r="2.25" fill="white"/>
+        <circle cx="3.5" cy="15" r="1.75" fill="white" opacity="0.9"/>
+        <circle cx="16.5" cy="15" r="1.75" fill="white" opacity="0.9"/>
+        <line x1="10" y1="4" x2="3.5" y2="15" stroke="white" strokeWidth="1.3" strokeLinecap="round" opacity="0.55"/>
+        <line x1="10" y1="4" x2="16.5" y2="15" stroke="white" strokeWidth="1.3" strokeLinecap="round" opacity="0.55"/>
+        <line x1="3.5" y1="15" x2="16.5" y2="15" stroke="white" strokeWidth="1.3" strokeLinecap="round" opacity="0.35"/>
       </svg>
     </div>
   );
@@ -52,11 +53,11 @@ export default function Footer() {
               <LogoMark />
               <div className="flex flex-col leading-none">
                 <span className="font-display text-[18px] font-bold gradient-text">Eigur</span>
-                <span className="text-[9px] font-semibold tracking-[0.12em] uppercase text-[#b0aec8] mt-0.5">Think AI. Build India.</span>
+                <span className="text-[9px] font-semibold tracking-[0.12em] uppercase text-[#b0aec8] mt-0.5">Intelligence at scale.</span>
               </div>
             </Link>
             <p className="text-sm text-[#7878a0] leading-relaxed max-w-xs mb-6">
-              Building AI systems that drive measurable outcomes for India&apos;s most ambitious companies. Enterprise-grade intelligence, startup speed.
+              Building AI systems that drive measurable outcomes for the world&apos;s most ambitious companies. Enterprise-grade intelligence, startup speed.
             </p>
             <div className="flex gap-3">
               {[Twitter, Linkedin, Github].map((Icon, i) => (
@@ -103,7 +104,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-xs text-[#b0aec8]">© {new Date().getFullYear()} Eigur AI Solutions Pvt. Ltd. All rights reserved.</p>
-          <p className="text-xs text-[#b0aec8]">Think AI. Build India.</p>
+          <p className="text-xs text-[#b0aec8]">Intelligence at scale.</p>
         </div>
       </div>
     </footer>

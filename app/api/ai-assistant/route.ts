@@ -38,10 +38,13 @@ async function callGemini(
 
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
-  const contents = messages.map(m => ({
+  // Gemini requires conversation to start with 'user' — strip any leading assistant/model messages
+  const allContents = messages.map(m => ({
     role: m.role === 'assistant' ? 'model' : 'user',
     parts: [{ text: m.content }],
   }));
+  const firstUserIdx = allContents.findIndex(m => m.role === 'user');
+  const contents = firstUserIdx >= 0 ? allContents.slice(firstUserIdx) : allContents;
 
   const res = await fetch(url, {
     method: 'POST',

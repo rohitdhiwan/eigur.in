@@ -15,12 +15,12 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: 'Eigur | AI Consultancy for India',
-  description: 'Think AI. Build India. Eigur builds production-grade AI systems that drive measurable outcomes for Indian businesses. From strategy to deployment in 4 to 16 weeks.',
+  title: 'Eigur | AI Consultancy',
+  description: 'Intelligence at scale. Eigur builds production-grade AI systems that drive measurable outcomes for ambitious businesses. From strategy to deployment in 4 to 16 weeks.',
   metadataBase: new URL('https://eigur.in'),
   openGraph: {
-    title: 'Eigur | AI Consultancy for India',
-    description: 'Think AI. Build India. Production-grade AI for Indian businesses.',
+    title: 'Eigur | AI Consultancy',
+    description: 'Intelligence at scale. Production-grade AI systems that deliver real business outcomes.',
     url: 'https://eigur.in', siteName: 'Eigur', locale: 'en_IN', type: 'website',
   },
 };

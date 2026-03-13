@@ -407,6 +407,10 @@ function LiveAIDemo() {
   const [displayed, setDisplayed] = useState('');
   const [typing, setTyping] = useState(false);
 
+  // Auto-generate on mount so switching to this tab immediately shows content
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { generate(); }, []);
+
   const generate = async () => {
     setLoading(true);
     setOutput('');
@@ -632,7 +636,7 @@ function PlaygroundTabs() {
       </motion.div>
 
       {/* Tab content */}
-      <motion.div variants={up} key={active}
+      <motion.div variants={up}
         className="max-w-4xl mx-auto bg-white rounded-2xl border border-[rgba(109,40,217,0.08)] shadow-lg shadow-violet-900/5 p-6 sm:p-8">
         <div className="flex items-start gap-3 mb-6 pb-5 border-b border-black/[0.05]">
           <div className="w-10 h-10 rounded-xl bg-primary-50 border border-primary-100 flex items-center justify-center flex-shrink-0">
