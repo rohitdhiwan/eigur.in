@@ -1,7 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
 
-function getOpenAI() { return new OpenAI({ apiKey: process.env.OPENAI_API_KEY }); }
+async function callGemini(
+  systemPrompt: string,
+  userPrompt: string,
+  maxTokens = 400,
+  temperature = 0.8
+): Promise<string> {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error('GEMINI_API_KEY not configured');
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      system_instruction: { parts: [{ text: systemPrompt }] },
+      contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
+      generationConfig: { maxOutputTokens: maxTokens, temperature },
+    }),
+  });
+
+  if (!res.ok) throw new Error(`Gemini API error: ${res.status}`);
+  const data = await res.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+}
 
 const DEMO_PROMPTS: Record<string, { system: string; user: string }> = {
   marketing: {
@@ -31,22 +54,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid demo type' }, { status: 400 });
     }
 
-    if (!process.env.OPENAI_API_KEY) {
+    if (!process.env.GEMINI_API_KEY) {
       return NextResponse.json({ output: getFallbackOutput(demoType) });
     }
 
-    const completion = await getOpenAI().chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: demo.system },
-        { role: 'user', content: demo.user },
-      ],
-      max_tokens: 400,
-      temperature: 0.8,
-    });
-
-    const output = completion.choices[0]?.message?.content ?? getFallbackOutput(demoType);
-    return NextResponse.json({ output });
+    const output = await callGemini(demo.system, demo.user, 400, 0.8);
+    return NextResponse.json({ output: output || getFallbackOutput(demoType) });
   } catch (error) {
     console.error('AI demo error:', error);
     return NextResponse.json({ output: getFallbackOutput('marketing') });

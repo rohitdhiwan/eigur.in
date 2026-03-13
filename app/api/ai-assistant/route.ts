@@ -1,10 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
-
-// Lazy-initialize to avoid build-time errors when OPENAI_API_KEY is not set
-function getOpenAI() {
-  return new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-}
 
 const SYSTEM_PROMPT = `You are Aria, a friendly and knowledgeable AI pre-sales consultant for Eigur, an AI consultancy based in New Delhi, India that specializes in transforming Indian businesses with AI solutions.
 
@@ -18,7 +12,7 @@ Eigur's core services:
 - AI Consulting: Strategy, architecture, team training
 - AI Assistants: Custom chatbots, voice agents, support automation
 
-Typical ROI delivered: 2-5× within 12 months. Project timelines: 4-16 weeks. Pricing: ₹80,000 – ₹15,00,000+ depending on scope.
+Typical ROI delivered: 2-5x within 12 months. Project timelines: 4-16 weeks. Pricing: Rs.80,000 to Rs.15,00,000+ depending on scope.
 
 Your goal: Understand the visitor's business, identify their biggest pain points, show them how Eigur's AI can help, then encourage them to book a free consultation call.
 
@@ -31,7 +25,38 @@ Conversation flow:
 
 Keep responses concise (2-4 sentences max unless giving a detailed breakdown). Be specific, not generic. Never say "Great question!" or use filler phrases.
 
-Contact: support@eigur.in | +91 98765 43210 | New Delhi`;
+Contact: support@eigur.in | +91 80030 75046 | New Delhi`;
+
+async function callGemini(
+  systemPrompt: string,
+  messages: Array<{ role: string; content: string }>,
+  maxTokens = 300,
+  temperature = 0.75
+): Promise<string> {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error('GEMINI_API_KEY not configured');
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+  const contents = messages.map(m => ({
+    role: m.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: m.content }],
+  }));
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      system_instruction: { parts: [{ text: systemPrompt }] },
+      contents,
+      generationConfig: { maxOutputTokens: maxTokens, temperature },
+    }),
+  });
+
+  if (!res.ok) throw new Error(`Gemini API error: ${res.status}`);
+  const data = await res.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -41,30 +66,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Messages array required' }, { status: 400 });
     }
 
-    if (!process.env.OPENAI_API_KEY) {
-      // Graceful fallback when no API key configured
+    if (!process.env.GEMINI_API_KEY) {
       return NextResponse.json({
         response: "I'm Aria, Eigur's AI consultant. We help Indian businesses automate operations and boost revenue with custom AI. What industry are you in? I'd love to share how we've helped similar businesses.",
       });
     }
 
-    const completion = await getOpenAI().chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
-        ...messages.map((m: { role: string; content: string }) => ({
-          role: m.role as 'user' | 'assistant',
-          content: m.content,
-        })),
-      ],
-      max_tokens: 300,
-      temperature: 0.75,
+    const response = await callGemini(SYSTEM_PROMPT, messages, 300, 0.75);
+
+    return NextResponse.json({
+      response: response || "I'm having a moment. Could you rephrase that? I want to make sure I give you the most useful answer.",
     });
-
-    const response = completion.choices[0]?.message?.content ??
-      "I'm having a moment. Could you rephrase that? I want to make sure I give you the most useful answer.";
-
-    return NextResponse.json({ response });
   } catch (error) {
     console.error('AI assistant error:', error);
     return NextResponse.json(

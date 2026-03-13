@@ -1,7 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
 
-function getOpenAI() { return new OpenAI({ apiKey: process.env.OPENAI_API_KEY }); }
+async function callGemini(
+  prompt: string,
+  maxTokens = 800,
+  temperature = 0.7
+): Promise<string> {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error('GEMINI_API_KEY not configured');
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+      generationConfig: { maxOutputTokens: maxTokens, temperature },
+    }),
+  });
+
+  if (!res.ok) throw new Error(`Gemini API error: ${res.status}`);
+  const data = await res.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,7 +32,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Industry is required' }, { status: 400 });
     }
 
-    if (!process.env.OPENAI_API_KEY) {
+    if (!process.env.GEMINI_API_KEY) {
       return NextResponse.json({
         useCases: getFallbackUseCases(industry),
       });
@@ -26,23 +47,18 @@ For each use case, provide:
 - timeline: Implementation timeline (e.g., "4-6 weeks")
 
 Focus on Indian market context: GST, MSME scale, regional languages, local supply chains where relevant.
-Return ONLY valid JSON array, no markdown, no explanation.
+Return ONLY a valid JSON array with no markdown, no code fences, no explanation.
 
 Format:
 [{"title":"...","description":"...","impact":"...","timeline":"..."}]`;
 
-    const completion = await getOpenAI().chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: 800,
-      temperature: 0.7,
-      response_format: { type: 'json_object' },
-    });
+    const raw = await callGemini(prompt, 800, 0.7);
 
-    const raw = completion.choices[0]?.message?.content ?? '{}';
     let useCases;
     try {
-      const parsed = JSON.parse(raw);
+      // Strip markdown code fences if Gemini adds them
+      const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+      const parsed = JSON.parse(cleaned);
       useCases = Array.isArray(parsed) ? parsed : parsed.use_cases ?? parsed.useCases ?? getFallbackUseCases(industry);
     } catch {
       useCases = getFallbackUseCases(industry);
