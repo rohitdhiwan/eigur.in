@@ -31,6 +31,9 @@ module.exports = {
         display: ['var(--font-syne)', 'sans-serif'],
         sans:    ['var(--font-outfit)', 'sans-serif'],
       },
+      spacing: {
+        '4.5': '1.125rem',
+      },
       animation: {
         'fade-up':    'fadeUp 0.7s cubic-bezier(0.21,0.47,0.32,0.98) forwards',
         'fade-in':    'fadeIn 0.5s ease-out forwards',

@@ -20,7 +20,6 @@
 /* ─── Base ───────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-
 body {
   background-color: var(--bg);
   color: var(--text-1);
@@ -28,12 +27,12 @@ body {
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────── */
-::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar       { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: #f0effd; }
 ::-webkit-scrollbar-thumb { background: rgba(109,40,217,0.35); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(109,40,217,0.6); }
 
-/* ─── Dot grid (very subtle on white) ───────────────────────────────────── */
+/* ─── Dot grid ───────────────────────────────────────────────────────────── */
 .dot-grid {
   background-image: radial-gradient(rgba(109,40,217,0.1) 1px, transparent 1px);
   background-size: 28px 28px;
@@ -117,7 +116,6 @@ body {
 
 /* ─── Gradient border card ───────────────────────────────────────────────── */
 .gcard {
-  background: white;
   border-radius: 18px;
   position: relative;
   padding: 1px;
@@ -140,7 +138,7 @@ body {
   to   { transform: translateX(-50%); }
 }
 
-/* ─── Floating orbs (light mode) ────────────────────────────────────────── */
+/* ─── Orbs ───────────────────────────────────────────────────────────────── */
 .orb-a { animation: orbA 12s ease-in-out infinite; }
 .orb-b { animation: orbA 16s ease-in-out infinite reverse; animation-delay: -5s; }
 @keyframes orbA {
@@ -148,11 +146,11 @@ body {
   50%     { transform: translateY(-22px) scale(1.05); }
 }
 
-/* ─── Typewriter cursor ──────────────────────────────────────────────────── */
+/* ─── Cursor ─────────────────────────────────────────────────────────────── */
 .cursor { display: inline-block; width: 3px; background: #6d28d9; border-radius: 2px; animation: blink 1s step-end infinite; }
 @keyframes blink { 0%,100%{ opacity:1 } 50%{ opacity:0 } }
 
-/* ─── Counter section ────────────────────────────────────────────────────── */
+/* ─── Stat card ──────────────────────────────────────────────────────────── */
 .stat-card {
   background: white;
   border: 1px solid var(--border);
@@ -163,9 +161,7 @@ body {
   overflow: hidden;
 }
 .stat-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+  content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(109,40,217,0.04), transparent);
   border-radius: inherit;
 }
@@ -183,3 +179,34 @@ body {
 
 /* ─── Focus ──────────────────────────────────────────────────────────────── */
 :focus-visible { outline: 2px solid #7c3aed; outline-offset: 3px; }
+
+/* ─── Recruit feature cards ──────────────────────────────────────────────── */
+.recruit-card {
+  background: white;
+  border: 1px solid rgba(109,40,217,0.08);
+  border-radius: 20px;
+  padding: 28px;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.recruit-card:hover {
+  border-color: rgba(109,40,217,0.25);
+  box-shadow: 0 12px 40px rgba(109,40,217,0.1);
+  transform: translateY(-3px);
+}
+.recruit-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #7c3aed, #0891b2);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.recruit-card:hover::after { opacity: 1; }
+
+/* ─── Print styles for CV ────────────────────────────────────────────────── */
+@media print {
+  nav, aside, header, footer, .no-print { display: none !important; }
+  .cv-preview { box-shadow: none !important; border: none !important; margin: 0 !important; }
+}

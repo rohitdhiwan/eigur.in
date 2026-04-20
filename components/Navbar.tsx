@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { Menu, X, ArrowRight, Briefcase } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getInitials } from '@/lib/utils';
 
 const navItems = [
   { name: 'About',        href: '/about' },
@@ -13,7 +15,6 @@ const navItems = [
   { name: 'Contact',      href: '/contact' },
 ];
 
-// Modern node-network logo mark
 function LogoMark() {
   return (
     <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-700 flex items-center justify-center flex-shrink-0 shadow-[0_2px_10px_rgba(109,40,217,0.35)]">
@@ -30,8 +31,9 @@ function LogoMark() {
 }
 
 export default function Navbar() {
-  const [isOpen,   setIsOpen]   = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
@@ -57,7 +59,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop */}
+          {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-7">
             {navItems.map(item => (
               <Link key={item.name} href={item.href}
@@ -65,23 +67,40 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
+            {/* Careers AI badge */}
+            <Link href="/careers"
+              className="flex items-center gap-1.5 text-xs font-bold text-violet-700 bg-violet-50 border border-violet-200 px-2.5 py-1 rounded-lg hover:bg-violet-100 transition-colors">
+              <Briefcase className="w-3 h-3" />
+              Careers AI
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            </Link>
           </div>
 
           <div className="flex items-center gap-3">
-            <Link href="/ai-assistant"
-              className="hidden md:flex items-center gap-1.5 text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors px-3 py-1.5 rounded-lg hover:bg-primary-50">
-              <svg viewBox="0 0 20 20" fill="none" className="w-3.5 h-3.5">
-                <path d="M4 4L4 16M4 4L14 4M4 10L12 10M4 16L14 16"
-                      stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="14" cy="4" r="1.75" fill="currentColor"/>
-                <circle cx="12" cy="10" r="1.25" fill="currentColor" opacity="0.6"/>
-                <circle cx="14" cy="16" r="1.75" fill="currentColor"/>
-              </svg>
-              AI Assistant
-            </Link>
-            <Link href="/contact" className="hidden md:flex btn-primary !py-2 !px-4 !text-sm">
-              Get Started <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+            {session ? (
+              /* Authenticated: show avatar link to dashboard */
+              <Link href="/dashboard"
+                className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-violet-50 border border-violet-200 hover:bg-violet-100 transition-colors">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-white text-[10px] font-bold">
+                  {session.user?.image
+                    ? <img src={session.user.image} alt="" className="w-6 h-6 rounded-full object-cover" />
+                    : getInitials(session.user?.name)
+                  }
+                </div>
+                <span className="text-xs font-semibold text-violet-700">Dashboard</span>
+                <ArrowRight className="w-3 h-3 text-violet-500" />
+              </Link>
+            ) : (
+              <>
+                <Link href="/auth/login"
+                  className="hidden md:flex text-sm font-semibold text-[#5a5878] hover:text-[#0f0f1a] transition-colors px-3 py-1.5">
+                  Sign in
+                </Link>
+                <Link href="/auth/register" className="hidden md:flex btn-primary !py-2 !px-4 !text-sm">
+                  Get started free <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </>
+            )}
             <button onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 text-[#5a5878] hover:text-[#0f0f1a] transition-colors rounded-lg hover:bg-primary-50">
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -103,11 +122,29 @@ export default function Navbar() {
                   {item.name}
                 </Link>
               ))}
-              <div className="pt-2">
-                <Link href="/contact" onClick={() => setIsOpen(false)}
-                  className="btn-primary w-full justify-center !text-sm">
-                  Get Started <ArrowRight className="h-4 w-4" />
-                </Link>
+              <Link href="/careers" onClick={() => setIsOpen(false)}
+                className="flex items-center gap-2 px-3 py-2.5 text-sm font-semibold text-violet-700 hover:bg-violet-50 rounded-xl transition-all">
+                <Briefcase className="w-4 h-4" />
+                Careers AI Platform
+              </Link>
+              <div className="pt-2 space-y-2">
+                {session ? (
+                  <Link href="/dashboard" onClick={() => setIsOpen(false)}
+                    className="btn-primary w-full justify-center !text-sm">
+                    Go to Dashboard <ArrowRight className="h-4 w-4" />
+                  </Link>
+                ) : (
+                  <>
+                    <Link href="/auth/login" onClick={() => setIsOpen(false)}
+                      className="block w-full text-center px-4 py-2.5 text-sm font-semibold text-violet-700 border border-violet-200 rounded-xl hover:bg-violet-50 transition-colors">
+                      Sign in
+                    </Link>
+                    <Link href="/auth/register" onClick={() => setIsOpen(false)}
+                      className="btn-primary w-full justify-center !text-sm">
+                      Get started free <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>

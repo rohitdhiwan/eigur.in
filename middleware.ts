@@ -1,37 +1,40 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from 'next-auth/middleware';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-// Middleware to handle authentication, redirects, etc.
-export function middleware(request: NextRequest) {
-  // Example: Redirect from old paths to new paths
-  if (request.nextUrl.pathname.startsWith('/old-path')) {
-    return NextResponse.redirect(new URL('/new-path', request.url));
+export default withAuth(
+  function middleware(req) {
+    // Redirect signed-in users away from auth pages
+    const isAuth = req.nextUrl.pathname.startsWith('/auth');
+    const token = req.nextauth.token;
+
+    if (isAuth && token) {
+      return NextResponse.redirect(new URL('/dashboard', req.url));
+    }
+
+    const response = NextResponse.next();
+    response.headers.set('X-Frame-Options', 'DENY');
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+    return response;
+  },
+  {
+    callbacks: {
+      authorized({ token, req }) {
+        const isDashboard = req.nextUrl.pathname.startsWith('/dashboard');
+        if (isDashboard) return !!token;
+        return true;
+      },
+    },
+    pages: {
+      signIn: '/auth/login',
+    },
   }
+);
 
-  // Example: Add custom headers
-  const response = NextResponse.next();
-  response.headers.set('X-Frame-Options', 'DENY');
-  response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-
-  return response;
-}
-
-// Specify paths for middleware to run on
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    {
-      source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
-      missing: [
-        { type: 'header', key: 'next-router-prefetch' },
-        { type: 'header', key: 'purpose', value: 'prefetch' }
-      ]
-    }
-  ]
+    '/dashboard/:path*',
+    '/auth/:path*',
+  ],
 };
