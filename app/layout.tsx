@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Syne, Outfit } from 'next/font/google';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import Providers from './providers';
+import ClientLayout from './client-layout';
 import FloatingAIAssistant from '@/components/FloatingAIAssistant';
 import './globals.css';
 
@@ -15,12 +15,12 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: 'Eigur | AI Consultancy',
-  description: 'Intelligence at scale. Eigur builds production-grade AI systems that drive measurable outcomes for ambitious businesses. From strategy to deployment in 4 to 16 weeks.',
+  title: 'Eigur | AI Consultancy & Careers Platform',
+  description: 'Intelligence at scale. Eigur builds production-grade AI systems and powers AI-driven job search for India\'s most ambitious professionals.',
   metadataBase: new URL('https://eigur.in'),
   openGraph: {
-    title: 'Eigur | AI Consultancy',
-    description: 'Intelligence at scale. Production-grade AI systems that deliver real business outcomes.',
+    title: 'Eigur | AI Consultancy & Careers Platform',
+    description: 'Production-grade AI systems and intelligent job matching for India.',
     url: 'https://eigur.in', siteName: 'Eigur', locale: 'en_IN', type: 'website',
   },
 };
@@ -29,12 +29,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${syne.variable} ${outfit.variable}`}>
       <body className="font-sans antialiased bg-[#fafaf9] text-[#0f0f1a]">
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-grow">{children}</main>
-          <Footer />
+        <Providers>
+          <ClientLayout>
+            {children}
+          </ClientLayout>
           <FloatingAIAssistant />
-        </div>
+        </Providers>
       </body>
     </html>
   );

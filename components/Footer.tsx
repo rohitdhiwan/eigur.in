@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Twitter, Linkedin, Github } from 'lucide-react';
+import { Mail, Phone, MapPin, Twitter, Linkedin, Github, Briefcase } from 'lucide-react';
 
 const cols = [
   { heading: 'Company', links: [
@@ -16,16 +16,15 @@ const cols = [
     { name: 'Retail Intelligence', href: '/services' },
     { name: 'AI Assistant',        href: '/ai-assistant' },
   ]},
-  { heading: 'Resources', links: [
-    { name: 'Blog',          href: '/blog' },
-    { name: 'AI Insights',   href: '/blog' },
-    { name: 'Case Studies',  href: '/case-studies' },
-    { name: 'Privacy Policy',href: '#' },
-    { name: 'Terms',         href: '#' },
+  { heading: 'Careers AI', links: [
+    { name: 'Find Jobs',           href: '/careers' },
+    { name: 'CV Builder',          href: '/dashboard/cv' },
+    { name: 'AI Insights',         href: '/dashboard/insights' },
+    { name: 'Privacy Policy',      href: '#' },
+    { name: 'Terms of Service',    href: '#' },
   ]},
 ];
 
-// Modern node-network logo mark
 function LogoMark() {
   return (
     <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-700 flex items-center justify-center flex-shrink-0 shadow-[0_2px_10px_rgba(109,40,217,0.35)]">
@@ -45,8 +44,25 @@ export default function Footer() {
   return (
     <footer className="bg-[#fafaf9] border-t border-black/[0.07]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
 
+        {/* Careers AI CTA Banner */}
+        <div className="mb-12 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-700 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
+              <Briefcase className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="font-display font-bold text-white text-lg">Looking for a job?</p>
+              <p className="text-white/80 text-sm">Use Eigur Careers AI — free, smart job matching powered by AI.</p>
+            </div>
+          </div>
+          <Link href="/careers"
+            className="flex-shrink-0 px-5 py-2.5 rounded-xl bg-white text-violet-700 font-bold text-sm hover:bg-violet-50 transition-colors">
+            Explore Careers AI →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2.5 mb-5">
@@ -57,7 +73,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm text-[#7878a0] leading-relaxed max-w-xs mb-6">
-              Building AI systems that drive measurable outcomes for the world&apos;s most ambitious companies. Enterprise-grade intelligence, startup speed.
+              Building AI systems that drive measurable outcomes for India&apos;s most ambitious companies — and helping professionals find their next great role.
             </p>
             <div className="flex gap-3">
               {[Twitter, Linkedin, Github].map((Icon, i) => (
